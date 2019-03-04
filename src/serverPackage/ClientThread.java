@@ -5,7 +5,10 @@
  */
 package serverPackage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
@@ -27,8 +30,12 @@ public class ClientThread extends Thread{
     }
     public void clientThreading (){
         try{
-        OutputStream outputStream = clientSocket.getOutputStream(); // to send data to client
-        outputStream.write("hello client from server".getBytes());
+            InputStream inputStream = clientSocket.getInputStream(); // to read incoming data
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));//to read incoming data line by line
+            OutputStream outputStream = clientSocket.getOutputStream(); // to send data to client
+            outputStream.write("hello client from server".getBytes());
+            String incomingData = bufferedReader.readLine();
+            System.out.print(incomingData);
         } catch (IOException ex){
             ex.printStackTrace();
         }

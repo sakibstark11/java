@@ -18,7 +18,7 @@ import jdk.internal.org.xml.sax.InputSource;
 public class Server {
     
     
-    public static void main(String args[]) throws IOException
+    public static void main(String args[])
     {
         
         Connection connecting = new Connection(); // creating a new connection
