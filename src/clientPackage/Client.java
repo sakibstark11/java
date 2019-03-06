@@ -23,9 +23,12 @@ public class Client{
     
     public static void main(String args[])
     {
+        ClientConnection connectClient = new ClientConnection("127.0.0.1", 1999);
         
-        
-    
-
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run() {
+                new ClientGUI().setVisible(true);
+            }
+        });    
     }
 }
