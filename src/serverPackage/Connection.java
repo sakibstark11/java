@@ -16,26 +16,29 @@ import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author sakib
- */
+
 public class Connection {
     private int port = 1999;
     private int clientNumber = 0;
     
-
-    public Connection() {
-        
+    public Connection() {       
         try {
             ServerSocket serverSocket = new ServerSocket(port); // creating instance of serversocket
             while(true){
                 System.out.println("waiting for connection");
-                Socket clientSocket = serverSocket.accept(); // the connection to a serversocket from a client
+                try{
+                    
+                    Socket clientSocket = serverSocket.accept(); // the connection to a serversocket from a client
+                    ClientThread thread = new ClientThread(clientSocket);
+                }
+                catch(IOException ex){
+                    ex.printStackTrace();
+                }
                 System.out.println("client connected in que number: " + clientNumber);
                 //whenever there is a connection create an indivisual thread for it
                 //from the thread class
-                ClientThread thread = new ClientThread(clientSocket);
+                
+                
                 clientNumber++;
             }
             } catch (IOException ex) {

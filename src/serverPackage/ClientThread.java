@@ -12,21 +12,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
-/**
- *
- * @author sakib
- */
 public class ClientThread extends Thread{
     private final Socket clientSocket;
     public ClientThread(Socket clientSocket){
         this.clientSocket = clientSocket;
         this.start();
 }
-
     @Override
     public void run() {
         clientThreading();
-
     }
     public void clientThreading (){
         try{
@@ -35,11 +29,11 @@ public class ClientThread extends Thread{
             OutputStream outputStream = clientSocket.getOutputStream(); // to send data to client
             outputStream.write("hello client from server".getBytes());
             String incomingData = bufferedReader.readLine();
-            System.out.print(incomingData);
+            System.out.println(incomingData);
+            clientSocket.close();
+            System.err.println("client closed");
         } catch (IOException ex){
             ex.printStackTrace();
+        }      
         }
-        
-        }
-    
 }
