@@ -35,6 +35,7 @@ public class ServerThread extends Thread{
 
                             Socket clientSocket = serverSocket.accept(); // the connection to a serversocket from a client
                             ClientThread thread = new ClientThread(clientSocket);
+                            
                         }
                         catch(IOException ex){
                             ex.printStackTrace();

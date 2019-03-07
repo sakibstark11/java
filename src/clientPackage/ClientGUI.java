@@ -13,7 +13,7 @@ import javax.swing.JTextField;
  * @author sakib
  */
 public class ClientGUI extends javax.swing.JFrame {
-    String dataTokens;
+    String dataTokens="";
 
     /**
      * Creates new form ClientGUI
@@ -173,15 +173,16 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed
         // TODO add your handling code here:
-       devAttentionTextField.getText();
+       
         
     }//GEN-LAST:event_deptCodeTextFieldActionPerformed
 
     private void submitPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPOButtonActionPerformed
         
-       
-        ClientConnection data = new ClientConnection("127.0.0.1", 1999);
-        data.sendData(dataTokens);
+       dataTokens = devAttentionTextField.getText();
+       System.out.println(dataTokens);
+       ClientConnection data = new ClientConnection("localhost", 1999,dataTokens);
+        
     }//GEN-LAST:event_submitPOButtonActionPerformed
 
     private void devAttentionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devAttentionTextFieldActionPerformed

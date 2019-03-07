@@ -5,14 +5,19 @@
  */
 package clientPackage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -24,12 +29,27 @@ public class ClientConnection {
     private final int serverPort;
     private Socket socket;
     private OutputStream clientOut;
+    private PrintWriter printWriter;
     private InputStream serverIn;
-    public ClientConnection (String hostName,int serverPort){
+    private BufferedReader bufferedIn;
+    public ClientConnection (String hostName,int serverPort, String msg){
         this.hostName = hostName;
         this.serverPort = serverPort;
         if(connect()){
-            System.out.println("connected");        
+            System.out.println("connected");
+                    try {
+            //this.clientOut = socket.getOutputStream();
+            System.out.println(msg);
+            this.serverIn = socket.getInputStream();
+            this.clientOut = socket.getOutputStream();
+            this.bufferedIn = new BufferedReader(new InputStreamReader(serverIn));
+            clientOut.write((msg+ "\n").getBytes());
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
         else{
             System.out.println("connection failed for some reason");
@@ -47,19 +67,6 @@ public class ClientConnection {
         return false;
         }
 
-    public void sendData(String toSend) {
-        
-        try {
-            this.clientOut = socket.getOutputStream();
-            this.clientOut.write(toSend.getBytes());
-        } catch (IOException ex) {
-            Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   
-
-        
-        
-            }
 
 }
     

@@ -18,15 +18,20 @@ public class ClientThread extends Thread{
         clientThreading();
     }
     public void clientThreading (){
+        
         try{
+            System.out.println("setting up input stream");
             InputStream inputStream = clientSocket.getInputStream(); // to read incoming data
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));//to read incoming data line by line
-            OutputStream outputStream = clientSocket.getOutputStream(); // to send data to client
-            outputStream.write("hello client from server".getBytes());
-            String incomingData = bufferedReader.readLine();
-            System.out.println(incomingData);
-            clientSocket.close();
-            System.err.println("client closed");
+            //OutputStream outputStream = clientSocket.getOutputStream(); // to send data to client
+            //outputStream.write("this is server".getBytes());
+            String incomingData;
+            while ((incomingData = bufferedReader.readLine())!=null){
+                
+                System.out.println(incomingData);
+            }
+            
+            
         } catch (IOException ex){
             ex.printStackTrace();
         }      
