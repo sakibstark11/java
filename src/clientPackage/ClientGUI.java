@@ -5,12 +5,15 @@
  */
 package clientPackage;
 import com.sun.xml.internal.ws.util.StringUtils;
+import java.awt.TextField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author sakib
  */
 public class ClientGUI extends javax.swing.JFrame {
+    String dataTokens;
 
     /**
      * Creates new form ClientGUI
@@ -29,7 +32,7 @@ public class ClientGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        DeptCodeTextField = new javax.swing.JTextField();
+        deptCodeTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         statusTextField = new javax.swing.JTextField();
@@ -44,10 +47,10 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(169, 169, 169));
 
-        DeptCodeTextField.setText("Enter");
-        DeptCodeTextField.addActionListener(new java.awt.event.ActionListener() {
+        deptCodeTextField.setText("Enter");
+        deptCodeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeptCodeTextFieldActionPerformed(evt);
+                deptCodeTextFieldActionPerformed(evt);
             }
         });
 
@@ -63,6 +66,11 @@ public class ClientGUI extends javax.swing.JFrame {
         });
 
         devAttentionTextField.setText("Enter");
+        devAttentionTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                devAttentionTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Delivery attention");
 
@@ -90,7 +98,7 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(compStatusTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                     .addComponent(devAttentionTextField)
                     .addComponent(statusTextField)
-                    .addComponent(DeptCodeTextField))
+                    .addComponent(deptCodeTextField))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,7 +106,7 @@ public class ClientGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeptCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deptCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -155,30 +163,37 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void statusTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusTextFieldActionPerformed
         // TODO add your handling code here:
+        statusTextField.getText();
     }//GEN-LAST:event_statusTextFieldActionPerformed
 
     private void compStatusTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compStatusTextFieldActionPerformed
         // TODO add your handling code here:
+        compStatusTextField.getText();
     }//GEN-LAST:event_compStatusTextFieldActionPerformed
 
-    private void DeptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeptCodeTextFieldActionPerformed
+    private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DeptCodeTextFieldActionPerformed
+       devAttentionTextField.getText();
+        
+    }//GEN-LAST:event_deptCodeTextFieldActionPerformed
 
     private void submitPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPOButtonActionPerformed
-        String[] dataTokens = null;
-        dataTokens[0] = DeptCodeTextField.getText();
-        dataTokens[1] = statusTextField.getText();
-        dataTokens[2] = devAttentionTextField.getText();
-        dataTokens[3] = compStatusTextField.getText();
         
+       
+        ClientConnection data = new ClientConnection("127.0.0.1", 1999);
+        data.sendData(dataTokens);
     }//GEN-LAST:event_submitPOButtonActionPerformed
+
+    private void devAttentionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devAttentionTextFieldActionPerformed
+        // TODO add your handling code here:
+        devAttentionTextField.getText();
+    }//GEN-LAST:event_devAttentionTextFieldActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField DeptCodeTextField;
     private javax.swing.JTextField compStatusTextField;
+    private javax.swing.JTextField deptCodeTextField;
     private javax.swing.JTextField devAttentionTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

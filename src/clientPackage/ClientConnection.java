@@ -7,6 +7,7 @@ package clientPackage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -22,7 +23,7 @@ public class ClientConnection {
     private final String hostName;
     private final int serverPort;
     private Socket socket;
-    private OutputStream serverOut;
+    private OutputStream clientOut;
     private InputStream serverIn;
     public ClientConnection (String hostName,int serverPort){
         this.hostName = hostName;
@@ -46,10 +47,11 @@ public class ClientConnection {
         return false;
         }
 
-    private void sendData(String[] toSend) {
+    public void sendData(String toSend) {
         
         try {
-            this.serverOut = socket.getOutputStream();
+            this.clientOut = socket.getOutputStream();
+            this.clientOut.write(toSend.getBytes());
         } catch (IOException ex) {
             Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

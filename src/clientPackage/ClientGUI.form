@@ -75,7 +75,7 @@
                       <Component id="compStatusTextField" pref="154" max="32767" attributes="0"/>
                       <Component id="devAttentionTextField" max="32767" attributes="0"/>
                       <Component id="statusTextField" max="32767" attributes="0"/>
-                      <Component id="DeptCodeTextField" max="32767" attributes="0"/>
+                      <Component id="deptCodeTextField" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -86,7 +86,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="DeptCodeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deptCodeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -110,12 +110,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="DeptCodeTextField">
+        <Component class="javax.swing.JTextField" name="deptCodeTextField">
           <Properties>
             <Property name="text" type="java.lang.String" value="Enter"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeptCodeTextFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deptCodeTextFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -140,6 +140,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Enter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="devAttentionTextFieldActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
