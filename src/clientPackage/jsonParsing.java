@@ -12,7 +12,7 @@ import org.json.*;
  * @author sakib
  */
 public class jsonParsing implements Serializable{
-    JSONObject jsontype = null;
+    public String stringJSON = "";
 
     public jsonParsing(String mainkey,String keys,String values){
         String[] key;
@@ -27,10 +27,12 @@ public class jsonParsing implements Serializable{
         JSONObject jsontype = new JSONObject();
         jsontype.append(mainkey, jsonFor);
         System.err.println(jsontype);
+        stringJSON = jsontype.toString();
+        
     }
     public String getJSON() {
         //return null;
-        String stringJSON = jsontype.toString();
+        
         return stringJSON;
 }
 }
