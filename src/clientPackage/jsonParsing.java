@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package clientPackage;
 import java.io.Serializable;
-import javax.print.DocFlavor;
 import org.json.*;
-/**
- *
- * @author sakib
- */
+
 public class jsonParsing implements Serializable{
     public String stringJSON = "";
 
@@ -27,12 +19,13 @@ public class jsonParsing implements Serializable{
         JSONObject jsontype = new JSONObject();
         jsontype.append(mainkey, jsonFor);
         System.err.println(jsontype);
-        stringJSON = jsontype.toString();
-        
+        stringJSON = jsontype.toString();  
     }
-    public String getJSON() {
-        //return null;
-        
+    public String getJSONString() {
         return stringJSON;
 }
+    public JSONObject getStringJSON(String JSONInString){
+        JSONObject toreturn = new JSONObject(JSONInString);
+        return toreturn;
+    }
 }

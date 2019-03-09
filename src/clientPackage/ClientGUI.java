@@ -184,8 +184,9 @@ public jsonParsing json = null;
        System.out.println();
        
        ClientConnection data = new ClientConnection("localhost", 1999);
-       this.json = new jsonParsing("purchase", "stat-comp-dept-dev",stat+"-"+comp+"-"+dept+"-"+dev);
-        String JSONToString = this.json.getJSON();
+       String hyphen = "-";
+       this.json = new jsonParsing("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev);
+       String JSONToString = this.json.getJSONString();
        data.sendObject(JSONToString);
        
         

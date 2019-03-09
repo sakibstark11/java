@@ -8,21 +8,14 @@ package clientPackage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONObject;
-
 
 public class ClientConnection {
-
  private final String hostName;
  private final int serverPort;
  private Socket socket;
@@ -49,12 +42,8 @@ public class ClientConnection {
         
    System.out.println("sending");
    try {
-       //printWriter = new PrintWriter(this.socket.getOutputStream());
-       
        this.clientOut = socket.getOutputStream();
-       this.clientOut.write((tosend+"\n").getBytes());
-       
-    
+       this.clientOut.write((tosend+"\n").getBytes());      
    } catch (IOException ex) {
     Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
    }
