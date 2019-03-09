@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 package clientPackage;
-import com.sun.xml.internal.ws.util.StringUtils;
-import java.awt.TextField;
-import javax.swing.JTextField;
 
 /**
  *
  * @author sakib
  */
 public class ClientGUI extends javax.swing.JFrame {
-    String dataTokens="";
+
+
+public jsonParsing json = null;
 
     /**
      * Creates new form ClientGUI
@@ -163,12 +162,12 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void statusTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusTextFieldActionPerformed
         // TODO add your handling code here:
-        statusTextField.getText();
+        
     }//GEN-LAST:event_statusTextFieldActionPerformed
 
     private void compStatusTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compStatusTextFieldActionPerformed
         // TODO add your handling code here:
-        compStatusTextField.getText();
+        
     }//GEN-LAST:event_compStatusTextFieldActionPerformed
 
     private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed
@@ -178,10 +177,17 @@ public class ClientGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deptCodeTextFieldActionPerformed
 
     private void submitPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPOButtonActionPerformed
-        
-       dataTokens = devAttentionTextField.getText();
-       System.out.println(dataTokens);
-       ClientConnection data = new ClientConnection("localhost", 1999,dataTokens);
+       String stat = statusTextField.getText();
+       String comp = compStatusTextField.getText();
+       String dept = deptCodeTextField.getText();
+       String dev = devAttentionTextField.getText();
+       System.out.println();
+       
+       ClientConnection data = new ClientConnection("localhost", 1999);
+       this.json = new jsonParsing("purchase", "stat-comp-dept-dev",stat+"-"+comp+"-"+dept+"-"+dev);
+        String JSONToString = this.json.getJSON();
+       data.sendObject(JSONToString);
+       
         
     }//GEN-LAST:event_submitPOButtonActionPerformed
 
