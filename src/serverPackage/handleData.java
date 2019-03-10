@@ -21,7 +21,7 @@ JSONObject jsonDataGlobal;
             System.out.println("connected");
             System.out.println(jsonDataGlobal.getString("order"));
             System.out.println(jsonDataGlobal.getString("command"));
-            if (jsonDataGlobal.getString("order") == "purchase"){
+            if (jsonDataGlobal.getString("order").equals("purchase")){
                 switch(jsonDataGlobal.getString("command")){
                     case "create":
                         createPurchase();
@@ -44,7 +44,7 @@ JSONObject jsonDataGlobal;
         statement.setString(1, jsonDataGlobal.getString("deptcode"));
         statement.setString(2,jsonDataGlobal.getString("stat"));
         statement.setString(3, jsonDataGlobal.getString("dev"));
-        if (jsonDataGlobal.getString("comp")== "yes"){
+        if (jsonDataGlobal.getString("comp").equals("yes")){
             
             statement.setBoolean(4, true);
         }else
