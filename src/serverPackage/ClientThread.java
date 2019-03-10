@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONObject;
 
 public class ClientThread extends Thread {
  private  Socket clientSocket = null;
- private BufferedReader bufferedReader = null;
+ private BufferedReader bufferedReader = null; 
  public ClientThread(Socket clientSocket) {
   this.clientSocket = clientSocket;
   this.start();
@@ -23,8 +24,10 @@ public class ClientThread extends Thread {
   try {
         System.out.println("setting up input stream");
         this.bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        System.err.println(bufferedReader.readLine());
-        handleData prepareData = new handleData(bufferedReader.readLine());
+        String incomingData = (bufferedReader.readLine());
+        JSONObject createTempJSON = new JSONObject(incomingData);
+        handleData parseData = new handleData(createTempJSON);
+        
         
         
   } catch (IOException ex) {

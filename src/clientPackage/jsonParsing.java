@@ -4,7 +4,7 @@ import java.io.Serializable;
 import org.json.*;
 
 public class jsonParsing implements Serializable{
-    public String stringJSON = "";
+    private String stringJSON = "";
 
     public jsonParsing(String mainkey,String keys,String values){
         String[] key;
@@ -21,11 +21,8 @@ public class jsonParsing implements Serializable{
         System.err.println(jsontype);
         stringJSON = jsontype.toString();  
     }
+    // to get a json object in the form of a string
     public String getJSONString() {
         return stringJSON;
 }
-    public JSONObject getStringJSON(String JSONInString){
-        JSONObject toreturn = new JSONObject(JSONInString);
-        return toreturn;
-    }
 }

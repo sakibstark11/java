@@ -43,7 +43,8 @@ public class ClientConnection {
    System.out.println("sending");
    try {
        this.clientOut = socket.getOutputStream();
-       this.clientOut.write((tosend+"\n").getBytes());      
+       this.clientOut.write((tosend+"\n").getBytes());
+       clientOut.close();
    } catch (IOException ex) {
     Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
    }
