@@ -29,11 +29,11 @@ public jsonParsing json = null;
         deptCodeTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        statusTextField = new javax.swing.JTextField();
         devAttentionTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        compStatusTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        statComboBox = new javax.swing.JComboBox<>();
+        compStatusComboBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         submitPOButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -55,13 +55,6 @@ public jsonParsing json = null;
 
         jLabel2.setText("Status");
 
-        statusTextField.setText("Enter");
-        statusTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusTextFieldActionPerformed(evt);
-            }
-        });
-
         devAttentionTextField.setText("Enter");
         devAttentionTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,14 +64,16 @@ public jsonParsing json = null;
 
         jLabel3.setText("Delivery attention");
 
-        compStatusTextField.setText("Enter");
-        compStatusTextField.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setText("Completed status");
+
+        statComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ordered", "on-hold", "cancelled", "dispatched", "completed" }));
+        statComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compStatusTextFieldActionPerformed(evt);
+                statComboBoxActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Completed status");
+        compStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,10 +87,10 @@ public jsonParsing json = null;
                     .addComponent(jLabel4))
                 .addGap(18, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(devAttentionTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(statusTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(devAttentionTextField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(deptCodeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(compStatusTextField))
+                    .addComponent(statComboBox, 0, 120, Short.MAX_VALUE)
+                    .addComponent(compStatusComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,7 +103,7 @@ public jsonParsing json = null;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(statusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(statComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -116,8 +111,8 @@ public jsonParsing json = null;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(compStatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(compStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jLabel5.setText("Purchase Order");
@@ -167,7 +162,7 @@ public jsonParsing json = null;
                     .addComponent(submitPOButton))
                 .addGap(8, 8, 8)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addContainerGap(301, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
@@ -177,16 +172,6 @@ public jsonParsing json = null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void statusTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusTextFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_statusTextFieldActionPerformed
-
-    private void compStatusTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compStatusTextFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_compStatusTextFieldActionPerformed
-
     private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed
         // TODO add your handling code here:
        
@@ -194,15 +179,15 @@ public jsonParsing json = null;
     }//GEN-LAST:event_deptCodeTextFieldActionPerformed
 
     private void submitPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPOButtonActionPerformed
-       String stat = statusTextField.getText();
-       String comp = compStatusTextField.getText();
+       String stat = statComboBox.getSelectedItem().toString();
+       String comp = compStatusComboBox.getSelectedItem().toString();
        String dept = deptCodeTextField.getText();
        String dev = devAttentionTextField.getText();
        System.out.println();
        
        ClientConnection data = new ClientConnection("localhost", 1999);
        String hyphen = "-";
-       this.json = new jsonParsing("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev);
+       this.json = new jsonParsing("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev, "create");
        String JSONToString = this.json.getJSONString();
        data.sendObject(JSONToString);
        
@@ -214,10 +199,14 @@ public jsonParsing json = null;
         devAttentionTextField.getText();
     }//GEN-LAST:event_devAttentionTextFieldActionPerformed
 
+    private void statComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statComboBoxActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField compStatusTextField;
+    private javax.swing.JComboBox<String> compStatusComboBox;
     private javax.swing.JTextField deptCodeTextField;
     private javax.swing.JTextField devAttentionTextField;
     private javax.swing.JLabel jLabel1;
@@ -227,7 +216,7 @@ public jsonParsing json = null;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField statusTextField;
+    private javax.swing.JComboBox<String> statComboBox;
     private javax.swing.JButton submitPOButton;
     // End of variables declaration//GEN-END:variables
 }
