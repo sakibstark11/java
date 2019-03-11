@@ -1,4 +1,3 @@
-
 package serverPackage;
 
 import java.sql.Connection;
@@ -10,53 +9,51 @@ import java.util.logging.Logger;
 import org.json.JSONObject;
 
 public class handleData {
-Connection con;
-JSONObject jsonDataGlobal;
-    public handleData(JSONObject jsonData){
-        this.jsonDataGlobal = jsonData;
-        System.out.println(jsonDataGlobal);
-        try {
-            
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/CJB_database","sakib","sakib");
-            System.out.println("connected");
-            System.out.println(jsonDataGlobal.getString("order"));
-            System.out.println(jsonDataGlobal.getString("command"));
-            if (jsonDataGlobal.getString("order").equals("purchase")){
-                switch(jsonDataGlobal.getString("command")){
-                    case "create":
-                        createPurchase();
-                }
-            }
-            else {
-                }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-        
-    }
+ Connection con;
+ JSONObject jsonDataGlobal;
+ public handleData(JSONObject jsonData) {
+  this.jsonDataGlobal = jsonData;
+  System.out.println(jsonDataGlobal);
+  try {
 
-    private void createPurchase() {
+   con = DriverManager.getConnection("jdbc:derby://localhost:1527/CJB_database", "sakib", "sakib");
+   System.out.println("connected");
+   if (jsonDataGlobal.getString("order").equals("purchase")) {
+    purchaseTableHandler();
+   } else {}
+
+  } catch (SQLException ex) {
+   Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+
+  }
+
+ }
+
+ private void purchaseTableHandler() {
+  switch (jsonDataGlobal.getString("command")) {
+   case "create":
     try {
-        PreparedStatement statement = con.prepareStatement("INSERT INTO PURCHASEORDER(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS)");
-        System.out.println("serverPackage.handleData.createPurchase()");
-        statement.setString(1, jsonDataGlobal.getString("deptcode"));
-        statement.setString(2,jsonDataGlobal.getString("stat"));
-        statement.setString(3, jsonDataGlobal.getString("dev"));
-        if (jsonDataGlobal.getString("comp").equals("yes")){
-            
-            statement.setBoolean(4, true);
-        }else
-        {statement.setBoolean(4,false);}
-        int rowsInserted = statement.executeUpdate();
-        if (rowsInserted>0){
-            System.out.println("added");
-        }
+     PreparedStatement statement = con.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
+     statement.setString(1, jsonDataGlobal.getString("dept"));
+     statement.setString(2, jsonDataGlobal.getString("stat"));
+     statement.setString(3, jsonDataGlobal.getString("dev"));
+     if (jsonDataGlobal.getString("comp").equals("yes")) {
+      statement.setBoolean(4, true);
+     } else {
+      statement.setBoolean(4, false);
+     }
+     int rowsInserted = statement.executeUpdate();
+     if (rowsInserted > 0) {
+      System.out.println("added");
+     }
     } catch (SQLException ex) {
-        Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
-    } 
+     Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
     }
-            
-    
+   case "refresh":
+       
+
+  }
+
+ }
+
 }

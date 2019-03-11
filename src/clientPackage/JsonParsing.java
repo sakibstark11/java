@@ -3,10 +3,10 @@ package clientPackage;
 import java.io.Serializable;
 import org.json.*;
 
-public class jsonParsing implements Serializable{
+public class JsonParsing implements Serializable{
     private String stringJSON = "";
 
-    public jsonParsing(String part,String keys,String values,String command){
+    public JsonParsing(String part,String keys,String values,String command){
         String[] key;
         String[] value;
         String split = "-";

@@ -8,12 +8,14 @@ package clientPackage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONObject;
 
 public class ClientConnection {
  private final String hostName;
@@ -28,7 +30,7 @@ public class ClientConnection {
   this.hostName = hostName;
   this.serverPort = serverPort;
  }
- private boolean connect() {
+ public boolean connect() {
   try {
    this.socket = new Socket(hostName, serverPort); //create new socket for client           
    return true; // return true on new connection otherwise false
@@ -38,31 +40,28 @@ public class ClientConnection {
   return false;
  }
  public void sendObject (String tosend){
-    if (connect()) {
-        
+       
    System.out.println("sending");
    try {
        this.clientOut = socket.getOutputStream();
        this.clientOut.write((tosend+"\n").getBytes());
-       clientOut.close();
+       
    } catch (IOException ex) {
     Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
    }
-  } else {
-   System.out.println("connection failed for some reason");
-   connect();
-  }   
  }
- /*
- private void recieveObject() {
+ 
+ public void recieveObject() {
      if (connect()) {
         System.out.println("recieving");
      try {
-         this.serverIn = socket.getInputStream();
-         //this.bufferedIn = new BufferedReader(new InputStreamReader(serverIn));
+         this.serverIn = this.socket.getInputStream();
+         this.bufferedIn = new BufferedReader(new InputStreamReader(serverIn));
          String incomingData;
-         //incomingData = bufferedIn.readLine();
-         System.out.println();
+         incomingData = bufferedIn.readLine();
+         System.out.println(incomingData);
+         JSONObject jsonParse = new JSONObject(incomingData);
+         
      } catch (IOException ex) {
          Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
      }
@@ -75,5 +74,5 @@ public class ClientConnection {
      } catch (IOException ex) {
          Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
      }
-}*/
+}
 }
