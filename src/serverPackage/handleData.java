@@ -3,9 +3,11 @@ package serverPackage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class handleData {
@@ -24,7 +26,6 @@ public class handleData {
 
   } catch (SQLException ex) {
    Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
-
   }
 
  }
@@ -33,7 +34,7 @@ public class handleData {
   switch (jsonDataGlobal.getString("command")) {
    case "create":
     try {
-     PreparedStatement statement = con.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
+     PreparedStatement statement = this.con.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
      statement.setString(1, jsonDataGlobal.getString("dept"));
      statement.setString(2, jsonDataGlobal.getString("stat"));
      statement.setString(3, jsonDataGlobal.getString("dev"));
@@ -49,11 +50,17 @@ public class handleData {
     } catch (SQLException ex) {
      Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
     }
-   case "refresh":
-       
+   case "refresh": 
+      try {
+          PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
+          ResultSet result = statement.executeQuery();
+          JSONArray arrayJson = new JSONArray();
+          System.out.println(result);
+          JSONObject objectJson = new JSONObject();
 
+      } catch (SQLException ex) {
+          Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+      }
   }
-
  }
-
 }

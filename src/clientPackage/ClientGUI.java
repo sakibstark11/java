@@ -12,7 +12,7 @@ package clientPackage;
 public class ClientGUI extends javax.swing.JFrame {
 
 ClientConnection data;
-public JsonParsing json = null;
+public JsonParsing json = new JsonParsing();
 String hyphen = "-";
     /**
      * Creates new form ClientGUI
@@ -317,9 +317,8 @@ String hyphen = "-";
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-        this.json = new JsonParsing("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x","refresh");
-        String JSONToString = this.json.getJSONString();
-        data.sendObject(JSONToString);
+        
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x", "refresh"));
         
     }//GEN-LAST:event_refreshButtonActionPerformed
 
@@ -341,11 +340,7 @@ String hyphen = "-";
         String dept = deptCodeTextField.getText();
         String dev = devAttentionTextField.getText();
         System.out.println();
-
-        
-        this.json = new JsonParsing("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev, "create");
-        String JSONToString = this.json.getJSONString();
-        data.sendObject(JSONToString);
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev, "create"));
     }//GEN-LAST:event_submitPOButtonActionPerformed
 
     private void statComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statComboBoxActionPerformed
