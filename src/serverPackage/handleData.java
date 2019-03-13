@@ -54,10 +54,20 @@ public class handleData {
       try {
           PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
           ResultSet result = statement.executeQuery();
-          JSONArray arrayJson = new JSONArray();
-          System.out.println(result);
           JSONObject objectJson = new JSONObject();
-
+          while(result.next()){
+          for (int x=1;x<(result.getMetaData().getColumnCount())+1;x++)
+          {
+              if(result.getMetaData().getColumnType(x)==java.sql.Types.INTEGER)
+              {objectJson.put(result.getMetaData().getColumnName(x), result.getInt(x));}
+              if(result.getMetaData().getColumnType(x)== java.sql.Types.VARCHAR)
+              {objectJson.put(result.getMetaData().getColumnName(x), result.getString(x));}
+              if(result.getMetaData().getColumnType(x)== java.sql.Types.BOOLEAN)
+              {objectJson.put(result.getMetaData().getColumnName(x), result.getBoolean(x));}
+          }
+          }
+          System.out.println(objectJson);
+          
       } catch (SQLException ex) {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
       }
