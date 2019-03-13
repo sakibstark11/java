@@ -58,7 +58,9 @@ public class ClientConnection {
          this.serverIn = this.socket.getInputStream();
          this.bufferedIn = new BufferedReader(new InputStreamReader(serverIn));
          String incomingData;
+         System.out.println("clientPackage.ClientConnection.recieveObject()");
          incomingData = bufferedIn.readLine();
+         System.out.println("clientPackage.ClientConnection.recieveObject()");
          System.out.println(incomingData);
          JSONObject jsonParse = new JSONObject(incomingData);
          

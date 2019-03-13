@@ -1,14 +1,18 @@
 package serverPackage;
 
+import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.*;
 
 public class handleData {
  Connection con;
@@ -17,7 +21,6 @@ public class handleData {
   this.jsonDataGlobal = jsonData;
   System.out.println(jsonDataGlobal);
   try {
-
    con = DriverManager.getConnection("jdbc:derby://localhost:1527/CJB_database", "sakib", "sakib");
    System.out.println("connected");
    if (jsonDataGlobal.getString("order").equals("purchase")) {
@@ -27,7 +30,6 @@ public class handleData {
   } catch (SQLException ex) {
    Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
   }
-
  }
 
  private void purchaseTableHandler() {
@@ -52,25 +54,38 @@ public class handleData {
     }
    case "refresh": 
       try {
+          JSONObject objectJson = null;
+          JSONObject temp = new JSONObject();
           PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
           ResultSet result = statement.executeQuery();
-          JSONObject objectJson = new JSONObject();
+          List<JSONObject> list = new ArrayList<JSONObject>() ;
+          JSONArray array = new JSONArray();
+          
           while(result.next()){
+              objectJson = new JSONObject();
           for (int x=1;x<(result.getMetaData().getColumnCount())+1;x++)
           {
               if(result.getMetaData().getColumnType(x)==java.sql.Types.INTEGER)
-              {objectJson.put(result.getMetaData().getColumnName(x), result.getInt(x));}
-              if(result.getMetaData().getColumnType(x)== java.sql.Types.VARCHAR)
-              {objectJson.put(result.getMetaData().getColumnName(x), result.getString(x));}
-              if(result.getMetaData().getColumnType(x)== java.sql.Types.BOOLEAN)
-              {objectJson.put(result.getMetaData().getColumnName(x), result.getBoolean(x));}
+              {
+                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getInt(x));}
+              else if(result.getMetaData().getColumnType(x)== java.sql.Types.VARCHAR)
+              {
+                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getString(x));}
+              else if(result.getMetaData().getColumnType(x)== java.sql.Types.BOOLEAN)
+              {
+                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getBoolean(x));}
           }
+          array.put(objectJson);
           }
-          System.out.println(objectJson);
-          
-      } catch (SQLException ex) {
+                  
+          } catch (SQLException ex) {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
       }
   }
  }
+
+    public String getRefreshJsonInString() {
+        return this.toString();
+        
+    }
 }

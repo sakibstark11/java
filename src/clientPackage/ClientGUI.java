@@ -320,6 +320,7 @@ String hyphen = "-";
         
         this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x", "refresh"));
         
+        
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
@@ -349,7 +350,7 @@ String hyphen = "-";
 
     private void devAttentionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devAttentionTextFieldActionPerformed
         // TODO add your handling code here:
-        devAttentionTextField.getText();
+        
     }//GEN-LAST:event_devAttentionTextFieldActionPerformed
 
     private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed

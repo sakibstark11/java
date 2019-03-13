@@ -15,6 +15,8 @@ public class JsonParsing implements Serializable{
         key = keys.split(split);
         value = values.split(split);
         JSONObject jsonFor = new JSONObject();  
+
+        
         jsonFor.put("order",part);
         jsonFor.put("command", command);
         for(int x=0; x<key.length;x++){
