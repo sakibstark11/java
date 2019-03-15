@@ -20,7 +20,8 @@ String hyphen = "-";
     public ClientGUI() {
         initComponents();
         this.data = new ClientConnection("localhost", 1999);
-        data.connect();
+        this.data.connect();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -234,7 +235,9 @@ String hyphen = "-";
                         .addGap(18, 18, 18)
                         .addComponent(removeButton)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -318,13 +321,15 @@ String hyphen = "-";
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
         
-        this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x", "refresh"));
         
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x", "refresh"));
+        this.data.recieveObject();
         
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
@@ -340,6 +345,7 @@ String hyphen = "-";
         String comp = compStatusComboBox.getSelectedItem().toString();
         String dept = deptCodeTextField.getText();
         String dev = devAttentionTextField.getText();
+          
         System.out.println();
         this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev, "create"));
     }//GEN-LAST:event_submitPOButtonActionPerformed
@@ -374,7 +380,6 @@ String hyphen = "-";
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;

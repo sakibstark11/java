@@ -5,19 +5,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerThread extends Thread {
+public class ServerThread {
 
  private final int port;
  private int clientNumber = 0;
  ServerThread(int port) {
   this.port = port;
-  this.start();
- }
-
- @Override
- public void run() {
   ServerThreading();
  }
+
  private void ServerThreading() {
   try {
    ServerSocket serverSocket = new ServerSocket(port); // creating instance of serversocket

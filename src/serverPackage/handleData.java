@@ -1,5 +1,9 @@
 package serverPackage;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,9 +19,14 @@ import org.json.JSONObject;
 import org.json.*;
 
 public class handleData {
+ private  Socket clientSocket = null;
+ private OutputStream clientOut = null;
+ private JSONArray array = null; 
  Connection con;
  JSONObject jsonDataGlobal;
- public handleData(JSONObject jsonData) {
+ public handleData(JSONObject jsonData, OutputStream clientOutStream, Socket clientSocket) {
+  this.clientSocket = clientSocket;
+  this.clientOut = clientOutStream;
   this.jsonDataGlobal = jsonData;
   System.out.println(jsonDataGlobal);
   try {
@@ -51,15 +60,14 @@ public class handleData {
      }
     } catch (SQLException ex) {
      Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    } break;
    case "refresh": 
       try {
           JSONObject objectJson = null;
           JSONObject temp = new JSONObject();
           PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
           ResultSet result = statement.executeQuery();
-          List<JSONObject> list = new ArrayList<JSONObject>() ;
-          JSONArray array = new JSONArray();
+          this.array = new JSONArray();
           
           while(result.next()){
               objectJson = new JSONObject();
@@ -75,17 +83,31 @@ public class handleData {
               {
                   objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getBoolean(x));}
           }
-          array.put(objectJson);
+              this.array.put(objectJson);
+              
           }
-                  
+          System.out.println(array);
+          sendToClient(getRefreshJsonInString());
           } catch (SQLException ex) {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
-      }
+      } break;
   }
+     
  }
-
     public String getRefreshJsonInString() {
-        return this.toString();
+        return this.array.toString();
         
+    }
+
+    private void sendToClient(String JsonInString) {
+     try {
+         this.clientOut = this.clientSocket.getOutputStream();
+         this.clientOut.write((JsonInString+"\n").getBytes());
+         this.clientOut.flush();
+         System.out.println("sent");
+     } catch (IOException ex) {
+         Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    
     }
 }
