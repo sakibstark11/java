@@ -1,22 +1,18 @@
 package serverPackage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.*;
 
 public class handleData {
  private  Socket clientSocket = null;
@@ -75,13 +71,13 @@ public class handleData {
           {
               if(result.getMetaData().getColumnType(x)==java.sql.Types.INTEGER)
               {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getInt(x));}
+                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));}
               else if(result.getMetaData().getColumnType(x)== java.sql.Types.VARCHAR)
               {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getString(x));}
+                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));}
               else if(result.getMetaData().getColumnType(x)== java.sql.Types.BOOLEAN)
               {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), result.getBoolean(x));}
+                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));}
           }
               this.array.put(objectJson);
               

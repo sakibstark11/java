@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerThread {
+public class ServerInitializer {
 
  private final int port;
  private int clientNumber = 0;
- ServerThread(int port) {
+ ServerInitializer(int port) {
   this.port = port;
   ServerThreading();
  }

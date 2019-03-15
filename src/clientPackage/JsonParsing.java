@@ -26,6 +26,11 @@ public class JsonParsing implements Serializable{
         stringJSON = jsonFor.toString();  
         return stringJSON;
     }
+    public JSONArray parseStringIntoArray( String JSONInString){
+        JSONArray array = new JSONArray(JSONInString);
+        System.out.println(array);
+        return array;
+    } 
     
     
 }

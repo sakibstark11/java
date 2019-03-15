@@ -16,7 +16,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class ClientConnection {
  private final String hostName;
@@ -55,11 +54,10 @@ public class ClientConnection {
    }
  }
  
- public void recieveObject() {
+ public String recieveObject() {
 
         System.out.println("recieving");
      try {
-               
          this.bufferedIn = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
          System.out.println("clientPackage.ClientConnection.recieveObject()");
          String incomingData;
@@ -67,11 +65,11 @@ public class ClientConnection {
          incomingData = this.bufferedIn.readLine();
          System.out.println("recieved");
          System.out.println(incomingData);
-         JSONArray jsonParse = new JSONArray(incomingData);
+         return incomingData;
               
  } catch (IOException ex) {
          Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
-     }
- }
-     
+         return null; 
+ }        
+ }     
 }

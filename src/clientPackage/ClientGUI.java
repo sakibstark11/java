@@ -1,29 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clientPackage;
-
-/**
- *
- * @author sakib
- */
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.json.JSONArray;
+import org.json.JSONObject;
+ 
 public class ClientGUI extends javax.swing.JFrame {
-
 ClientConnection data;
 public JsonParsing json = new JsonParsing();
 String hyphen = "-";
-    /**
-     * Creates new form ClientGUI
-     */
     public ClientGUI() {
         initComponents();
         this.data = new ClientConnection("localhost", 1999);
         this.data.connect();
-
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,7 +40,7 @@ String hyphen = "-";
         modifyButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         purchaseOrderTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -205,10 +196,10 @@ String hyphen = "-";
 
             },
             new String [] {
-                "purchase order id", "department code", "status", "delivery attention", "completed status"
+
             }
         ));
-        jScrollPane3.setViewportView(purchaseOrderTable);
+        jScrollPane1.setViewportView(purchaseOrderTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -229,15 +220,15 @@ String hyphen = "-";
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshButton))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(updateButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(modifyButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(removeButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(updateButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(modifyButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(removeButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -251,11 +242,9 @@ String hyphen = "-";
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton)
                     .addComponent(modifyButton)
@@ -269,7 +258,7 @@ String hyphen = "-";
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 756, Short.MAX_VALUE)
+            .addGap(0, 758, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +271,7 @@ String hyphen = "-";
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 756, Short.MAX_VALUE)
+            .addGap(0, 758, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,14 +308,19 @@ String hyphen = "-";
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        // TODO add your handling code here:
-        
-        
+ 
         this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x", "refresh"));
-        this.data.recieveObject();
+        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("purchaseid");
+        columnNames.add("departmentcode");
+        columnNames.add("deliveryattention");
+        columnNames.add("completedstatus");
+        columnNames.add("status");
+        displayTable(refresh,columnNames);
         
     }//GEN-LAST:event_refreshButtonActionPerformed
-
+    
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // TODO add your handling code here:
         
@@ -344,9 +338,7 @@ String hyphen = "-";
         String stat = statComboBox.getSelectedItem().toString();
         String comp = compStatusComboBox.getSelectedItem().toString();
         String dept = deptCodeTextField.getText();
-        String dev = devAttentionTextField.getText();
-          
-        System.out.println();
+        String dev  = devAttentionTextField.getText();          
         this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev, "create"));
     }//GEN-LAST:event_submitPOButtonActionPerformed
 
@@ -380,8 +372,8 @@ String hyphen = "-";
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton modifyButton;
     private javax.swing.JTable purchaseOrderTable;
@@ -392,4 +384,21 @@ String hyphen = "-";
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    private void displayTable(JSONArray refreshAray,Vector<String> columnNames) {
+        Vector<Vector<String>> dataList = new Vector<>();
+        for (int x = 0; x <refreshAray.length(); x++){
+            JSONObject jsonTable = refreshAray.getJSONObject(x);
+            Vector <String> data = new Vector <> ();
+            jsonTable.getInt("purchaseid");            
+            data.add((jsonTable.getString("purchaseid")));
+            data.add(jsonTable.getString("departmentcode"));
+            data.add(jsonTable.getString("deliveryattention"));
+            data.add(jsonTable.getString("completedstatus"));
+            data.add(jsonTable.getString("status"));
+            dataList.add(data);
+        }
+        DefaultTableModel model = new DefaultTableModel(dataList,columnNames); ;              
+        purchaseOrderTable.setModel(model);
+    }
 }
