@@ -199,6 +199,11 @@ String hyphen = "-";
 
             }
         ));
+        purchaseOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                purchaseOrderTableMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(purchaseOrderTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -317,13 +322,20 @@ String hyphen = "-";
         columnNames.add("deliveryattention");
         columnNames.add("completedstatus");
         columnNames.add("status");
-        displayTable(refresh,columnNames);
-        
+        displayTable(refresh,columnNames); // display table
     }//GEN-LAST:event_refreshButtonActionPerformed
     
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        // TODO add your handling code here:
-        
+        int index = purchaseOrderTable.getSelectedRow();
+        JSONObject objectjson = new JSONObject();
+        for (int c = 0; c < purchaseOrderTable.getColumnCount(); c++ )
+        {
+            objectjson.put(purchaseOrderTable.getColumnName(c),purchaseOrderTable.getValueAt(index, c));
+        }
+        System.out.println("selected "+objectjson);
+        objectjson.put("order","purchase");
+        objectjson.put("command", "delete");
+        this.data.sendObject(objectjson.toString());
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
@@ -331,7 +343,7 @@ String hyphen = "-";
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void submitPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPOButtonActionPerformed
@@ -347,13 +359,16 @@ String hyphen = "-";
     }//GEN-LAST:event_statComboBoxActionPerformed
 
     private void devAttentionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devAttentionTextFieldActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_devAttentionTextFieldActionPerformed
 
     private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deptCodeTextFieldActionPerformed
+
+    private void purchaseOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseOrderTableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_purchaseOrderTableMousePressed
 
 
 
@@ -390,14 +405,12 @@ String hyphen = "-";
         for (int x = 0; x <refreshAray.length(); x++){
             JSONObject jsonTable = refreshAray.getJSONObject(x);
             Vector <String> data = new Vector <> ();
-            jsonTable.getInt("purchaseid");            
-            data.add((jsonTable.getString("purchaseid")));
-            data.add(jsonTable.getString("departmentcode"));
-            data.add(jsonTable.getString("deliveryattention"));
-            data.add(jsonTable.getString("completedstatus"));
-            data.add(jsonTable.getString("status"));
+            for(int y = 0; y < columnNames.size();y++)          
+            {data.add(jsonTable.getString(columnNames.get(y)));
+            }
             dataList.add(data);
         }
+        System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList,columnNames); ;              
         purchaseOrderTable.setModel(model);
     }

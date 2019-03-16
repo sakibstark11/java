@@ -61,7 +61,6 @@ public class ClientConnection {
          this.bufferedIn = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
          System.out.println("clientPackage.ClientConnection.recieveObject()");
          String incomingData;
-         System.out.println();
          incomingData = this.bufferedIn.readLine();
          System.out.println("recieved");
          System.out.println(incomingData);
