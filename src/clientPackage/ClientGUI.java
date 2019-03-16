@@ -43,6 +43,24 @@ String hyphen = "-";
         jScrollPane1 = new javax.swing.JScrollPane();
         purchaseOrderTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        createButtonPurchase1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        purchaseOrderTable1 = new javax.swing.JTable();
+        refreshButtonPurchase1 = new javax.swing.JButton();
+        updateButton1 = new javax.swing.JButton();
+        modifyButton1 = new javax.swing.JButton();
+        removeButtonPurchase1 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        deptCodeTextField1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        devAttentionTextField1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        statComboBox1 = new javax.swing.JComboBox<>();
+        compStatusComboBox1 = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -259,15 +277,182 @@ String hyphen = "-";
 
         tabs.addTab("Purchase", jPanel3);
 
+        jLabel7.setText("Store room Stock");
+
+        createButtonPurchase1.setText("Create");
+        createButtonPurchase1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonPurchase1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Current Store room shelf");
+
+        purchaseOrderTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        purchaseOrderTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                purchaseOrderTable1MousePressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(purchaseOrderTable1);
+
+        refreshButtonPurchase1.setText("Refresh");
+        refreshButtonPurchase1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonPurchase1ActionPerformed(evt);
+            }
+        });
+
+        updateButton1.setText("Update");
+        updateButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButton1ActionPerformed(evt);
+            }
+        });
+
+        modifyButton1.setText("Modify");
+        modifyButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButton1ActionPerformed(evt);
+            }
+        });
+
+        removeButtonPurchase1.setText("Remove");
+        removeButtonPurchase1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonPurchase1ActionPerformed(evt);
+            }
+        });
+
+        jPanel6.setBackground(new java.awt.Color(169, 169, 169));
+
+        deptCodeTextField1.setText("Enter");
+        deptCodeTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deptCodeTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Department code");
+
+        jLabel10.setText("Status");
+
+        devAttentionTextField1.setText("Enter");
+        devAttentionTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                devAttentionTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Delivery attention");
+
+        jLabel12.setText("Completed status");
+
+        statComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ordered", "on-hold", "cancelled", "dispatched", "completed" }));
+        statComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statComboBox1ActionPerformed(evt);
+            }
+        });
+
+        compStatusComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addGap(18, 52, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(devAttentionTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(deptCodeTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(statComboBox1, 0, 120, Short.MAX_VALUE)
+                    .addComponent(compStatusComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deptCodeTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(statComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(devAttentionTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(compStatusComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 758, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createButtonPurchase1)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(refreshButtonPurchase1))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(updateButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(modifyButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(removeButtonPurchase1))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(createButtonPurchase1)
+                    .addComponent(refreshButtonPurchase1)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton1)
+                    .addComponent(modifyButton1)
+                    .addComponent(removeButtonPurchase1))
+                .addContainerGap())
         );
 
         tabs.addTab("Store Room", jPanel4);
@@ -378,32 +563,86 @@ String hyphen = "-";
         // TODO add your handling code here:
     }//GEN-LAST:event_purchaseOrderTableMousePressed
 
+    private void createButtonPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonPurchase1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createButtonPurchase1ActionPerformed
+
+    private void purchaseOrderTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseOrderTable1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_purchaseOrderTable1MousePressed
+
+    private void refreshButtonPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonPurchase1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshButtonPurchase1ActionPerformed
+
+    private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateButton1ActionPerformed
+
+    private void modifyButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyButton1ActionPerformed
+
+    private void removeButtonPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonPurchase1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeButtonPurchase1ActionPerformed
+
+    private void deptCodeTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deptCodeTextField1ActionPerformed
+
+    private void devAttentionTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devAttentionTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_devAttentionTextField1ActionPerformed
+
+    private void statComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statComboBox1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> compStatusComboBox;
+    private javax.swing.JComboBox<String> compStatusComboBox1;
     private javax.swing.JButton createButtonPurchase;
+    private javax.swing.JButton createButtonPurchase1;
     private javax.swing.JTextField deptCodeTextField;
+    private javax.swing.JTextField deptCodeTextField1;
     private javax.swing.JTextField devAttentionTextField;
+    private javax.swing.JTextField devAttentionTextField1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton modifyButton;
+    private javax.swing.JButton modifyButton1;
     private javax.swing.JTable purchaseOrderTable;
+    private javax.swing.JTable purchaseOrderTable1;
     private javax.swing.JButton refreshButtonPurchase;
+    private javax.swing.JButton refreshButtonPurchase1;
     private javax.swing.JButton removeButtonPurchase;
+    private javax.swing.JButton removeButtonPurchase1;
     private javax.swing.JComboBox<String> statComboBox;
+    private javax.swing.JComboBox<String> statComboBox1;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JButton updateButton;
+    private javax.swing.JButton updateButton1;
     // End of variables declaration//GEN-END:variables
 
     private void displayTable(JSONArray refreshAray,Vector<String> columnNames) {
