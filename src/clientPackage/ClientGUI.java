@@ -34,12 +34,12 @@ String hyphen = "-";
         statComboBox = new javax.swing.JComboBox<>();
         compStatusComboBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        submitPOButton = new javax.swing.JButton();
+        createButtonPurchase = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         updateButton = new javax.swing.JButton();
         modifyButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
-        refreshButton = new javax.swing.JButton();
+        removeButtonPurchase = new javax.swing.JButton();
+        refreshButtonPurchase = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         purchaseOrderTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -154,10 +154,10 @@ String hyphen = "-";
 
         jLabel5.setText("Purchase Order");
 
-        submitPOButton.setText("Create");
-        submitPOButton.addActionListener(new java.awt.event.ActionListener() {
+        createButtonPurchase.setText("Create");
+        createButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitPOButtonActionPerformed(evt);
+                createButtonPurchaseActionPerformed(evt);
             }
         });
 
@@ -177,17 +177,17 @@ String hyphen = "-";
             }
         });
 
-        removeButton.setText("Remove");
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
+        removeButtonPurchase.setText("Remove");
+        removeButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
+                removeButtonPurchaseActionPerformed(evt);
             }
         });
 
-        refreshButton.setText("Refresh");
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+        refreshButtonPurchase.setText("Refresh");
+        refreshButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
+                refreshButtonPurchaseActionPerformed(evt);
             }
         });
 
@@ -217,13 +217,13 @@ String hyphen = "-";
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitPOButton)))
+                        .addComponent(createButtonPurchase)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(refreshButton))
+                        .addComponent(refreshButtonPurchase))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -231,7 +231,7 @@ String hyphen = "-";
                                 .addGap(18, 18, 18)
                                 .addComponent(modifyButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(removeButton))
+                                .addComponent(removeButtonPurchase))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -242,8 +242,8 @@ String hyphen = "-";
                 .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(submitPOButton)
-                    .addComponent(refreshButton)
+                    .addComponent(createButtonPurchase)
+                    .addComponent(refreshButtonPurchase)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +253,7 @@ String hyphen = "-";
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton)
                     .addComponent(modifyButton)
-                    .addComponent(removeButton))
+                    .addComponent(removeButtonPurchase))
                 .addContainerGap())
         );
 
@@ -312,31 +312,29 @@ String hyphen = "-";
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
- 
-        this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev","x"+hyphen+"x"+hyphen+"x"+hyphen+"x", "refresh"));
-        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+    private void refreshButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonPurchaseActionPerformed
+        Vector <String> keys = new Vector <> ();
+        keys.add("stat");
+        keys.add("comp");
+        keys.add("dept");
+        keys.add("dev");
+        Vector <String> values = new Vector <> ();
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        values.add("x");
         Vector<String> columnNames = new Vector<>(); // create columns
         columnNames.add("purchaseid");
         columnNames.add("departmentcode");
         columnNames.add("deliveryattention");
         columnNames.add("completedstatus");
         columnNames.add("status");
-        displayTable(refresh,columnNames); // display table
-    }//GEN-LAST:event_refreshButtonActionPerformed
+        performRefresh("purchase",keys,values,columnNames);
+    }//GEN-LAST:event_refreshButtonPurchaseActionPerformed
     
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        int index = purchaseOrderTable.getSelectedRow();
-        JSONObject objectjson = new JSONObject();
-        for (int c = 0; c < purchaseOrderTable.getColumnCount(); c++ )
-        {
-            objectjson.put(purchaseOrderTable.getColumnName(c),purchaseOrderTable.getValueAt(index, c));
-        }
-        System.out.println("selected "+objectjson);
-        objectjson.put("order","purchase");
-        objectjson.put("command", "delete");
-        this.data.sendObject(objectjson.toString());
-    }//GEN-LAST:event_removeButtonActionPerformed
+    private void removeButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonPurchaseActionPerformed
+        performRemove(purchaseOrderTable, "purchase");        
+    }//GEN-LAST:event_removeButtonPurchaseActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         // TODO add your handling code here:
@@ -346,13 +344,23 @@ String hyphen = "-";
 
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void submitPOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPOButtonActionPerformed
+    private void createButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonPurchaseActionPerformed
         String stat = statComboBox.getSelectedItem().toString();
         String comp = compStatusComboBox.getSelectedItem().toString();
         String dept = deptCodeTextField.getText();
-        String dev  = devAttentionTextField.getText();          
-        this.data.sendObject(this.json.parseJsonIntoString("purchase", "stat-comp-dept-dev",stat+hyphen+comp+hyphen+dept+hyphen+dev, "create"));
-    }//GEN-LAST:event_submitPOButtonActionPerformed
+        String dev  = devAttentionTextField.getText();
+        Vector <String> keys = new Vector <> ();
+        keys.add("stat");
+        keys.add("comp");
+        keys.add("dept");
+        keys.add("dev");
+        Vector <String> values = new Vector <> ();
+        values.add(stat);
+        values.add(comp);
+        values.add(dept);
+        values.add(dev);
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys,values, "create"));
+    }//GEN-LAST:event_createButtonPurchaseActionPerformed
 
     private void statComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statComboBoxActionPerformed
         // TODO add your handling code here:
@@ -370,10 +378,9 @@ String hyphen = "-";
         // TODO add your handling code here:
     }//GEN-LAST:event_purchaseOrderTableMousePressed
 
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> compStatusComboBox;
+    private javax.swing.JButton createButtonPurchase;
     private javax.swing.JTextField deptCodeTextField;
     private javax.swing.JTextField devAttentionTextField;
     private javax.swing.JLabel jLabel1;
@@ -392,10 +399,9 @@ String hyphen = "-";
     private javax.swing.JTable jTable1;
     private javax.swing.JButton modifyButton;
     private javax.swing.JTable purchaseOrderTable;
-    private javax.swing.JButton refreshButton;
-    private javax.swing.JButton removeButton;
+    private javax.swing.JButton refreshButtonPurchase;
+    private javax.swing.JButton removeButtonPurchase;
     private javax.swing.JComboBox<String> statComboBox;
-    private javax.swing.JButton submitPOButton;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
@@ -413,5 +419,24 @@ String hyphen = "-";
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList,columnNames); ;              
         purchaseOrderTable.setModel(model);
+    }
+
+    private void performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames) {
+        this.data.sendObject(this.json.parseJsonIntoString(part, keys,values, "refresh"));
+        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+        displayTable(refresh,columnNames); // display table
+    }
+
+    private void performRemove(JTable OrderTable, String table) {
+        int index = OrderTable.getSelectedRow();
+        JSONObject objectjson = new JSONObject();
+        for (int c = 0; c < OrderTable.getColumnCount(); c++ )
+        {
+            objectjson.put(OrderTable.getColumnName(c),OrderTable.getValueAt(index, c));
+        }
+        System.out.println("selected "+ objectjson);
+        objectjson.put("order",table);
+        objectjson.put("command", "delete");
+        this.data.sendObject(objectjson.toString());
     }
 }

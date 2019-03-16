@@ -60,7 +60,6 @@ public class handleData {
    case "refresh": 
       try {
           JSONObject objectJson = null;
-          JSONObject temp = new JSONObject();
           PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
           ResultSet result = statement.executeQuery();
           this.array = new JSONArray();
@@ -87,8 +86,19 @@ public class handleData {
           } catch (SQLException ex) {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
       } break;
+   case "delete":
+  {
+      try {
+          PreparedStatement statement = this.con.prepareStatement("DELETE FROM PURCHASEORDERS WHERE PURCHASEID = ?");
+          statement.setInt(1, Integer.parseInt(jsonDataGlobal.getString("purchaseid")));
+          statement.execute();
+          System.out.println("deleted");
+      } catch (SQLException ex) {
+          Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+      }
   }
-     
+       
+  }     
  }
     public String getRefreshJsonInString() {
         return this.array.toString();

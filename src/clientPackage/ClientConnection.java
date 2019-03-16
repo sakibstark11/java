@@ -48,7 +48,7 @@ public class ClientConnection {
        
        this.clientOut = this.socket.getOutputStream();
        this.clientOut.write((tosend+"\n").getBytes());
-       
+       this.clientOut.flush();
    } catch (IOException ex) {
     Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
    }

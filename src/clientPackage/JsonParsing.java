@@ -1,6 +1,7 @@
 
 package clientPackage;
 import java.io.Serializable;
+import java.util.Vector;
 import org.json.*;
 
 public class JsonParsing implements Serializable{
@@ -8,19 +9,19 @@ public class JsonParsing implements Serializable{
 
     public JsonParsing(){      
     }
-    public String parseJsonIntoString (String part,String keys,String values,String command){
-        String[] key;
-        String[] value;
-        String split = "-";
-        key = keys.split(split);
-        value = values.split(split);
+    public String parseJsonIntoString (String part,Vector <String> keys,Vector <String> values,String command){
+//        String[] key;
+//        String[] value;
+//        String split = "-";
+//        key = keys.split(split);
+//        value = values.split(split);
         JSONObject jsonFor = new JSONObject();  
 
         
         jsonFor.put("order",part);
         jsonFor.put("command", command);
-        for(int x=0; x<key.length;x++){
-         jsonFor.put(key[x], value[x]);   
+        for(int x=0; x<keys.size();x++){
+         jsonFor.put(keys.get(x), values.get(x));   
         }   
         System.err.println(jsonFor);
         stringJSON = jsonFor.toString();  
