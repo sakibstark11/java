@@ -27,15 +27,16 @@ public class handleData {
   System.out.println(jsonDataGlobal);
   try {
    con = DriverManager.getConnection("jdbc:derby://localhost:1527/CJB_database", "sakib", "sakib");
-   System.out.println("connected");
+   System.out.println("connected to the database");
    if (jsonDataGlobal.getString("order").equals("purchase")) {
     purchaseTableHandler();
    } else if (jsonDataGlobal.getString("order").equals("store")){
        storeTableHandler();
    }
 
-  } catch (SQLException ex) {
-   Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+  } catch (SQLException ex) {  
+    System.out.println("database not connected");
+    
   }
  }
 
@@ -44,10 +45,10 @@ public class handleData {
    case "create":
     try {
      PreparedStatement statement = this.con.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
-     statement.setString(1, jsonDataGlobal.getString("dept"));
-     statement.setString(2, jsonDataGlobal.getString("stat"));
-     statement.setString(3, jsonDataGlobal.getString("dev"));
-     if (jsonDataGlobal.getString("comp").equals("yes")) {
+     statement.setString(1, jsonDataGlobal.getString("departmentcode"));
+     statement.setString(2, jsonDataGlobal.getString("status"));
+     statement.setString(3, jsonDataGlobal.getString("deliveryattention"));
+     if (jsonDataGlobal.getString("completedstatus").equals("true")) {
       statement.setBoolean(4, true);
      } else {
       statement.setBoolean(4, false);
@@ -59,6 +60,23 @@ public class handleData {
     } catch (SQLException ex) {
      Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
     } break;
+   case "update":
+           try {
+     PreparedStatement statement = this.con.prepareStatement("UPDATE PURCHASEORDERS SET DEPARTMENTCODE = ?,STATUS = ?, DELIVERYATTENTION = ?, COMPLETEDSTATUS =  ? WHERE PURCHASEID = ?");
+     statement.setString(1, jsonDataGlobal.getString("departmentcode"));
+     statement.setString(2, jsonDataGlobal.getString("status"));
+     statement.setString(3, jsonDataGlobal.getString("deliveryattention"));
+     if (jsonDataGlobal.getString("completedstatus").equals("true")) {
+      statement.setBoolean(4, true);
+     } else {
+      statement.setBoolean(4, false);
+     }
+     statement.setInt(5, Integer.parseInt(jsonDataGlobal.getString("purchaseid")));
+     statement.execute();
+     System.out.println("updated");
+    } catch (SQLException ex) {
+     Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+    }break;
    case "refresh": 
       try {
           JSONObject objectJson = null;
@@ -70,15 +88,19 @@ public class handleData {
               objectJson = new JSONObject();
           for (int x=1;x<(result.getMetaData().getColumnCount())+1;x++)
           {
-              if(result.getMetaData().getColumnType(x)==java.sql.Types.INTEGER)
-              {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));}
-              else if(result.getMetaData().getColumnType(x)== java.sql.Types.VARCHAR)
-              {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));}
-              else if(result.getMetaData().getColumnType(x)== java.sql.Types.BOOLEAN)
-              {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));}
+                  switch (result.getMetaData().getColumnType(x)) {
+                      case java.sql.Types.INTEGER:
+                          objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));
+                          break;
+                      case java.sql.Types.VARCHAR:
+                          objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));
+                          break;
+                      case java.sql.Types.BOOLEAN:
+                          objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));
+                          break;
+                      default:
+                          break;
+                  }
           }
               this.array.put(objectJson);
               
@@ -98,6 +120,7 @@ public class handleData {
       } catch (SQLException ex) {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
       } break;
+      
      
        
   }     
@@ -125,9 +148,9 @@ public class handleData {
     try {
      PreparedStatement statement = this.con.prepareStatement("INSERT INTO STOREROOM(MANUFACTURER,MANUFACTURERPARTNUMBER,KANBANSIZE,SAFETYLEVEL) VALUES (?,?,?,?)");
      statement.setString(1, jsonDataGlobal.getString("manufacturer"));
-     statement.setString(2, jsonDataGlobal.getString("partnumber"));
-     statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString("kanban")));
-     statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString("safety")));
+     statement.setString(2, jsonDataGlobal.getString("manufacturerpartnumber"));
+     statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString("kanbansize")));
+     statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString("safetylevel")));
      int rowsInserted = statement.executeUpdate();
      if (rowsInserted > 0) {
       System.out.println("added");
@@ -137,8 +160,8 @@ public class handleData {
     } break;
    case "refresh": 
       try {
-          JSONObject objectJson = null;
-          PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
+          JSONObject objectJson;
+          PreparedStatement statement = this.con.prepareStatement("SELECT * FROM STOREROOM");
           ResultSet result = statement.executeQuery();
           this.array = new JSONArray();
           
@@ -146,15 +169,19 @@ public class handleData {
               objectJson = new JSONObject();
           for (int x=1;x<(result.getMetaData().getColumnCount())+1;x++)
           {
-              if(result.getMetaData().getColumnType(x)==java.sql.Types.INTEGER)
-              {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));}
-              else if(result.getMetaData().getColumnType(x)== java.sql.Types.VARCHAR)
-              {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));}
-              else if(result.getMetaData().getColumnType(x)== java.sql.Types.BOOLEAN)
-              {
-                  objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));}
+                  switch (result.getMetaData().getColumnType(x)) {
+                      case java.sql.Types.INTEGER:
+                          objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));
+                          break;
+                      case java.sql.Types.VARCHAR:
+                          objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));
+                          break;
+                      case java.sql.Types.BOOLEAN:
+                          objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));
+                          break;
+                      default:
+                          break;
+                  }
           }
               this.array.put(objectJson);
               
@@ -165,15 +192,28 @@ public class handleData {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
       } break;
    case "delete":
-  
       try {
-          PreparedStatement statement = this.con.prepareStatement("DELETE FROM PURCHASEORDERS WHERE PURCHASEID = ?");
-          statement.setInt(1, Integer.parseInt(jsonDataGlobal.getString("purchaseid")));
+          PreparedStatement statement = this.con.prepareStatement("DELETE FROM STOREROOM WHERE PARTID = ?");
+          statement.setInt(1, Integer.parseInt(jsonDataGlobal.getString("partid")));
           statement.execute();
           System.out.println("deleted");
       } catch (SQLException ex) {
           Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
       } break;
+   case "update":
+             try {
+          PreparedStatement statement = this.con.prepareStatement("UPDATE STOREROOM SET MANUFACTURER = ?,MANUFACTURERPARTNUMBER = ?, KANBANSIZE = ?, SAFETYLEVEL =  ? WHERE PARTID =?");
+          statement.setInt(5, Integer.parseInt(jsonDataGlobal.getString("partid")));
+          statement.setString(1, jsonDataGlobal.getString("manufacturer"));
+          statement.setString(2, jsonDataGlobal.getString("manufacturerpartnumber"));
+          statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString("kanbansize")));
+          statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString("safetylevel")));          
+          statement.execute();
+          System.out.println("updated");
+      } catch (SQLException ex) {
+          Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+      } break;
+       
    
         
     }
