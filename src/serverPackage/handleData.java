@@ -1,5 +1,6 @@
 package serverPackage;
 
+import clientPackage.JsonParsing;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -21,11 +22,13 @@ public class handleData {
     private JSONArray array = null;
     Connection con;
     JSONObject jsonDataGlobal;
+    JsonParsing parseJson ;
 
     public handleData(JSONObject jsonData, OutputStream clientOutStream, Socket clientSocket) {
         this.clientSocket = clientSocket;
         this.clientOut = clientOutStream;
         this.jsonDataGlobal = jsonData;
+        this.parseJson = new JsonParsing();
         System.out.println(jsonDataGlobal);
         try {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/CJB_database", "sakib", "sakib");
@@ -83,39 +86,14 @@ public class handleData {
                 break;
             case "refresh":
                 try {
-                    JSONObject objectJson = null;
                     PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
                     ResultSet result = statement.executeQuery();
-                    this.array = new JSONArray();
-
-                    while (result.next()) {
-                        objectJson = new JSONObject();
-                        for (int x = 1; x < (result.getMetaData().getColumnCount()) + 1; x++) {
-                            switch (result.getMetaData().getColumnType(x)) {
-                                case java.sql.Types.INTEGER:
-                                    objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));
-                                    break;
-                                case java.sql.Types.VARCHAR:
-                                    objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));
-                                    break;
-                                case java.sql.Types.BOOLEAN:
-                                    objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        this.array.put(objectJson);
-
-                    }
-                    System.out.println(array);
-                    sendToClient(getRefreshJsonInString());
+                    sendToClient(parseJson.createJsonFromResult(result).toString());
                 } catch (SQLException ex) {
                     Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
             case "delete":
-
                 try {
                     PreparedStatement statement = this.con.prepareStatement("DELETE FROM PURCHASEORDERS WHERE PURCHASEID = ?");
                     statement.setInt(1, Integer.parseInt(jsonDataGlobal.getString("purchaseid")));
@@ -125,7 +103,24 @@ public class handleData {
                     Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-
+            case "filter":
+                try {
+                         PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS WHERE DEPARTMENTCODE =? AND STATUS = ? AND DELIVERYATTENTION = ? AND COMPLETEDSTATUS = ?");
+                        statement.setString(1, jsonDataGlobal.getString("departmentcode"));
+                        statement.setString(2, jsonDataGlobal.getString("status"));
+                        statement.setString(3, jsonDataGlobal.getString("deliveryattention"));
+                       if (jsonDataGlobal.getString("completedstatus").equals("true")) {
+                        statement.setBoolean(4, true);
+                    } else {
+                        statement.setBoolean(4, false);
+                    }
+                        
+                        ResultSet result = statement.executeQuery();
+                        sendToClient(parseJson.createJsonFromResult(result).toString());
+                
+                }catch (SQLException ex) {
+            Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+        }break;
         }
     }
 
@@ -165,33 +160,9 @@ public class handleData {
                 break;
             case "refresh":
                 try {
-                    JSONObject objectJson;
                     PreparedStatement statement = this.con.prepareStatement("SELECT * FROM STOREROOM");
                     ResultSet result = statement.executeQuery();
-                    this.array = new JSONArray();
-
-                    while (result.next()) {
-                        objectJson = new JSONObject();
-                        for (int x = 1; x < (result.getMetaData().getColumnCount()) + 1; x++) {
-                            switch (result.getMetaData().getColumnType(x)) {
-                                case java.sql.Types.INTEGER:
-                                    objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getInt(x)));
-                                    break;
-                                case java.sql.Types.VARCHAR:
-                                    objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getString(x)));
-                                    break;
-                                case java.sql.Types.BOOLEAN:
-                                    objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                        this.array.put(objectJson);
-
-                    }
-                    System.out.println(array);
-                    sendToClient(getRefreshJsonInString());
+                    sendToClient(parseJson.createJsonFromResult(result).toString());
                 } catch (SQLException ex) {
                     Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -220,7 +191,22 @@ public class handleData {
                     Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+                case "filter":
+                try {
+                         PreparedStatement statement = this.con.prepareStatement("SELECT * FROM STOREROOM WHERE MANUFACTURER =? AND MANUFACTURERPARTNUMBER = ? AND KANBANSIZE = ? AND SAFETYLEVEL = ?");
+                        statement.setString(1, jsonDataGlobal.getString("manufacturer"));
+                        statement.setString(2, jsonDataGlobal.getString("manufacturerpartnumber"));
+                    statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString("kanbansize")));
+                    statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString("safetylevel")));
+                        ResultSet result = statement.executeQuery();
+                        sendToClient(parseJson.createJsonFromResult(result).toString());
+                
+                }catch (SQLException ex) {
+            Logger.getLogger(handleData.class.getName()).log(Level.SEVERE, null, ex);
+        }break;
 
         }
     }
+
+    
 }

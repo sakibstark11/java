@@ -16,7 +16,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
     public ClientGUI() {
         initComponents();
-        turnOffButtons();
+        //turnOffButtons();
         this.data = new ClientConnection("localhost", 1999);
         this.data.connect();
     }
@@ -47,6 +47,7 @@ public class ClientGUI extends javax.swing.JFrame {
         refreshButtonPurchase = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         purchaseOrderTable = new javax.swing.JTable();
+        filterButtonPurchase = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -67,6 +68,7 @@ public class ClientGUI extends javax.swing.JFrame {
         refreshButtonStore = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         storeOrderTable = new javax.swing.JTable();
+        filterButtonStore = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,6 +240,13 @@ public class ClientGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(purchaseOrderTable);
 
+        filterButtonPurchase.setText("Filter");
+        filterButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterButtonPurchaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -249,9 +258,10 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(createButtonPurchase)))
+                                .addComponent(createButtonPurchase))
+                            .addComponent(filterButtonPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -276,13 +286,16 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filterButtonPurchase))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButtonPurchase)
                     .addComponent(removeButtonPurchase))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         tabs.addTab("Purchase", jPanel3);
@@ -433,18 +446,26 @@ public class ClientGUI extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(storeOrderTable);
 
+        filterButtonStore.setText("Filter");
+        filterButtonStore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterButtonStoreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createButtonStore))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(filterButtonStore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -472,7 +493,10 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filterButtonStore))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -508,7 +532,7 @@ public class ClientGUI extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
 
         tabs.addTab("Purchase Order Line", jPanel5);
@@ -558,8 +582,8 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("completedstatus");
         columnNames.add("status");
         performRefresh("purchase", keys, values, columnNames, purchaseOrderTable);
-        updateButtonPurchase.setEnabled(true);
-        removeButtonPurchase.setEnabled(true);
+        //updateButtonPurchase.setEnabled(true);
+        //removeButtonPurchase.setEnabled(true);
     }//GEN-LAST:event_refreshButtonPurchaseActionPerformed
 
     private void removeButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonPurchaseActionPerformed
@@ -665,9 +689,6 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("kanbansize");
         columnNames.add("safetylevel");
         performRefresh("store", keys, values, columnNames, storeOrderTable);
-        updateButtonStore.setEnabled(true);
-        removeButtonStore.setEnabled(true);
-
     }//GEN-LAST:event_refreshButtonStoreActionPerformed
 
     private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
@@ -686,12 +707,71 @@ public class ClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_safetyStockIntFieldActionPerformed
 
+    private void filterButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonPurchaseActionPerformed
+        String stat = statComboBox.getSelectedItem().toString();
+        String comp = compStatusComboBox.getSelectedItem().toString();
+        String dept = deptCodeTextField.getText();
+        String dev = devAttentionTextField.getText();
+        Vector<String> keys = new Vector<>();
+        keys.add("status");
+        keys.add("completedstatus");
+        keys.add("departmentcode");
+        keys.add("deliveryattention");
+        Vector<String> values = new Vector<>();
+        values.add(stat);
+        values.add(comp);
+        values.add(dept);
+        values.add(dev);
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("purchaseid");
+        columnNames.add("departmentcode");
+        columnNames.add("deliveryattention");
+        columnNames.add("completedstatus");
+        columnNames.add("status");
+        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+        displayTable(refresh, columnNames, purchaseOrderTable); // display table
+    }//GEN-LAST:event_filterButtonPurchaseActionPerformed
+
+    private void filterButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonStoreActionPerformed
+        String manufacturer = manufacturerTextField.getText();
+        String partNumber = partNumberTextField.getText();
+        try {
+            int kan = Integer.parseInt(kanbanSizeIntField.getText());
+            int safety = Integer.parseInt(safetyStockIntField.getText());
+            Vector<String> keys = new Vector<>();
+            keys.add("manufacturer");
+            keys.add("manufacturerpartnumber");
+            keys.add("kanbansize");
+            keys.add("safetylevel");
+            Vector<String> values = new Vector<>();
+            values.add(manufacturer);
+            values.add(partNumber);
+            values.add(String.valueOf(kan));
+            values.add(String.valueOf(safety));
+            this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "filter"));
+            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+            Vector<String> columnNames = new Vector<>(); // create columns
+            columnNames.add("partid");
+            columnNames.add("manufacturer");
+            columnNames.add("manufacturerpartnumber");
+            columnNames.add("kanbansize");
+            columnNames.add("safetylevel");
+            displayTable(refresh, columnNames, storeOrderTable); // display table
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "invalid type");
+        }
+
+    }//GEN-LAST:event_filterButtonStoreActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> compStatusComboBox;
     private javax.swing.JButton createButtonPurchase;
     private javax.swing.JButton createButtonStore;
     private javax.swing.JTextField deptCodeTextField;
     private javax.swing.JTextField devAttentionTextField;
+    private javax.swing.JButton filterButtonPurchase;
+    private javax.swing.JButton filterButtonStore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -752,27 +832,27 @@ public class ClientGUI extends javax.swing.JFrame {
         JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
         displayTable(refresh, columnNames, OrderTable); // display table
     }
-    private int returnIndex(JTable OrderTable){
+
+    private int returnIndex(JTable OrderTable) {
         int index = OrderTable.getSelectedRow();
-        if (index == -1)
-        {
-            JOptionPane.showMessageDialog(this, "Idiot");    
+        if (index == -1) {
+            JOptionPane.showMessageDialog(this, "Idiot");
         }
         return index;
     }
+
     private void performRemove(JTable OrderTable, String table) {
-        if(returnIndex(OrderTable)!=-1)
-        {
-        int index = returnIndex(OrderTable);
-        JSONObject objectjson = new JSONObject();
-        for (int c = 0; c < OrderTable.getColumnCount(); c++) {
-            objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
-        }
-        System.out.println("selected " + objectjson);
-        objectjson.put("order", table);
-        objectjson.put("command", "delete");
-        this.data.sendObject(objectjson.toString());
-        
+        if (returnIndex(OrderTable) != -1) {
+            int index = returnIndex(OrderTable);
+            JSONObject objectjson = new JSONObject();
+            for (int c = 0; c < OrderTable.getColumnCount(); c++) {
+                objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
+            }
+            System.out.println("selected " + objectjson);
+            objectjson.put("order", table);
+            objectjson.put("command", "delete");
+            this.data.sendObject(objectjson.toString());
+
         }
     }
 
@@ -784,16 +864,16 @@ public class ClientGUI extends javax.swing.JFrame {
     }
 
     private void performUpdate(JTable OrderTable, String table) {
-        if(returnIndex(OrderTable)!=-1)
-        {int index = OrderTable.getSelectedRow();
-        JSONObject objectjson = new JSONObject();
-        for (int c = 0; c < OrderTable.getColumnCount(); c++) {
-            objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
+        if (returnIndex(OrderTable) != -1) {
+            int index = OrderTable.getSelectedRow();
+            JSONObject objectjson = new JSONObject();
+            for (int c = 0; c < OrderTable.getColumnCount(); c++) {
+                objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
+            }
+            System.out.println("selected " + objectjson);
+            objectjson.put("order", table);
+            objectjson.put("command", "update");
+            this.data.sendObject(objectjson.toString());
         }
-        System.out.println("selected " + objectjson);
-        objectjson.put("order", table);
-        objectjson.put("command", "update");
-        this.data.sendObject(objectjson.toString());
-    }
     }
 }
