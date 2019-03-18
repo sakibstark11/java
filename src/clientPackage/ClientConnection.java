@@ -18,56 +18,58 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 
 public class ClientConnection {
- private final String hostName;
- private final int serverPort;
- private Socket socket;
- private OutputStream clientOut;
- private OutputStreamWriter clientOutWriter;
- private PrintWriter printWriter;
- private InputStream serverIn;
- private BufferedReader bufferedIn;
- public ClientConnection(String hostName, int serverPort) {  
-  this.hostName = hostName;
-  this.serverPort = serverPort;
-  
-          
- }
- public boolean connect() {
-  try {
-   this.socket = new Socket(hostName, serverPort); //create new socket for client           
-   return true; // return true on new connection otherwise false
-  } catch (IOException ex) {
-   ex.printStackTrace();
-  }
-  return false;
- }
- public void sendObject (String tosend){
-       
-   System.out.println("sending");
-   try {
-       
-       this.clientOut = this.socket.getOutputStream();
-       this.clientOut.write((tosend+"\n").getBytes());
-       this.clientOut.flush();
-   } catch (IOException ex) {
-    Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
-   }
- }
- 
- public String recieveObject() {
 
+    private final String hostName;
+    private final int serverPort;
+    private Socket socket;
+    private OutputStream clientOut;
+    private OutputStreamWriter clientOutWriter;
+    private PrintWriter printWriter;
+    private InputStream serverIn;
+    private BufferedReader bufferedIn;
+
+    public ClientConnection(String hostName, int serverPort) {
+        this.hostName = hostName;
+        this.serverPort = serverPort;
+
+    }
+
+    public boolean connect() {
+        try {
+            this.socket = new Socket(hostName, serverPort); //create new socket for client           
+            return true; // return true on new connection otherwise false
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public void sendObject(String tosend) {
+
+        System.out.println("sending");
+        try {
+
+            this.clientOut = this.socket.getOutputStream();
+            this.clientOut.write((tosend + "\n").getBytes());
+            this.clientOut.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String recieveObject() {
         System.out.println("recieving");
-     try {
-         this.bufferedIn = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-         String incomingData;
-         incomingData = this.bufferedIn.readLine();
-         System.out.println("recieved");
-         System.out.println(incomingData);
-         return incomingData;
-              
- } catch (IOException ex) {
-         Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
-         return null; 
- }        
- }     
+        try {
+            this.bufferedIn = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+            String incomingData;
+            incomingData = this.bufferedIn.readLine();
+            System.out.println("recieved");
+            System.out.println(incomingData);
+            return incomingData;
+
+        } catch (IOException ex) {
+            Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

@@ -1,21 +1,25 @@
 package clientPackage;
+
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
- 
+
 public class ClientGUI extends javax.swing.JFrame {
-ClientConnection data;
-public JsonParsing json = new JsonParsing();
-String hyphen = "-";
+
+    ClientConnection data;
+    public JsonParsing json = new JsonParsing();
+    String hyphen = "-";
+
     public ClientGUI() {
         initComponents();
         turnOffButtons();
         this.data = new ClientConnection("localhost", 1999);
         this.data.connect();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -536,12 +540,12 @@ String hyphen = "-";
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonPurchaseActionPerformed
-        Vector <String> keys = new Vector <> ();
+        Vector<String> keys = new Vector<>();
         keys.add("status");
         keys.add("completedstatus");
         keys.add("departmentcode");
         keys.add("deliveryattention");
-        Vector <String> values = new Vector <> ();
+        Vector<String> values = new Vector<>();
         values.add("x");
         values.add("x");
         values.add("x");
@@ -552,13 +556,13 @@ String hyphen = "-";
         columnNames.add("deliveryattention");
         columnNames.add("completedstatus");
         columnNames.add("status");
-        performRefresh("purchase",keys,values,columnNames,purchaseOrderTable);
+        performRefresh("purchase", keys, values, columnNames, purchaseOrderTable);
         updateButtonPurchase.setEnabled(true);
         removeButtonPurchase.setEnabled(true);
     }//GEN-LAST:event_refreshButtonPurchaseActionPerformed
-    
+
     private void removeButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonPurchaseActionPerformed
-        performRemove(purchaseOrderTable, "purchase"); 
+        performRemove(purchaseOrderTable, "purchase");
         refreshButtonPurchaseActionPerformed(evt);
     }//GEN-LAST:event_removeButtonPurchaseActionPerformed
 
@@ -571,20 +575,20 @@ String hyphen = "-";
         String stat = statComboBox.getSelectedItem().toString();
         String comp = compStatusComboBox.getSelectedItem().toString();
         String dept = deptCodeTextField.getText();
-        String dev  = devAttentionTextField.getText();
-        Vector <String> keys = new Vector <> ();
+        String dev = devAttentionTextField.getText();
+        Vector<String> keys = new Vector<>();
         keys.add("status");
         keys.add("completedstatus");
         keys.add("departmentcode");
         keys.add("deliveryattention");
-        Vector <String> values = new Vector <> ();
+        Vector<String> values = new Vector<>();
         values.add(stat);
         values.add(comp);
         values.add(dept);
         values.add(dev);
-        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys,values, "create"));
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "create"));
         refreshButtonPurchaseActionPerformed(evt);
-        
+
     }//GEN-LAST:event_createButtonPurchaseActionPerformed
 
     private void statComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statComboBoxActionPerformed
@@ -592,7 +596,7 @@ String hyphen = "-";
     }//GEN-LAST:event_statComboBoxActionPerformed
 
     private void devAttentionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devAttentionTextFieldActionPerformed
-        
+
     }//GEN-LAST:event_devAttentionTextFieldActionPerformed
 
     private void deptCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptCodeTextFieldActionPerformed
@@ -613,23 +617,23 @@ String hyphen = "-";
         try {
             int kan = Integer.parseInt(kanbanSizeIntField.getText());
             int safety = Integer.parseInt(safetyStockIntField.getText());
-            Vector <String> keys = new Vector <> ();
+            Vector<String> keys = new Vector<>();
             keys.add("manufacturer");
             keys.add("manufacturerpartnumber");
             keys.add("kanbansize");
             keys.add("safetylevel");
-            Vector <String> values = new Vector <> ();
+            Vector<String> values = new Vector<>();
             values.add(manufacturer);
             values.add(partNumber);
             values.add(String.valueOf(kan));
             values.add(String.valueOf(safety));
-            this.data.sendObject(this.json.parseJsonIntoString("store", keys,values, "create"));
+            this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "create"));
 
         } catch (NumberFormatException e) {
             System.out.println("invalid type");
         }
         refreshButtonStoreActionPerformed(evt);
-        
+
     }//GEN-LAST:event_createButtonStoreActionPerformed
 
     private void updateButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonStoreActionPerformed
@@ -638,17 +642,17 @@ String hyphen = "-";
     }//GEN-LAST:event_updateButtonStoreActionPerformed
 
     private void removeButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonStoreActionPerformed
-        performRemove(storeOrderTable, "store"); 
+        performRemove(storeOrderTable, "store");
         refreshButtonStoreActionPerformed(evt);
     }//GEN-LAST:event_removeButtonStoreActionPerformed
 
     private void refreshButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonStoreActionPerformed
-        Vector <String> keys = new Vector <> ();
+        Vector<String> keys = new Vector<>();
         keys.add("manufacturer");
         keys.add("manufacturerpartnumber");
         keys.add("kanbansize");
         keys.add("safetylevel");
-        Vector <String> values = new Vector <> ();
+        Vector<String> values = new Vector<>();
         values.add("x");
         values.add("x");
         values.add("x");
@@ -659,10 +663,10 @@ String hyphen = "-";
         columnNames.add("manufacturerpartnumber");
         columnNames.add("kanbansize");
         columnNames.add("safetylevel");
-        performRefresh("store",keys,values,columnNames,storeOrderTable);
+        performRefresh("store", keys, values, columnNames, storeOrderTable);
         updateButtonStore.setEnabled(true);
         removeButtonStore.setEnabled(true);
-        
+
     }//GEN-LAST:event_refreshButtonStoreActionPerformed
 
     private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
@@ -729,51 +733,52 @@ String hyphen = "-";
 
     private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable OrderTable) {
         Vector<Vector<String>> dataList = new Vector<>();
-        for (int x = 0; x <refreshAray.length(); x++){
+        for (int x = 0; x < refreshAray.length(); x++) {
             JSONObject jsonTable = refreshAray.getJSONObject(x);
-            Vector <String> data = new Vector <> ();
-            for(int y = 0; y < columnNames.size();y++)          
-            {data.add(jsonTable.getString(columnNames.get(y)));
+            Vector<String> data = new Vector<>();
+            for (int y = 0; y < columnNames.size(); y++) {
+                data.add(jsonTable.getString(columnNames.get(y)));
             }
             dataList.add(data);
         }
         System.out.println(dataList);
-        DefaultTableModel model = new DefaultTableModel(dataList,columnNames); ;              
+        DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         OrderTable.setModel(model);
     }
-    private void performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames,JTable OrderTable) {
-        this.data.sendObject(this.json.parseJsonIntoString(part, keys,values, "refresh"));
+
+    private void performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
+        this.data.sendObject(this.json.parseJsonIntoString(part, keys, values, "refresh"));
         JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-        displayTable(refresh,columnNames,OrderTable); // display table
+        displayTable(refresh, columnNames, OrderTable); // display table
     }
 
     private void performRemove(JTable OrderTable, String table) {
         int index = OrderTable.getSelectedRow();
         JSONObject objectjson = new JSONObject();
-        for (int c = 0; c < OrderTable.getColumnCount(); c++ )
-        {
-            objectjson.put(OrderTable.getColumnName(c),OrderTable.getValueAt(index, c));
+        for (int c = 0; c < OrderTable.getColumnCount(); c++) {
+            objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
         }
-        System.out.println("selected "+ objectjson);
-        objectjson.put("order",table);
+        System.out.println("selected " + objectjson);
+        objectjson.put("order", table);
         objectjson.put("command", "delete");
         this.data.sendObject(objectjson.toString());
     }
-    private void turnOffButtons(){
+
+    private void turnOffButtons() {
         updateButtonPurchase.setEnabled(false);
         removeButtonPurchase.setEnabled(false);
         updateButtonStore.setEnabled(false);
-        removeButtonStore.setEnabled(false);        
+        removeButtonStore.setEnabled(false);
     }
-    private void performUpdate(JTable OrderTable, String table){
+
+    private void performUpdate(JTable OrderTable, String table) {
         int index = OrderTable.getSelectedRow();
         JSONObject objectjson = new JSONObject();
-        for (int c = 0; c < OrderTable.getColumnCount(); c++ )
-        {
-            objectjson.put(OrderTable.getColumnName(c),OrderTable.getValueAt(index, c));
+        for (int c = 0; c < OrderTable.getColumnCount(); c++) {
+            objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
         }
-        System.out.println("selected "+ objectjson);
-        objectjson.put("order",table);
+        System.out.println("selected " + objectjson);
+        objectjson.put("order", table);
         objectjson.put("command", "update");
         this.data.sendObject(objectjson.toString());
     }
