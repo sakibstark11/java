@@ -631,7 +631,7 @@ public class ClientGUI extends javax.swing.JFrame {
             this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "create"));
 
         } catch (NumberFormatException e) {
-            System.out.println("invalid type");
+            JOptionPane.showMessageDialog(this, "invalid type");
         }
         refreshButtonStoreActionPerformed(evt);
 
@@ -745,7 +745,6 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         OrderTable.setModel(model);
-        
     }
 
     private void performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
@@ -757,7 +756,7 @@ public class ClientGUI extends javax.swing.JFrame {
         int index = OrderTable.getSelectedRow();
         if (index == -1)
         {
-            JOptionPane.showMessageDialog(null, "Idiot");    
+            JOptionPane.showMessageDialog(this, "Idiot");    
         }
         return index;
     }
@@ -773,6 +772,7 @@ public class ClientGUI extends javax.swing.JFrame {
         objectjson.put("order", table);
         objectjson.put("command", "delete");
         this.data.sendObject(objectjson.toString());
+        
         }
     }
 
