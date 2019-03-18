@@ -1,6 +1,7 @@
 package clientPackage;
 
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -744,6 +745,7 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         OrderTable.setModel(model);
+        
     }
 
     private void performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
@@ -751,9 +753,18 @@ public class ClientGUI extends javax.swing.JFrame {
         JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
         displayTable(refresh, columnNames, OrderTable); // display table
     }
-
-    private void performRemove(JTable OrderTable, String table) {
+    private int returnIndex(JTable OrderTable){
         int index = OrderTable.getSelectedRow();
+        if (index == -1)
+        {
+            JOptionPane.showMessageDialog(null, "Idiot");    
+        }
+        return index;
+    }
+    private void performRemove(JTable OrderTable, String table) {
+        if(returnIndex(OrderTable)!=-1)
+        {
+        int index = returnIndex(OrderTable);
         JSONObject objectjson = new JSONObject();
         for (int c = 0; c < OrderTable.getColumnCount(); c++) {
             objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
@@ -762,6 +773,7 @@ public class ClientGUI extends javax.swing.JFrame {
         objectjson.put("order", table);
         objectjson.put("command", "delete");
         this.data.sendObject(objectjson.toString());
+        }
     }
 
     private void turnOffButtons() {
@@ -772,7 +784,8 @@ public class ClientGUI extends javax.swing.JFrame {
     }
 
     private void performUpdate(JTable OrderTable, String table) {
-        int index = OrderTable.getSelectedRow();
+        if(returnIndex(OrderTable)!=-1)
+        {int index = OrderTable.getSelectedRow();
         JSONObject objectjson = new JSONObject();
         for (int c = 0; c < OrderTable.getColumnCount(); c++) {
             objectjson.put(OrderTable.getColumnName(c), OrderTable.getValueAt(index, c));
@@ -781,5 +794,6 @@ public class ClientGUI extends javax.swing.JFrame {
         objectjson.put("order", table);
         objectjson.put("command", "update");
         this.data.sendObject(objectjson.toString());
+    }
     }
 }
