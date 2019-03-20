@@ -26,18 +26,15 @@ public class ClientThread extends Thread {
     }
 
     public void clientThreading() {
-
         try {
             while (clientSocket != null) {
                 System.out.println("setting up input stream");
                 this.bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String incomingData = (bufferedReader.readLine());
                 JSONObject createTempJSON = new JSONObject(incomingData);
-                handleData parseData = new handleData(createTempJSON, clientOut, clientSocket);
+                DataHandler parseData = new DataHandler(createTempJSON, clientOut, clientSocket);
             }
-
         } catch (IOException ex) {
-
         }
     }
 }

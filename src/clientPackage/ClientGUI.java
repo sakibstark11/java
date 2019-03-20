@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class ClientGUI extends javax.swing.JFrame {
 
     ClientConnection data;
-    public JsonParsing json = new JsonParsing();
+    public JsonHandler json = new JsonHandler();
     String hyphen = "-";
 
     public ClientGUI() {
