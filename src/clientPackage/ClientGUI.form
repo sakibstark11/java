@@ -822,7 +822,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="121" max="32767" attributes="0"/>
+                                  <EmptySpace pref="140" max="32767" attributes="0"/>
                                   <Component id="createButtonLine" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel10" alignment="0" max="32767" attributes="0"/>
@@ -1042,7 +1042,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Store Room Stock"/>
+                    <Property name="text" type="java.lang.String" value="Purchase Line"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="createButtonLine">
@@ -1061,7 +1061,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Current Stock"/>
+                    <Property name="text" type="java.lang.String" value="Current Line"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="updateButtonLine">

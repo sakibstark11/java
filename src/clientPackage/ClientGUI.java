@@ -632,7 +632,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Store Room Stock");
+        jLabel19.setText("Purchase Line");
 
         createButtonLine.setText("Create");
         createButtonLine.addActionListener(new java.awt.event.ActionListener() {
@@ -643,7 +643,7 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Current Stock");
+        jLabel20.setText("Current Line");
 
         updateButtonLine.setText("Update");
         updateButtonLine.addActionListener(new java.awt.event.ActionListener() {
@@ -697,7 +697,7 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                         .addComponent(createButtonLine))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(filterButtonLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
