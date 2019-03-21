@@ -1,7 +1,6 @@
 package serverPackage;
 
 import clientPackage.JsonHandler;
-import com.oracle.util.Checksums;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -16,14 +15,14 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class DataHandler {
+public class DataHandler extends SQLHandler {
 
     private Socket clientSocket = null;
     private OutputStream clientOut = null;
     private JSONArray array = null;
-    Connection con;
-    JSONObject jsonDataGlobal;
-    JsonHandler parseJson;
+    private Connection con;
+    private JSONObject jsonDataGlobal;
+    private JsonHandler parseJson;
 
     public DataHandler(JSONObject jsonData, OutputStream clientOutStream, Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -39,51 +38,38 @@ public class DataHandler {
             } else if (jsonDataGlobal.getString("order").equals("store")) {
                 storeTableHandler();
             }
-
         } catch (SQLException ex) {
             System.out.println("database not connected");
-
         }
     }
 
     private void purchaseTableHandler() {
+        {
+            connection = con;
+            table = "PURCHASEORDERS";
+            ID = "PURCHASEID";
+            one = "DEPARTMENTCODE";
+            two = "STATUS";
+            three = "DELIVERYATTENTION";
+            four = "COMPLETEDSTATUS";
+            jsonData = jsonDataGlobal;
+        }
         switch (jsonDataGlobal.getString("command")) {
             case "create":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
-                    statement.setString(1, jsonDataGlobal.getString("departmentcode"));
-                    statement.setString(2, jsonDataGlobal.getString("status"));
-                    statement.setString(3, jsonDataGlobal.getString("deliveryattention"));
-                    if (jsonDataGlobal.getString("completedstatus").equals("true")) {
-                        statement.setBoolean(4, true);
-                    } else {
-                        statement.setBoolean(4, false);
-                    }
-                    int rowsInserted = statement.executeUpdate();
-                    if (rowsInserted > 0) {
-                        System.out.println("added");
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                super.create();
                 break;
             case "update":
-                update(con, "PURCHASEORDERS", jsonDataGlobal, "PURCHASEID", "DEPARTMENTCODE", "STATUS", "DELIVERYATTENTION", "COMPLETEDSTATUS");
+                super.update();
                 break;
             case "refresh":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("SELECT * FROM PURCHASEORDERS");
-                    ResultSet result = statement.executeQuery();
-                    sendToClient(parseJson.createJsonFromResult(result).toString());
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
+
                 break;
             case "delete":
-                delete(con, "PURCHASEORDERS", jsonDataGlobal, "PURCHASEID");
+                super.delete();
                 break;
             case "filter":
-                filter(con, "PURCHASEORDERS", jsonDataGlobal, "DEPARTMENTCODE", "STATUS", "DELIVERYATTENTION", "COMPLETEDSTATUS");
+                sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
                 break;
         }
     }
@@ -106,128 +92,32 @@ public class DataHandler {
     }
 
     private void storeTableHandler() {
+        {
+            connection = this.con;
+            table = "STOREROOM";
+            ID = "PARTID";
+            one = "MANUFACTURER";
+            two = "MANUFACTURERPARTNUMBER";
+            three = "KANBANSIZE";
+            four = "SAFETYLEVEL";
+            jsonData = this.jsonDataGlobal;
+        }
         switch (jsonDataGlobal.getString("command")) {
             case "create":
-
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("INSERT INTO STOREROOM(MANUFACTURER,MANUFACTURERPARTNUMBER,KANBANSIZE,SAFETYLEVEL) VALUES (?,?,?,?)");
-                    statement.setString(1, jsonDataGlobal.getString("manufacturer"));
-                    statement.setString(2, jsonDataGlobal.getString("manufacturerpartnumber"));
-                    statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString("kanbansize")));
-                    statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString("safetylevel")));
-                    int rowsInserted = statement.executeUpdate();
-                    if (rowsInserted > 0) {
-                        System.out.println("added");
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                super.create();
                 break;
             case "refresh":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("SELECT * FROM STOREROOM");
-                    ResultSet result = statement.executeQuery();
-                    sendToClient(parseJson.createJsonFromResult(result).toString());
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
                 break;
             case "delete":
-                delete(con, "STOREROOM", jsonDataGlobal, "PARTID");
+                super.delete();
                 break;
             case "update":
-                update(con, "STOREROOM", jsonDataGlobal, "PARTID", "MANUFACTURER", "MANUFACTURERPARTNUMBER", "KANBANSIZE", "SAFETYLEVEL");
-
+                super.update();
                 break;
             case "filter":
-                filter(con, "STOREROOM", jsonDataGlobal, "MANUFACTURER", "MANUFACTURERPARTNUMBER", "KANBANSIZE", "SAFETYLEVEL");
+                sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
                 break;
-
-        }
-    }
-
-    private void delete(Connection con, String table, JSONObject jsonDataGlobal, String ID) {
-        try {
-            PreparedStatement statement = this.con.prepareStatement("DELETE FROM " + table + " WHERE " + ID + " = ?");
-            statement.setInt(1, Integer.parseInt(jsonDataGlobal.getString(ID.toLowerCase())));
-            statement.execute();
-            System.out.println("deleted");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private void filter(Connection con, String table, JSONObject jsonDataGlobal, String one, String two, String three, String four) {
-        switch (table) {
-            case "STOREROOM":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("SELECT * FROM " + table + " WHERE " + one + " =? AND " + two + " = ? AND " + three + " = ? AND " + four + " = ?");
-                    this.con.prepareStatement("SELECT * FROM " + table + " WHERE " + one + " =? AND " + two + " = ? AND " + three + " = ? AND " + four + " = ?");
-                    statement.setString(1, jsonDataGlobal.getString(one.toLowerCase()));
-                    statement.setString(2, jsonDataGlobal.getString(two.toLowerCase()));
-                    statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString(three.toLowerCase())));
-                    statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString(four.toLowerCase())));
-                    ResultSet result = statement.executeQuery();
-                    sendToClient(parseJson.createJsonFromResult(result).toString());
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            case "PURCHASEORDERS":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("SELECT * FROM " + table + " WHERE " + one + " =? AND " + two + " = ? AND " + three + " = ? AND " + four + " = ?");
-                    statement.setString(1, jsonDataGlobal.getString(one.toLowerCase()));
-                    statement.setString(2, jsonDataGlobal.getString(two.toLowerCase()));
-                    statement.setString(3, jsonDataGlobal.getString(three.toLowerCase()));
-                    if (jsonDataGlobal.getString(four.toLowerCase()).equals("true")) {
-                        statement.setBoolean(4, true);
-                    } else {
-                        statement.setBoolean(4, false);
-                    }
-                    ResultSet result = statement.executeQuery();
-                    sendToClient(parseJson.createJsonFromResult(result).toString());
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-        }
-
-    }
-
-    private void update(Connection con, String table, JSONObject jsonDataGlobal, String ID, String one, String two, String three, String four) {
-        switch (table) {
-            case "STOREROOM":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("UPDATE " + table + " SET " + one + " = ? ," + two + " = ?," + three + " = ?," + four + " = ? WHERE " + ID + " = ?");
-                    statement.setInt(5, Integer.parseInt(jsonDataGlobal.getString(ID.toLowerCase())));
-                    statement.setString(1, jsonDataGlobal.getString(one.toLowerCase()));
-                    statement.setString(2, jsonDataGlobal.getString(two.toLowerCase()));
-                    statement.setInt(3, Integer.parseInt(jsonDataGlobal.getString(three.toLowerCase())));
-                    statement.setInt(4, Integer.parseInt(jsonDataGlobal.getString(four.toLowerCase())));
-                    statement.execute();
-                    System.out.println("updated");
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            case "PURCHASEORDERS":
-                try {
-                    PreparedStatement statement = this.con.prepareStatement("UPDATE " + table + " SET " + one + " = ? ," + two + " = ?," + three + " = ?," + four + " = ? WHERE " + ID + " = ?");
-                    statement.setString(1, jsonDataGlobal.getString(one.toLowerCase()));
-                    statement.setString(2, jsonDataGlobal.getString(two.toLowerCase()));
-                    statement.setString(3, jsonDataGlobal.getString(three.toLowerCase()));
-                    if (jsonDataGlobal.getString(four.toLowerCase()).equals("true")) {
-                        statement.setBoolean(4, true);
-                    } else {
-                        statement.setBoolean(4, false);
-                    }
-                    statement.setInt(5, Integer.parseInt(jsonDataGlobal.getString(ID.toLowerCase())));
-                    statement.execute();
-                    System.out.println("updated");
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
         }
     }
 }

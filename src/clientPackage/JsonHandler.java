@@ -3,6 +3,7 @@ package clientPackage;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ public class JsonHandler implements Serializable {
     public JsonHandler() {
     }
 
-    public String parseJsonIntoString(String part, Vector< String> keys, Vector< String> values, String command) {
+    public String parseJsonIntoString(String part, Vector< String> keys,Vector< String> values, String command) {
         JSONObject jsonFor = new JSONObject();
         jsonFor.put("order", part);
         jsonFor.put("command", command);
