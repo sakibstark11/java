@@ -23,7 +23,12 @@ public class DataHandler extends SQLHandler {
     private Connection con;
     private JSONObject jsonDataGlobal;
     private JsonHandler parseJson;
-
+/**
+ * routes the request to their respective function
+ * @param jsonData, the jsonobject data to scan through for requests
+ * @param clientOutStream, the object stream
+ * @param clientSocket, the socket from the client 
+ */
     public DataHandler(JSONObject jsonData, OutputStream clientOutStream, Socket clientSocket) {
         this.clientSocket = clientSocket;
         this.clientOut = clientOutStream;
@@ -40,12 +45,14 @@ public class DataHandler extends SQLHandler {
             } else if (jsonDataGlobal.getString("order").equals("line")) {
                 purchaseLineHandler();
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("database not connected");
         }
     }
-    
+/**
+ * upon getting a request related to purchase table, this function is called and it routes to the type of requests
+ */
     private void purchaseTableHandler() {
         {
             connection = con;
@@ -77,11 +84,14 @@ public class DataHandler extends SQLHandler {
         }
     }
 
-    public String getRefreshJsonInString() {
-        return this.array.toString();
-
-    }
-
+//    public String getRefreshJsonInString() {
+//        return this.array.toString();
+//
+//    }
+/**
+ * sends back replies from server
+ * @param JsonInString, the information to send to client
+ */
     private void sendToClient(String JsonInString) {
         try {
             this.clientOut = this.clientSocket.getOutputStream();
@@ -93,8 +103,11 @@ public class DataHandler extends SQLHandler {
         }
 
     }
-    private void purchaseLineHandler(){
-             {
+/**
+ * handles requests related to purchaseorderline
+ */
+    private void purchaseLineHandler() {
+        {
             connection = this.con;
             table = "PURCHASEORDERLINE";
             ID = "LINEID";
@@ -122,9 +135,11 @@ public class DataHandler extends SQLHandler {
                 sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
                 break;
         }
-        
-    }
 
+    }
+/**
+ * routes requests related to table store
+ */
     private void storeTableHandler() {
         {
             connection = this.con;

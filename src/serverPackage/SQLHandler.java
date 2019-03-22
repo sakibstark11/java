@@ -26,7 +26,9 @@ public abstract class SQLHandler {
     protected String one, two, three, four, five;
     protected JSONObject jsonData;
     protected JsonHandler parseJson = new JsonHandler();
-
+/**
+ * does a delete operation on the table
+ */
     protected void delete() {
         try {
             PreparedStatement statement = this.connection.prepareStatement("DELETE FROM " + this.table + " WHERE " + ID + " = ?");
@@ -38,7 +40,10 @@ public abstract class SQLHandler {
         }
 
     }
-
+/**
+ * does a filter operation on the table
+ * @return 
+ */
     protected ResultSet filter() {
         ResultSet result = null;
         switch (this.table) {
@@ -78,7 +83,9 @@ public abstract class SQLHandler {
         return result;
 
     }
-
+/**
+ * does an update operation on the table
+ */
     protected void update() {
         switch (this.table) {
             case "STOREROOM":
@@ -114,7 +121,10 @@ public abstract class SQLHandler {
                 }
         }
     }
-
+/**
+ * does a refresh operation on the table 
+ * @return 
+ */
     protected ResultSet refresh() {
         ResultSet result = null;
         try {
@@ -126,12 +136,14 @@ public abstract class SQLHandler {
 
         return result;
     }
-
+/**
+ * does a create record operation on the table
+ */
     protected void create() {
         switch (this.table) {
             case "PURCHASEORDERLINE":
                 try {
-                    PreparedStatement statement = this.connection.prepareStatement("INSERT INTO "+ this.table+"( "+this.one+","+this.two+","+this.three+","+this.four+","+this.five+" ) "+ "VALUES (?,?,?,?,?)");
+                    PreparedStatement statement = this.connection.prepareStatement("INSERT INTO " + this.table + "( " + this.one + "," + this.two + "," + this.three + "," + this.four + "," + this.five + " ) " + "VALUES (?,?,?,?,?)");
                     statement.setInt(1, Integer.parseInt(this.jsonData.getString(one.toLowerCase())));
                     statement.setInt(2, Integer.parseInt(this.jsonData.getString(two.toLowerCase())));
                     statement.setInt(3, Integer.parseInt(this.jsonData.getString(three.toLowerCase())));

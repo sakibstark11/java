@@ -33,7 +33,10 @@ public class ClientConnection {
         this.serverPort = serverPort;
 
     }
-
+/**
+ * creates a connection to the server
+ * @return a boolean to assert connection status
+ */
     public boolean connect() {
         try {
             this.socket = new Socket(hostName, serverPort); //create new socket for client           
@@ -43,7 +46,10 @@ public class ClientConnection {
         }
         return false;
     }
-
+/**
+ * sends the information to send to the server
+ * @param tosend the information to send in a string format
+ */
     public void sendObject(String tosend) {
 
         System.out.println("sending");
@@ -56,7 +62,10 @@ public class ClientConnection {
             Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+/**
+ * receive an information from the server
+ * @return the information in a string format
+ */
     public String recieveObject() {
         System.out.println("recieving");
         try {

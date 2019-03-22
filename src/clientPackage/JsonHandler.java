@@ -17,8 +17,15 @@ public class JsonHandler implements Serializable {
 
     public JsonHandler() {
     }
-
-    public String parseJsonIntoString(String part, Vector< String> keys,Vector< String> values, String command) {
+/**
+ * 
+ * @param part, the type of a table store, purchaseorder, line
+ * @param keys, the fields
+ * @param values, values of the field
+ * @param command, the task refresh,delete
+ * @return returns a jsonobject in a string format
+ */
+    public String parseJsonIntoString(String part, Vector< String> keys, Vector< String> values, String command) {
         JSONObject jsonFor = new JSONObject();
         jsonFor.put("order", part);
         jsonFor.put("command", command);
@@ -29,13 +36,21 @@ public class JsonHandler implements Serializable {
         stringJSON = jsonFor.toString();
         return stringJSON;
     }
-
+/**
+ * 
+ * @param JSONInString, the string to be converted into an array
+ * @return a jsonarray
+ */
     public JSONArray parseStringIntoArray(String JSONInString) {
         JSONArray array = new JSONArray(JSONInString);
         System.out.println(array);
         return array;
     }
-
+/**
+ * 
+ * @param result, sql result object
+ * @return a jsonarray
+ */
     public JSONArray createJsonFromResult(ResultSet result) {
         this.array = new JSONArray();
         try {

@@ -1,5 +1,6 @@
 package clientPackage;
 
+import java.awt.event.ActionEvent;
 import java.sql.Array;
 import java.util.Vector;
 import java.util.Collections;
@@ -17,12 +18,10 @@ public class ClientGUI extends javax.swing.JFrame {
 
     public ClientGUI() {
         initComponents();
-        //turnOffButtons();
         this.data = new ClientConnection("localhost", 1999);
         while (!this.data.connect()) {
             JOptionPane.showMessageDialog(this, "Turn on the server");
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -1127,7 +1126,12 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JButton updateButtonPurchase;
     private javax.swing.JButton updateButtonStore;
     // End of variables declaration//GEN-END:variables
-
+/**
+ * 
+ * @param refreshAray, the info to be displayed in the table
+ * @param columnNames, names of the column
+ * @param OrderTable, name of the Jtable instance
+ */
     private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable OrderTable) {
         Vector<Vector<String>> dataList = new Vector<>();
         for (int x = 0; x < refreshAray.length(); x++) {
@@ -1144,14 +1148,26 @@ public class ClientGUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         OrderTable.setModel(model);
     }
-
+/**
+ * 
+ * @param part, the type of table store, purchaseorders or purchaseline
+ * @param keys, keys of that table
+ * @param values, values of that table
+ * @param columnNames, names of the columns to be displayed on tbe GUI
+ * @param OrderTable, instance of the desired Jtable
+ * @return 
+ */
     private JSONArray performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
         this.data.sendObject(this.json.parseJsonIntoString(part, keys, values, "refresh"));
         JSONArray refresh = this.json.parseStringIntoArray(this.data.recieveObject());
         displayTable(refresh, columnNames, OrderTable); // display table         
         return refresh;
     }
-
+/**
+ * 
+ * @param OrderTable, the table instance to return index of
+ * @return return a selected integer
+ */
     private int returnIndex(JTable OrderTable) {
         int index = OrderTable.getSelectedRow();
         if (index == -1) {
@@ -1159,7 +1175,11 @@ public class ClientGUI extends javax.swing.JFrame {
         }
         return index;
     }
-
+/**
+ * 
+ * @param OrderTable, the table instance to perform a remove operation on
+ * @param table, the name of the table in database
+ */
     private void performRemove(JTable OrderTable, String table) {
         if (returnIndex(OrderTable) != -1) {
             int index = returnIndex(OrderTable);
@@ -1175,13 +1195,11 @@ public class ClientGUI extends javax.swing.JFrame {
         }
     }
 
-    private void turnOffButtons() {
-        updateButtonPurchase.setEnabled(false);
-        removeButtonPurchase.setEnabled(false);
-        updateButtonStore.setEnabled(false);
-        removeButtonStore.setEnabled(false);
-    }
-
+/**
+ * 
+ * @param OrderTable, the table instance to perform an update on
+ * @param table, the table in database
+ */
     private void performUpdate(JTable OrderTable, String table) {
         if (returnIndex(OrderTable) != -1) {
             int index = OrderTable.getSelectedRow();
