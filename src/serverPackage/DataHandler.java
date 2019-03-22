@@ -37,12 +37,15 @@ public class DataHandler extends SQLHandler {
                 purchaseTableHandler();
             } else if (jsonDataGlobal.getString("order").equals("store")) {
                 storeTableHandler();
+            } else if (jsonDataGlobal.getString("order").equals("line")) {
+                purchaseLineHandler();
             }
+            
         } catch (SQLException ex) {
             System.out.println("database not connected");
         }
     }
-
+    
     private void purchaseTableHandler() {
         {
             connection = con;
@@ -89,6 +92,37 @@ public class DataHandler extends SQLHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    private void purchaseLineHandler(){
+             {
+            connection = this.con;
+            table = "PURCHASEORDERLINE";
+            ID = "LINEID";
+            one = "PURCHASEID";
+            two = "PARTID";
+            three = "QUANTITY";
+            four = "PRICEPERUNIT";
+            five = "SUPPLIER";
+            jsonData = this.jsonDataGlobal;
+        }
+        switch (jsonDataGlobal.getString("command")) {
+            case "create":
+                super.create();
+                break;
+            case "refresh":
+                sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
+                break;
+            case "delete":
+                super.delete();
+                break;
+            case "update":
+                super.update();
+                break;
+            case "filter":
+                sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
+                break;
+        }
+        
     }
 
     private void storeTableHandler() {

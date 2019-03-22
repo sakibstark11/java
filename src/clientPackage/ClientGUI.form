@@ -903,7 +903,7 @@
                               <EmptySpace pref="68" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="pricePerUnitIntField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="manufacturerTextField1" alignment="1" pref="120" max="32767" attributes="0"/>
+                                  <Component id="supplierTextField" alignment="1" pref="120" max="32767" attributes="0"/>
                                   <Component id="partIDComboList" max="32767" attributes="0"/>
                                   <Component id="purchaseIDComboList" max="32767" attributes="0"/>
                               </Group>
@@ -916,7 +916,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="manufacturerTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="supplierTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -942,12 +942,12 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="manufacturerTextField1">
+                    <Component class="javax.swing.JTextField" name="supplierTextField">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Enter"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manufacturerTextField1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supplierTextFieldActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel10">

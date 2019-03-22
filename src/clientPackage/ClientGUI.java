@@ -13,8 +13,7 @@ import org.json.JSONObject;
 public class ClientGUI extends javax.swing.JFrame {
 
     ClientConnection data;
-    public JsonHandler json = new JsonHandler();
-    String hyphen = "-";
+    private JsonHandler json = new JsonHandler();
 
     public ClientGUI() {
         initComponents();
@@ -77,7 +76,7 @@ public class ClientGUI extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        manufacturerTextField1 = new javax.swing.JTextField();
+        supplierTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -553,10 +552,10 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(21, 101, 192));
 
-        manufacturerTextField1.setText("Enter");
-        manufacturerTextField1.addActionListener(new java.awt.event.ActionListener() {
+        supplierTextField.setText("Enter");
+        supplierTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manufacturerTextField1ActionPerformed(evt);
+                supplierTextFieldActionPerformed(evt);
             }
         });
 
@@ -601,7 +600,7 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pricePerUnitIntField)
-                    .addComponent(manufacturerTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(supplierTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(partIDComboList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(purchaseIDComboList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -611,7 +610,7 @@ public class ClientGUI extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manufacturerTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supplierTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -803,9 +802,11 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("deliveryattention");
         columnNames.add("completedstatus");
         columnNames.add("status");
-        performRefresh("purchase", keys, values, columnNames, purchaseOrderTable);
-        //updateButtonPurchase.setEnabled(true);
-        //removeButtonPurchase.setEnabled(true);
+        JSONArray refresh = performRefresh("purchase", keys, values, columnNames, purchaseOrderTable);
+        for (int x = 0; x < refresh.length(); x++) {
+            JSONObject temp = refresh.getJSONObject(x);
+            purchaseIDComboList.addItem(temp.getString("purchaseid"));
+        }
     }//GEN-LAST:event_refreshButtonPurchaseActionPerformed
 
     private void removeButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonPurchaseActionPerformed
@@ -835,7 +836,6 @@ public class ClientGUI extends javax.swing.JFrame {
         values.add(dev);
         this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "create"));
         refreshButtonPurchaseActionPerformed(evt);
-
     }//GEN-LAST:event_createButtonPurchaseActionPerformed
 
     private void statComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statComboBoxActionPerformed
@@ -910,7 +910,11 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("manufacturerpartnumber");
         columnNames.add("kanbansize");
         columnNames.add("safetylevel");
-        performRefresh("store", keys, values, columnNames, storeOrderTable);
+        JSONArray refresh = performRefresh("store", keys, values, columnNames, storeOrderTable);
+        for (int x = 0; x < refresh.length(); x++) {
+            JSONObject temp = refresh.getJSONObject(x);
+            partIDComboList.addItem(temp.getString("partid"));
+        }
     }//GEN-LAST:event_refreshButtonStoreActionPerformed
 
     private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
@@ -986,9 +990,9 @@ public class ClientGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_filterButtonStoreActionPerformed
 
-    private void manufacturerTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufacturerTextField1ActionPerformed
+    private void supplierTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manufacturerTextField1ActionPerformed
+    }//GEN-LAST:event_supplierTextFieldActionPerformed
 
     private void pricePerUnitIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerUnitIntFieldActionPerformed
         // TODO add your handling code here:
@@ -996,6 +1000,27 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void createButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonLineActionPerformed
         // TODO add your handling code here:
+        Vector<String> keys = new Vector<>();
+        keys.add("purchaseid");
+        keys.add("partid");
+        keys.add("quantity");
+        keys.add("priceperunit");
+        keys.add("supplier");
+        Vector<String> values = new Vector<>();
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("line");
+        columnNames.add("purchaseid");
+        columnNames.add("partid");
+        columnNames.add("quantity");
+        columnNames.add("priceperunit");
+        columnNames.add("supplier");
+
+
     }//GEN-LAST:event_createButtonLineActionPerformed
 
     private void updateButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonLineActionPerformed
@@ -1024,7 +1049,7 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("manufacturerpartnumber");
         columnNames.add("kanbansize");
         columnNames.add("safetylevel");
-        performRefresh("store", keys, values, columnNames, storeOrderTable);
+        performRefresh("line", keys, values, columnNames, LineOrderTable);
     }//GEN-LAST:event_refreshButtonLineActionPerformed
 
     private void LineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LineOrderTableMousePressed
@@ -1082,7 +1107,6 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField kanbanSizeIntField;
     private javax.swing.JTextField manufacturerTextField;
-    private javax.swing.JTextField manufacturerTextField1;
     private javax.swing.JComboBox<String> partIDComboList;
     private javax.swing.JTextField partNumberTextField;
     private javax.swing.JTextField pricePerUnitIntField;
@@ -1097,6 +1121,7 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JTextField safetyStockIntField;
     private javax.swing.JComboBox<String> statComboBox;
     private javax.swing.JTable storeOrderTable;
+    private javax.swing.JTextField supplierTextField;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JButton updateButtonLine;
     private javax.swing.JButton updateButtonPurchase;
@@ -1120,10 +1145,11 @@ public class ClientGUI extends javax.swing.JFrame {
         OrderTable.setModel(model);
     }
 
-    private void performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
+    private JSONArray performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
         this.data.sendObject(this.json.parseJsonIntoString(part, keys, values, "refresh"));
-        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-        displayTable(refresh, columnNames, OrderTable); // display table
+        JSONArray refresh = this.json.parseStringIntoArray(this.data.recieveObject());
+        displayTable(refresh, columnNames, OrderTable); // display table         
+        return refresh;
     }
 
     private int returnIndex(JTable OrderTable) {

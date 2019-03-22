@@ -23,7 +23,7 @@ public abstract class SQLHandler {
     protected Connection connection;
     protected String table;
     protected String ID;
-    protected String one, two, three, four;
+    protected String one, two, three, four, five;
     protected JSONObject jsonData;
     protected JsonHandler parseJson = new JsonHandler();
 
@@ -73,6 +73,7 @@ public abstract class SQLHandler {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+
         }
         return result;
 
@@ -116,31 +117,33 @@ public abstract class SQLHandler {
 
     protected ResultSet refresh() {
         ResultSet result = null;
-        switch (this.table) {
-            case "PURCHASEORDERS":
-                try {
-                    PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM PURCHASEORDERS");
-                    result = statement.executeQuery();
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            case "STOREROOM":
-                try {
-                    PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM STOREROOM");
-                    result = statement.executeQuery();
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+        try {
+            PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM " + this.table);
+            result = statement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return result;
     }
 
     protected void create() {
         switch (this.table) {
+            case "PURCHASEORDERLINE":
+                try {
+                    PreparedStatement statement = this.connection.prepareStatement("INSERT INTO "+ this.table+"( "+this.one+","+this.two+","+this.three+","+this.four+","+this.five+" ) "+ "VALUES (?,?,?,?,?)");
+                    statement.setInt(1, Integer.parseInt(this.jsonData.getString(one.toLowerCase())));
+                    statement.setInt(2, Integer.parseInt(this.jsonData.getString(two.toLowerCase())));
+                    statement.setInt(3, Integer.parseInt(this.jsonData.getString(three.toLowerCase())));
+                    statement.setInt(4, Integer.parseInt(this.jsonData.getString(four.toLowerCase())));
+                    statement.setString(5, this.jsonData.getString(five.toLowerCase()));
+                    int rowsInserted = statement.executeUpdate();
+                    if (rowsInserted > 0) {
+                        System.out.println("added");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
             case "PURCHASEORDERS":
                 try {
                     PreparedStatement statement = this.connection.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
