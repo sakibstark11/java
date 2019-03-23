@@ -1,9 +1,5 @@
 package clientPackage;
 
-import java.awt.event.ActionEvent;
-import java.sql.Array;
-import java.util.Vector;
-import java.util.Collections;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -821,6 +817,7 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("completedstatus");
         columnNames.add("status");
         JSONArray refresh = performRefresh("purchase", keys, values, columnNames, purchaseOrderTable);
+        purchaseIDComboList.removeAllItems();
         for (int x = 0; x < refresh.length(); x++) {
             JSONObject temp = refresh.getJSONObject(x);
             purchaseIDComboList.addItem(temp.getString("purchaseid"));
@@ -928,6 +925,7 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("kanbansize");
         columnNames.add("safetylevel");
         JSONArray refresh = performRefresh("store", keys, values, columnNames, storeOrderTable);
+        partIDComboList.removeAllItems();
         for (int x = 0; x < refresh.length(); x++) {
             JSONObject temp = refresh.getJSONObject(x);
             partIDComboList.addItem(temp.getString("partid"));
@@ -967,14 +965,14 @@ public class ClientGUI extends javax.swing.JFrame {
         values.add(dev);
         this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));
         refreshButtonPurchaseActionPerformed(evt);
-//        Vector<String> columnNames = new Vector<>(); // create columns
-//        columnNames.add("purchaseid");
-//        columnNames.add("departmentcode");
-//        columnNames.add("deliveryattention");
-//        columnNames.add("completedstatus");
-//        columnNames.add("status");
-//        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-//        displayTable(refresh, columnNames, purchaseOrderTable); // display table
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("purchaseid");
+        columnNames.add("departmentcode");
+        columnNames.add("deliveryattention");
+        columnNames.add("completedstatus");
+        columnNames.add("status");
+        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+        displayTable(refresh, columnNames, purchaseOrderTable); // display table
     }//GEN-LAST:event_filterButtonPurchaseActionPerformed
 
     private void filterButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonStoreActionPerformed
@@ -994,14 +992,14 @@ public class ClientGUI extends javax.swing.JFrame {
             values.add(String.valueOf(kan));
             values.add(String.valueOf(safety));
             this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "filter"));
-//            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-//            Vector<String> columnNames = new Vector<>(); // create columns
-//            columnNames.add("partid");
-//            columnNames.add("manufacturer");
-//            columnNames.add("manufacturerpartnumber");
-//            columnNames.add("kanbansize");
-//            columnNames.add("safetylevel");
-//            displayTable(refresh, columnNames, storeOrderTable); // display table
+            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+            Vector<String> columnNames = new Vector<>(); // create columns
+            columnNames.add("partid");
+            columnNames.add("manufacturer");
+            columnNames.add("manufacturerpartnumber");
+            columnNames.add("kanbansize");
+            columnNames.add("safetylevel");
+            displayTable(refresh, columnNames, storeOrderTable); // display table
             refreshButtonStoreActionPerformed(evt);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "invalid type");
@@ -1019,39 +1017,42 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void createButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonLineActionPerformed
         // TODO add your handling code here:
-        try{
-        Vector<String> keys = new Vector<>();
-        keys.add("purchaseid");
-        keys.add("partid");
-        keys.add("quantity");
-        keys.add("priceperunit");
-        keys.add("supplier");
-        String supplier = supplierTextField.getText();
-        int ppu = Integer.parseInt(pricePerUnitIntField.getText());
-        String partid = partIDComboList.getSelectedItem().toString();
-        String purchaseid = purchaseIDComboList.getSelectedItem().toString();
-        int quantity = Integer.parseInt(quantityIntField.getText());
-        Vector<String> values = new Vector<>();
-        values.add(purchaseid);
-        values.add(partid);
-        values.add(String.valueOf(quantity));
-        values.add(String.valueOf(ppu));
-        values.add(supplier);
-        this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "create"));
-        
+        try {
+            Vector<String> keys = new Vector<>();
+            keys.add("purchaseid");
+            keys.add("partid");
+            keys.add("quantity");
+            keys.add("priceperunit");
+            keys.add("supplier");
+            String supplier = supplierTextField.getText();
+            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+            String partid = partIDComboList.getSelectedItem().toString();
+            String purchaseid = purchaseIDComboList.getSelectedItem().toString();
+            int quantity = Integer.parseInt(quantityIntField.getText());
+            Vector<String> values = new Vector<>();
+            values.add(purchaseid);
+            values.add(partid);
+            values.add(String.valueOf(quantity));
+            values.add(String.valueOf(ppu));
+            values.add(supplier);
+            this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "create"));
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "invalid type");
         }
-        catch(NumberFormatException ex){
-        JOptionPane.showMessageDialog(this, "invalid type");}
         refreshButtonLineActionPerformed(evt);
 
     }//GEN-LAST:event_createButtonLineActionPerformed
 
     private void updateButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonLineActionPerformed
-        // TODO add your handling code here:
+        performUpdate(LineOrderTable, "line");
+        refreshButtonLineActionPerformed(evt);
     }//GEN-LAST:event_updateButtonLineActionPerformed
 
     private void removeButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonLineActionPerformed
-        // TODO add your handling code here:
+        performRemove(LineOrderTable, "line");
+        refreshButtonLineActionPerformed(evt);
+
     }//GEN-LAST:event_removeButtonLineActionPerformed
 
     private void refreshButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonLineActionPerformed
@@ -1076,6 +1077,7 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("priceperunit");
         columnNames.add("supplier");
         performRefresh("line", keys, values, columnNames, LineOrderTable);
+
     }//GEN-LAST:event_refreshButtonLineActionPerformed
 
     private void LineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LineOrderTableMousePressed
@@ -1083,7 +1085,37 @@ public class ClientGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LineOrderTableMousePressed
 
     private void filterButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonLineActionPerformed
-        // TODO add your handling code here:
+        try {
+            Vector<String> keys = new Vector<>();
+            keys.add("purchaseid");
+            keys.add("partid");
+            keys.add("quantity");
+            keys.add("priceperunit");
+            keys.add("supplier");
+            String supplier = supplierTextField.getText();
+            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+            String partid = partIDComboList.getSelectedItem().toString();
+            String purchaseid = purchaseIDComboList.getSelectedItem().toString();
+            int quantity = Integer.parseInt(quantityIntField.getText());
+            Vector<String> values = new Vector<>();
+            values.add(purchaseid);
+            values.add(partid);
+            values.add(String.valueOf(quantity));
+            values.add(String.valueOf(ppu));
+            values.add(supplier);
+            this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "filter"));
+            Vector<String> columnNames = new Vector<>(); // create columns
+            columnNames.add("lineid");
+            columnNames.add("purchaseid");
+            columnNames.add("partid");
+            columnNames.add("quantity");
+            columnNames.add("priceperunit");
+            columnNames.add("supplier");
+            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+            displayTable(refresh, columnNames, LineOrderTable); // display table
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "invalid type");
+        }
     }//GEN-LAST:event_filterButtonLineActionPerformed
 
     private void quantityIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityIntFieldActionPerformed
@@ -1160,11 +1192,11 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JButton updateButtonStore;
     // End of variables declaration//GEN-END:variables
 /**
- * 
- * @param refreshAray, the info to be displayed in the table
- * @param columnNames, names of the column
- * @param OrderTable, name of the Jtable instance
- */
+     *
+     * @param refreshAray, the info to be displayed in the table
+     * @param columnNames, names of the column
+     * @param OrderTable, name of the Jtable instance
+     */
     private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable OrderTable) {
         Vector<Vector<String>> dataList = new Vector<>();
         for (int x = 0; x < refreshAray.length(); x++) {
@@ -1176,31 +1208,33 @@ public class ClientGUI extends javax.swing.JFrame {
             dataList.add(data);
         }
 
+        System.out.println("table content");
         System.out.println(dataList);
-
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         OrderTable.setModel(model);
     }
-/**
- * 
- * @param part, the type of table store, purchaseorders or purchaseline
- * @param keys, keys of that table
- * @param values, values of that table
- * @param columnNames, names of the columns to be displayed on tbe GUI
- * @param OrderTable, instance of the desired Jtable
- * @return 
- */
+
+    /**
+     *
+     * @param part, the type of table store, purchaseorders or purchaseline
+     * @param keys, keys of that table
+     * @param values, values of that table
+     * @param columnNames, names of the columns to be displayed on tbe GUI
+     * @param OrderTable, instance of the desired Jtable
+     * @return
+     */
     private JSONArray performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
         this.data.sendObject(this.json.parseJsonIntoString(part, keys, values, "refresh"));
         JSONArray refresh = this.json.parseStringIntoArray(this.data.recieveObject());
         displayTable(refresh, columnNames, OrderTable); // display table         
         return refresh;
     }
-/**
- * 
- * @param OrderTable, the table instance to return index of
- * @return return a selected integer
- */
+
+    /**
+     *
+     * @param OrderTable, the table instance to return index of
+     * @return return a selected integer
+     */
     private int returnIndex(JTable OrderTable) {
         int index = OrderTable.getSelectedRow();
         if (index == -1) {
@@ -1208,11 +1242,12 @@ public class ClientGUI extends javax.swing.JFrame {
         }
         return index;
     }
-/**
- * 
- * @param OrderTable, the table instance to perform a remove operation on
- * @param table, the name of the table in database
- */
+
+    /**
+     *
+     * @param OrderTable, the table instance to perform a remove operation on
+     * @param table, the name of the table in database
+     */
     private void performRemove(JTable OrderTable, String table) {
         if (returnIndex(OrderTable) != -1) {
             int index = returnIndex(OrderTable);
@@ -1224,15 +1259,17 @@ public class ClientGUI extends javax.swing.JFrame {
             objectjson.put("order", table);
             objectjson.put("command", "delete");
             this.data.sendObject(objectjson.toString());
-
+            if (this.data.recieveObject().equals("failed")) {
+                JOptionPane.showMessageDialog(this, "deleting failed exists in purchase order line");
+            }
         }
     }
 
-/**
- * 
- * @param OrderTable, the table instance to perform an update on
- * @param table, the table in database
- */
+    /**
+     *
+     * @param OrderTable, the table instance to perform an update on
+     * @param table, the table in database
+     */
     private void performUpdate(JTable OrderTable, String table) {
         if (returnIndex(OrderTable) != -1) {
             int index = OrderTable.getSelectedRow();

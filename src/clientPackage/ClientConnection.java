@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONArray;
 
 public class ClientConnection {
 
@@ -54,7 +53,7 @@ public class ClientConnection {
 
         System.out.println("sending");
         try {
-
+            System.err.println(tosend);
             this.clientOut = this.socket.getOutputStream();
             this.clientOut.write((tosend + "\n").getBytes());
             this.clientOut.flush();
@@ -73,7 +72,7 @@ public class ClientConnection {
             String incomingData;
             incomingData = this.bufferedIn.readLine();
             System.out.println("recieved");
-            System.out.println(incomingData);
+            System.err.println(incomingData);
             return incomingData;
 
         } catch (IOException ex) {

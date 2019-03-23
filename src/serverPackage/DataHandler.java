@@ -6,8 +6,6 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.logging.Level;
@@ -76,18 +74,14 @@ public class DataHandler extends SQLHandler {
 
                 break;
             case "delete":
-                super.delete();
+                if(!super.delete()){sendToClient("failed");}
+                else {sendToClient("done");}
                 break;
             case "filter":
                 sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
                 break;
         }
     }
-
-//    public String getRefreshJsonInString() {
-//        return this.array.toString();
-//
-//    }
 /**
  * sends back replies from server
  * @param JsonInString, the information to send to client
@@ -103,6 +97,7 @@ public class DataHandler extends SQLHandler {
         }
 
     }
+
 /**
  * handles requests related to purchaseorderline
  */
@@ -126,7 +121,8 @@ public class DataHandler extends SQLHandler {
                 sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
                 break;
             case "delete":
-                super.delete();
+                if (!super.delete()){sendToClient("failed");}
+                else{sendToClient("done");}
                 break;
             case "update":
                 super.update();
@@ -159,7 +155,8 @@ public class DataHandler extends SQLHandler {
                 sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
                 break;
             case "delete":
-                super.delete();
+                if(!super.delete()){sendToClient("failed");}
+                else {sendToClient("done");}
                 break;
             case "update":
                 super.update();
