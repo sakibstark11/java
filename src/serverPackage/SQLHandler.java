@@ -26,12 +26,13 @@ public abstract class SQLHandler {
     protected String one, two, three, four, five;
     protected JSONObject jsonData;
     protected JsonHandler parseJson = new JsonHandler();
-/**
- * does a delete operation on the table
- */
+
+    /**
+     * does a delete operation on the table
+     */
     protected void delete() {
         try {
-            PreparedStatement statement = this.connection.prepareStatement("DELETE FROM " + this.table + " WHERE " + ID + " = ?");
+            PreparedStatement statement = this.connection.prepareStatement("DELETE FROM " + this.table + " WHERE " + this.ID + " = ? ");
             statement.setInt(1, Integer.parseInt(this.jsonData.getString(this.ID.toLowerCase())));
             statement.execute();
             System.out.println("deleted");
@@ -40,17 +41,18 @@ public abstract class SQLHandler {
         }
 
     }
-/**
- * does a filter operation on the table
- * @return 
- */
+
+    /**
+     * does a filter operation on the table
+     *
+     * @return
+     */
     protected ResultSet filter() {
         ResultSet result = null;
         switch (this.table) {
             case "STOREROOM":
                 try {
-                    PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM " + table + " WHERE " + one + " =? AND " + two + " = ? AND " + three + " = ? AND " + four + " = ?");
-                    this.connection.prepareStatement("SELECT * FROM " + table + " WHERE " + one + " =? AND " + two + " = ? AND " + three + " = ? AND " + four + " = ?");
+                    PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM " + this.table + " WHERE " + this.one + " =? AND " + this.two + " = ? AND " + this.three + " = ? AND " + this.four + " = ?");
                     statement.setString(1, this.jsonData.getString(one.toLowerCase()));
                     statement.setString(2, this.jsonData.getString(two.toLowerCase()));
                     statement.setInt(3, Integer.parseInt(this.jsonData.getString(three.toLowerCase())));
@@ -63,7 +65,7 @@ public abstract class SQLHandler {
                 break;
             case "PURCHASEORDERS":
                 try {
-                    PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM " + table + " WHERE " + one + " =? AND " + two + " = ? AND " + three + " = ? AND " + four + " = ?");
+                    PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM " + this.table + " WHERE " + this.one + " =? AND " + this.two + " = ? AND " + this.three + " = ? AND " + this.four + " = ?");
                     statement.setString(1, this.jsonData.getString(one.toLowerCase()));
                     statement.setString(2, this.jsonData.getString(two.toLowerCase()));
                     statement.setString(3, this.jsonData.getString(three.toLowerCase()));
@@ -78,14 +80,17 @@ public abstract class SQLHandler {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+            case "PURCHASEORDERLINE":
+                break;
 
         }
         return result;
 
     }
-/**
- * does an update operation on the table
- */
+
+    /**
+     * does an update operation on the table
+     */
     protected void update() {
         switch (this.table) {
             case "STOREROOM":
@@ -121,10 +126,12 @@ public abstract class SQLHandler {
                 }
         }
     }
-/**
- * does a refresh operation on the table 
- * @return 
- */
+
+    /**
+     * does a refresh operation on the table
+     *
+     * @return
+     */
     protected ResultSet refresh() {
         ResultSet result = null;
         try {
@@ -136,9 +143,10 @@ public abstract class SQLHandler {
 
         return result;
     }
-/**
- * does a create record operation on the table
- */
+
+    /**
+     * does a create record operation on the table
+     */
     protected void create() {
         switch (this.table) {
             case "PURCHASEORDERLINE":
@@ -156,9 +164,10 @@ public abstract class SQLHandler {
                 } catch (SQLException ex) {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                break;
             case "PURCHASEORDERS":
                 try {
-                    PreparedStatement statement = this.connection.prepareStatement("INSERT INTO PURCHASEORDERS(DEPARTMENTCODE,STATUS,DELIVERYATTENTION,COMPLETEDSTATUS) VALUES (?,?,?,?)");
+                    PreparedStatement statement = this.connection.prepareStatement("INSERT INTO " + this.table + " ( " + this.one + "," + this.two + "," + this.three + "," + this.four + ")" + "VALUES (?,?,?,?)");
                     statement.setString(1, this.jsonData.getString(one.toLowerCase()));
                     statement.setString(2, this.jsonData.getString(two.toLowerCase()));
                     statement.setString(3, this.jsonData.getString(three.toLowerCase()));

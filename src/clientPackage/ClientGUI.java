@@ -84,6 +84,8 @@ public class ClientGUI extends javax.swing.JFrame {
         pricePerUnitIntField = new javax.swing.JTextField();
         partIDComboList = new javax.swing.JComboBox<>();
         purchaseIDComboList = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        quantityIntField = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         createButtonLine = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
@@ -584,6 +586,17 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Quantity");
+
+        quantityIntField.setText("5");
+        quantityIntField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantityIntFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -595,9 +608,11 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quantityIntField)
                     .addComponent(pricePerUnitIntField)
                     .addComponent(supplierTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(partIDComboList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -624,8 +639,12 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(pricePerUnitIntField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(quantityIntField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jLabel19.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
@@ -874,7 +893,6 @@ public class ClientGUI extends javax.swing.JFrame {
             values.add(String.valueOf(kan));
             values.add(String.valueOf(safety));
             this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "create"));
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
@@ -948,14 +966,15 @@ public class ClientGUI extends javax.swing.JFrame {
         values.add(dept);
         values.add(dev);
         this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));
-        Vector<String> columnNames = new Vector<>(); // create columns
-        columnNames.add("purchaseid");
-        columnNames.add("departmentcode");
-        columnNames.add("deliveryattention");
-        columnNames.add("completedstatus");
-        columnNames.add("status");
-        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-        displayTable(refresh, columnNames, purchaseOrderTable); // display table
+        refreshButtonPurchaseActionPerformed(evt);
+//        Vector<String> columnNames = new Vector<>(); // create columns
+//        columnNames.add("purchaseid");
+//        columnNames.add("departmentcode");
+//        columnNames.add("deliveryattention");
+//        columnNames.add("completedstatus");
+//        columnNames.add("status");
+//        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+//        displayTable(refresh, columnNames, purchaseOrderTable); // display table
     }//GEN-LAST:event_filterButtonPurchaseActionPerformed
 
     private void filterButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonStoreActionPerformed
@@ -975,14 +994,15 @@ public class ClientGUI extends javax.swing.JFrame {
             values.add(String.valueOf(kan));
             values.add(String.valueOf(safety));
             this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "filter"));
-            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-            Vector<String> columnNames = new Vector<>(); // create columns
-            columnNames.add("partid");
-            columnNames.add("manufacturer");
-            columnNames.add("manufacturerpartnumber");
-            columnNames.add("kanbansize");
-            columnNames.add("safetylevel");
-            displayTable(refresh, columnNames, storeOrderTable); // display table
+//            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+//            Vector<String> columnNames = new Vector<>(); // create columns
+//            columnNames.add("partid");
+//            columnNames.add("manufacturer");
+//            columnNames.add("manufacturerpartnumber");
+//            columnNames.add("kanbansize");
+//            columnNames.add("safetylevel");
+//            displayTable(refresh, columnNames, storeOrderTable); // display table
+            refreshButtonStoreActionPerformed(evt);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
@@ -999,26 +1019,30 @@ public class ClientGUI extends javax.swing.JFrame {
 
     private void createButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonLineActionPerformed
         // TODO add your handling code here:
+        try{
         Vector<String> keys = new Vector<>();
         keys.add("purchaseid");
         keys.add("partid");
         keys.add("quantity");
         keys.add("priceperunit");
         keys.add("supplier");
+        String supplier = supplierTextField.getText();
+        int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+        String partid = partIDComboList.getSelectedItem().toString();
+        String purchaseid = purchaseIDComboList.getSelectedItem().toString();
+        int quantity = Integer.parseInt(quantityIntField.getText());
         Vector<String> values = new Vector<>();
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        Vector<String> columnNames = new Vector<>(); // create columns
-        columnNames.add("line");
-        columnNames.add("purchaseid");
-        columnNames.add("partid");
-        columnNames.add("quantity");
-        columnNames.add("priceperunit");
-        columnNames.add("supplier");
-
+        values.add(purchaseid);
+        values.add(partid);
+        values.add(String.valueOf(quantity));
+        values.add(String.valueOf(ppu));
+        values.add(supplier);
+        this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "create"));
+        
+        }
+        catch(NumberFormatException ex){
+        JOptionPane.showMessageDialog(this, "invalid type");}
+        refreshButtonLineActionPerformed(evt);
 
     }//GEN-LAST:event_createButtonLineActionPerformed
 
@@ -1033,21 +1057,24 @@ public class ClientGUI extends javax.swing.JFrame {
     private void refreshButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonLineActionPerformed
         // TODO add your handling code here:
         Vector<String> keys = new Vector<>();
-        keys.add("manufacturer");
-        keys.add("manufacturerpartnumber");
-        keys.add("kanbansize");
-        keys.add("safetylevel");
+        keys.add("purchaseid");
+        keys.add("partid");
+        keys.add("quantity");
+        keys.add("priceperunit");
+        keys.add("supplier");
         Vector<String> values = new Vector<>();
         values.add("x");
         values.add("x");
         values.add("x");
         values.add("x");
+        values.add("x");
         Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("lineid");
+        columnNames.add("purchaseid");
         columnNames.add("partid");
-        columnNames.add("manufacturer");
-        columnNames.add("manufacturerpartnumber");
-        columnNames.add("kanbansize");
-        columnNames.add("safetylevel");
+        columnNames.add("quantity");
+        columnNames.add("priceperunit");
+        columnNames.add("supplier");
         performRefresh("line", keys, values, columnNames, LineOrderTable);
     }//GEN-LAST:event_refreshButtonLineActionPerformed
 
@@ -1058,6 +1085,10 @@ public class ClientGUI extends javax.swing.JFrame {
     private void filterButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonLineActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filterButtonLineActionPerformed
+
+    private void quantityIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityIntFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityIntFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable LineOrderTable;
@@ -1083,6 +1114,7 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1111,6 +1143,7 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JTextField pricePerUnitIntField;
     private javax.swing.JComboBox<String> purchaseIDComboList;
     private javax.swing.JTable purchaseOrderTable;
+    private javax.swing.JTextField quantityIntField;
     private javax.swing.JButton refreshButtonLine;
     private javax.swing.JButton refreshButtonPurchase;
     private javax.swing.JButton refreshButtonStore;

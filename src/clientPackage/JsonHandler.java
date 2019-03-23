@@ -69,14 +69,15 @@ public class JsonHandler implements Serializable {
                         case java.sql.Types.BOOLEAN:
                             objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));
                             break;
+                        case java.sql.Types.DECIMAL:
+                            objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBigDecimal(x)));
                         default:
                             break;
                     }
                 }
                 array.put(objectJson);
-
             }
-            System.out.println(array);
+            System.err.println(array);
         } catch (SQLException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
