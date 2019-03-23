@@ -1238,7 +1238,7 @@ public class ClientGUI extends javax.swing.JFrame {
     private int returnIndex(JTable OrderTable) {
         int index = OrderTable.getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(this, "Idiot");
+            JOptionPane.showMessageDialog(this, "please select an index");
         }
         return index;
     }
