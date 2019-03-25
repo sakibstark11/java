@@ -128,7 +128,7 @@ public class DataHandler extends SQLHandler {
                 super.update();
                 break;
             case "filter":
-                sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
+                sendToClient(parseJson.createJsonFromResult(super.filter()).toString());
                 break;
         }
 

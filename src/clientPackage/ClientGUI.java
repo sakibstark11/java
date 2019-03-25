@@ -964,7 +964,7 @@ public class ClientGUI extends javax.swing.JFrame {
         values.add(dept);
         values.add(dev);
         this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));
-        refreshButtonPurchaseActionPerformed(evt);
+        
         Vector<String> columnNames = new Vector<>(); // create columns
         columnNames.add("purchaseid");
         columnNames.add("departmentcode");
@@ -1000,7 +1000,7 @@ public class ClientGUI extends javax.swing.JFrame {
             columnNames.add("kanbansize");
             columnNames.add("safetylevel");
             displayTable(refresh, columnNames, storeOrderTable); // display table
-            refreshButtonStoreActionPerformed(evt);
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
