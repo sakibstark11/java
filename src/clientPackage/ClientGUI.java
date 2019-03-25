@@ -1221,7 +1221,7 @@ public class ClientGUI extends javax.swing.JFrame {
      * @param values, values of that table
      * @param columnNames, names of the columns to be displayed on tbe GUI
      * @param OrderTable, instance of the desired Jtable
-     * @return
+     * @return a jsonArray
      */
     private JSONArray performRefresh(String part, Vector<String> keys, Vector<String> values, Vector<String> columnNames, JTable OrderTable) {
         this.data.sendObject(this.json.parseJsonIntoString(part, keys, values, "refresh"));
