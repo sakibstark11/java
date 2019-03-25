@@ -18,6 +18,9 @@ public class ClientGUI extends javax.swing.JFrame {
         while (!this.data.connect()) {
             JOptionPane.showMessageDialog(this, "Turn on the server");
         }
+        refreshButtonLine.doClick();
+        refreshButtonPurchase.doClick();
+        refreshButtonStore.doClick();
     }
 
     @SuppressWarnings("unchecked")
@@ -1197,6 +1200,7 @@ public class ClientGUI extends javax.swing.JFrame {
      * @param columnNames, names of the column
      * @param OrderTable, name of the Jtable instance
      */
+    
     private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable OrderTable) {
         Vector<Vector<String>> dataList = new Vector<>();
         for (int x = 0; x < refreshAray.length(); x++) {
@@ -1212,6 +1216,7 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         OrderTable.setModel(model);
+        OrderTable.isCellEditable(1, 1);
     }
 
     /**
