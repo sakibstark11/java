@@ -1,6 +1,9 @@
 package clientPackage;
 
+import java.awt.print.PrinterException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,8 +30,6 @@ public class ClientGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         tabs = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -50,6 +51,7 @@ public class ClientGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         purchaseOrderTable = new javax.swing.JTable();
         filterButtonPurchase = new javax.swing.JButton();
+        printButtonPurchase = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -71,6 +73,7 @@ public class ClientGUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         storeOrderTable = new javax.swing.JTable();
         filterButtonStore = new javax.swing.JButton();
+        printButtonStore = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -92,24 +95,11 @@ public class ClientGUI extends javax.swing.JFrame {
         removeButtonLine = new javax.swing.JButton();
         refreshButtonLine = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        LineOrderTable = new javax.swing.JTable();
+        lineOrderTable = new javax.swing.JTable();
         filterButtonLine = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        printButtonLine = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Cambria Math", 0, 12)); // NOI18N
@@ -271,6 +261,13 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
+        printButtonPurchase.setText("Print");
+        printButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonPurchaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -296,7 +293,9 @@ public class ClientGUI extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(updateButtonPurchase)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeButtonPurchase)))))
+                                .addComponent(removeButtonPurchase)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(printButtonPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -318,7 +317,8 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButtonPurchase)
-                    .addComponent(removeButtonPurchase))
+                    .addComponent(removeButtonPurchase)
+                    .addComponent(printButtonPurchase))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -477,6 +477,13 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
+        printButtonStore.setText("Print");
+        printButtonStore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonStoreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -501,7 +508,9 @@ public class ClientGUI extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(updateButtonStore)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeButtonStore))
+                                .addComponent(removeButtonStore)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(printButtonStore, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -525,7 +534,8 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButtonStore)
-                    .addComponent(removeButtonStore))
+                    .addComponent(removeButtonStore)
+                    .addComponent(printButtonStore))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -682,7 +692,7 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        LineOrderTable.setModel(new javax.swing.table.DefaultTableModel(
+        lineOrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -690,17 +700,24 @@ public class ClientGUI extends javax.swing.JFrame {
 
             }
         ));
-        LineOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        lineOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                LineOrderTableMousePressed(evt);
+                lineOrderTableMousePressed(evt);
             }
         });
-        jScrollPane4.setViewportView(LineOrderTable);
+        jScrollPane4.setViewportView(lineOrderTable);
 
         filterButtonLine.setText("Filter");
         filterButtonLine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filterButtonLineActionPerformed(evt);
+            }
+        });
+
+        printButtonLine.setText("Print");
+        printButtonLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonLineActionPerformed(evt);
             }
         });
 
@@ -725,11 +742,13 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(updateButtonLine)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeButtonLine))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(removeButtonLine)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(printButtonLine, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -752,7 +771,8 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButtonLine)
-                    .addComponent(removeButtonLine))
+                    .addComponent(removeButtonLine)
+                    .addComponent(printButtonLine))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -933,6 +953,7 @@ public class ClientGUI extends javax.swing.JFrame {
             JSONObject temp = refresh.getJSONObject(x);
             partIDComboList.addItem(temp.getString("partid"));
         }
+        
     }//GEN-LAST:event_refreshButtonStoreActionPerformed
 
     private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
@@ -1048,12 +1069,12 @@ public class ClientGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createButtonLineActionPerformed
 
     private void updateButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonLineActionPerformed
-        performUpdate(LineOrderTable, "line");
+        performUpdate(lineOrderTable, "line");
         refreshButtonLineActionPerformed(evt);
     }//GEN-LAST:event_updateButtonLineActionPerformed
 
     private void removeButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonLineActionPerformed
-        performRemove(LineOrderTable, "line");
+        performRemove(lineOrderTable, "line");
         refreshButtonLineActionPerformed(evt);
 
     }//GEN-LAST:event_removeButtonLineActionPerformed
@@ -1079,13 +1100,13 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("quantity");
         columnNames.add("priceperunit");
         columnNames.add("supplier");
-        performRefresh("line", keys, values, columnNames, LineOrderTable);
+        performRefresh("line", keys, values, columnNames, lineOrderTable);
 
     }//GEN-LAST:event_refreshButtonLineActionPerformed
 
-    private void LineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LineOrderTableMousePressed
+    private void lineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineOrderTableMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LineOrderTableMousePressed
+    }//GEN-LAST:event_lineOrderTableMousePressed
 
     private void filterButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonLineActionPerformed
         try {
@@ -1115,7 +1136,7 @@ public class ClientGUI extends javax.swing.JFrame {
             columnNames.add("priceperunit");
             columnNames.add("supplier");
             JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-            displayTable(refresh, columnNames, LineOrderTable); // display table
+            displayTable(refresh, columnNames, lineOrderTable); // display table
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
@@ -1125,8 +1146,21 @@ public class ClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_quantityIntFieldActionPerformed
 
+    private void printButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonLineActionPerformed
+        performPrint(lineOrderTable);
+        
+    }//GEN-LAST:event_printButtonLineActionPerformed
+
+    private void printButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonStoreActionPerformed
+        // TODO add your handling code here:
+        performPrint(storeOrderTable);
+    }//GEN-LAST:event_printButtonStoreActionPerformed
+
+    private void printButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonPurchaseActionPerformed
+           performPrint(purchaseOrderTable);
+    }//GEN-LAST:event_printButtonPurchaseActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable LineOrderTable;
     private javax.swing.JComboBox<String> compStatusComboBox;
     private javax.swing.JButton createButtonLine;
     private javax.swing.JButton createButtonPurchase;
@@ -1167,15 +1201,17 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField kanbanSizeIntField;
+    private javax.swing.JTable lineOrderTable;
     private javax.swing.JTextField manufacturerTextField;
     private javax.swing.JComboBox<String> partIDComboList;
     private javax.swing.JTextField partNumberTextField;
     private javax.swing.JTextField pricePerUnitIntField;
+    private javax.swing.JButton printButtonLine;
+    private javax.swing.JButton printButtonPurchase;
+    private javax.swing.JButton printButtonStore;
     private javax.swing.JComboBox<String> purchaseIDComboList;
     private javax.swing.JTable purchaseOrderTable;
     private javax.swing.JTextField quantityIntField;
@@ -1194,15 +1230,17 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JButton updateButtonPurchase;
     private javax.swing.JButton updateButtonStore;
     // End of variables declaration//GEN-END:variables
-/**
+    private javax.swing.JTable globalTable;
+    /**
      *
      * @param refreshAray, the info to be displayed in the table
      * @param columnNames, names of the column
-     * @param OrderTable, name of the Jtable instance
+     * @param orderTable, name of the Jtable instance
      */
     
-    private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable OrderTable) {
+    private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable orderTable) {
         Vector<Vector<String>> dataList = new Vector<>();
+        this.globalTable = orderTable;
         for (int x = 0; x < refreshAray.length(); x++) {
             JSONObject jsonTable = refreshAray.getJSONObject(x);
             Vector<String> data = new Vector<>();
@@ -1215,8 +1253,8 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println("table content");
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
-        OrderTable.setModel(model);
-        OrderTable.isCellEditable(1, 1);
+        orderTable.setModel(model);
+        orderTable.isCellEditable(1, 1);
     }
 
     /**
@@ -1286,6 +1324,14 @@ public class ClientGUI extends javax.swing.JFrame {
             objectjson.put("order", table);
             objectjson.put("command", "update");
             this.data.sendObject(objectjson.toString());
+        }
+    }
+
+    private void performPrint(JTable table) {
+        try {
+            table.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(ClientGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
