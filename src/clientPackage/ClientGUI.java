@@ -10,21 +10,15 @@ import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public class ClientGUI extends javax.swing.JFrame {
-
-    ClientConnection data;
+    private ClientConnection data;
     private JsonHandler json = new JsonHandler();
-
     public ClientGUI() {
-        initComponents();
         this.data = new ClientConnection("localhost", 1999);
         while (!this.data.connect()) {            
             JOptionPane.showMessageDialog(this, "Turn on the server");
         }
-        refreshButtonLine.doClick();
-        refreshButtonPurchase.doClick();
-        refreshButtonStore.doClick();
+        initComponents();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -514,22 +508,19 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshButtonStore))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(updateButtonStore)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeButtonStore)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(printButtonStore, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(updateButtonStore)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(removeButtonStore)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(printButtonStore, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -937,7 +928,6 @@ public class ClientGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
         refreshButtonStoreActionPerformed(evt);
-
     }//GEN-LAST:event_createButtonStoreActionPerformed
 
     private void updateButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonStoreActionPerformed
@@ -972,8 +962,7 @@ public class ClientGUI extends javax.swing.JFrame {
         for (int x = 0; x < refresh.length(); x++) {
             JSONObject temp = refresh.getJSONObject(x);
             partIDComboList.addItem(temp.getString("partid"));
-        }
-        
+        }        
     }//GEN-LAST:event_refreshButtonStoreActionPerformed
 
     private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
@@ -1007,8 +996,7 @@ public class ClientGUI extends javax.swing.JFrame {
         values.add(comp);
         values.add(dept);
         values.add(dev);
-        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));
-        
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));        
         Vector<String> columnNames = new Vector<>(); // create columns
         columnNames.add("purchaseid");
         columnNames.add("departmentcode");
@@ -1043,8 +1031,7 @@ public class ClientGUI extends javax.swing.JFrame {
             columnNames.add("manufacturerpartnumber");
             columnNames.add("kanbansize");
             columnNames.add("safetylevel");
-            displayTable(refresh, columnNames, storeOrderTable); // display table
-            
+            displayTable(refresh, columnNames, storeOrderTable); // display table            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
@@ -1080,7 +1067,6 @@ public class ClientGUI extends javax.swing.JFrame {
             values.add(String.valueOf(ppu));
             values.add(supplier);
             this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "create"));
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "invalid type");
         }
@@ -1096,7 +1082,6 @@ public class ClientGUI extends javax.swing.JFrame {
     private void removeButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonLineActionPerformed
         performRemove(lineOrderTable, "line");
         refreshButtonLineActionPerformed(evt);
-
     }//GEN-LAST:event_removeButtonLineActionPerformed
 
     private void refreshButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonLineActionPerformed
@@ -1121,7 +1106,6 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("priceperunit");
         columnNames.add("supplier");
         performRefresh("line", keys, values, columnNames, lineOrderTable);
-
     }//GEN-LAST:event_refreshButtonLineActionPerformed
 
     private void lineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineOrderTableMousePressed
@@ -1259,8 +1243,7 @@ public class ClientGUI extends javax.swing.JFrame {
      * @param refreshAray, the info to be displayed in the table
      * @param columnNames, names of the column
      * @param orderTable, name of the Jtable instance
-     */
-    
+     */    
     private void displayTable(JSONArray refreshAray, Vector<String> columnNames, JTable orderTable) {
         Vector<Vector<String>> dataList = new Vector<>();
         this.globalTable = orderTable;
@@ -1272,14 +1255,12 @@ public class ClientGUI extends javax.swing.JFrame {
             }
             dataList.add(data);
         }
-
         System.out.println("table content");
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         orderTable.setModel(model);
         orderTable.isCellEditable(1, 1);
     }
-
     /**
      *
      * @param part, the type of table store, purchaseorders or purchaseline
@@ -1295,7 +1276,6 @@ public class ClientGUI extends javax.swing.JFrame {
         displayTable(refresh, columnNames, OrderTable); // display table         
         return refresh;
     }
-
     /**
      *
      * @param OrderTable, the table instance to return index of
@@ -1308,7 +1288,6 @@ public class ClientGUI extends javax.swing.JFrame {
         }
         return index;
     }
-
     /**
      *
      * @param OrderTable, the table instance to perform a remove operation on
@@ -1330,7 +1309,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         }
     }
-
     /**
      *
      * @param OrderTable, the table instance to perform an update on
@@ -1349,7 +1327,6 @@ public class ClientGUI extends javax.swing.JFrame {
             this.data.sendObject(objectjson.toString());
         }
     }
-
     private void performPrint(JTable table) {
         try {
             table.print();
