@@ -7,31 +7,30 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DataHandler extends SQLHandler {
-
     private Socket clientSocket = null;
     private OutputStream clientOut = null;
     private JSONArray array = null;
-    private Connection con;
-    private JSONObject jsonDataGlobal;
-    private JsonHandler parseJson;
-/**
- * routes the request to their respective function
- * @param jsonData, the jsonobject data to scan through for requests
- * @param clientOutStream, the object stream
- * @param clientSocket, the socket from the client 
- */
+    private Connection con = null;
+    private JSONObject jsonDataGlobal = null;
+    private JsonHandler jsonWoker = null;
+    /**
+     * routes the request to their respective function
+     *
+     * @param jsonData, the jsonobject data to scan through for requests
+     * @param clientOutStream, the object stream
+     * @param clientSocket, the socket from the client
+     */
     public DataHandler(JSONObject jsonData, OutputStream clientOutStream, Socket clientSocket) {
         this.clientSocket = clientSocket;
         this.clientOut = clientOutStream;
         this.jsonDataGlobal = jsonData;
-        this.parseJson = new JsonHandler();
+        this.jsonWoker = new JsonHandler();
         System.out.println(jsonDataGlobal);
         try {
             con = DriverManager.getConnection("jdbc:derby://localhost:1527/CJB_database", "sakib", "sakib");
@@ -43,26 +42,26 @@ public class DataHandler extends SQLHandler {
             } else if (jsonDataGlobal.getString("order").equals("line")) {
                 purchaseLineHandler();
             }
-
         } catch (SQLException ex) {
             System.out.println("database not connected");
         }
     }
-/**
- * upon getting a request related to purchase table, this function is called and it routes to the type of requests
- */
+    /**
+     * upon getting a request related to purchase table, this function is called
+     * and it routes to the type of requests
+     */
     private void purchaseTableHandler() {
         {
-            connection = con;
+            connection = this.con;
             table = "PURCHASEORDERS";
             ID = "PURCHASEID";
             one = "DEPARTMENTCODE";
             two = "STATUS";
             three = "DELIVERYATTENTION";
             four = "COMPLETEDSTATUS";
-            jsonData = jsonDataGlobal;
+            jsonData = this.jsonDataGlobal;
         }
-        switch (jsonDataGlobal.getString("command")) {
+        switch (this.jsonDataGlobal.getString("command")) {
             case "create":
                 super.create();
                 break;
@@ -70,22 +69,25 @@ public class DataHandler extends SQLHandler {
                 super.update();
                 break;
             case "refresh":
-                sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
-
+                sendToClient((this.jsonWoker.createJsonFromResult(super.refresh())).toString());
                 break;
             case "delete":
-                if(!super.delete()){sendToClient("failed");}
-                else {sendToClient("done");}
+                if (!super.delete()) {
+                    sendToClient("failed");
+                } else {
+                    sendToClient("done");
+                }
                 break;
             case "filter":
-                sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
+                sendToClient((this.jsonWoker.createJsonFromResult(super.filter())).toString());
                 break;
         }
     }
-/**
- * sends back replies from server
- * @param JsonInString, the information to send to client
- */
+    /**
+     * sends back replies from server
+     *
+     * @param JsonInString, the information to send to client
+     */
     private void sendToClient(String JsonInString) {
         try {
             this.clientOut = this.clientSocket.getOutputStream();
@@ -95,12 +97,10 @@ public class DataHandler extends SQLHandler {
         } catch (IOException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
-/**
- * handles requests related to purchaseorderline
- */
+    /**
+     * handles requests related to purchaseorderline
+     */
     private void purchaseLineHandler() {
         {
             connection = this.con;
@@ -113,29 +113,31 @@ public class DataHandler extends SQLHandler {
             five = "SUPPLIER";
             jsonData = this.jsonDataGlobal;
         }
-        switch (jsonDataGlobal.getString("command")) {
+        switch (this.jsonDataGlobal.getString("command")) {
             case "create":
                 super.create();
                 break;
             case "refresh":
-                sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
+                sendToClient((this.jsonWoker.createJsonFromResult(super.refresh())).toString());
                 break;
             case "delete":
-                if (!super.delete()){sendToClient("failed");}
-                else{sendToClient("done");}
+                if (!super.delete()) {
+                    sendToClient("failed");
+                } else {
+                    sendToClient("done");
+                }
                 break;
             case "update":
                 super.update();
                 break;
             case "filter":
-                sendToClient(parseJson.createJsonFromResult(super.filter()).toString());
+                sendToClient(this.jsonWoker.createJsonFromResult(super.filter()).toString());
                 break;
         }
-
     }
-/**
- * routes requests related to table store
- */
+    /**
+     * routes requests related to table store
+     */
     private void storeTableHandler() {
         {
             connection = this.con;
@@ -147,22 +149,25 @@ public class DataHandler extends SQLHandler {
             four = "SAFETYLEVEL";
             jsonData = this.jsonDataGlobal;
         }
-        switch (jsonDataGlobal.getString("command")) {
+        switch (this.jsonDataGlobal.getString("command")) {
             case "create":
                 super.create();
                 break;
             case "refresh":
-                sendToClient((parseJson.createJsonFromResult(super.refresh())).toString());
+                sendToClient((this.jsonWoker.createJsonFromResult(super.refresh())).toString());
                 break;
             case "delete":
-                if(!super.delete()){sendToClient("failed");}
-                else {sendToClient("done");}
+                if (!super.delete()) {
+                    sendToClient("failed");
+                } else {
+                    sendToClient("done");
+                }
                 break;
             case "update":
                 super.update();
                 break;
             case "filter":
-                sendToClient((parseJson.createJsonFromResult(super.filter())).toString());
+                sendToClient((this.jsonWoker.createJsonFromResult(super.filter())).toString());
                 break;
         }
     }

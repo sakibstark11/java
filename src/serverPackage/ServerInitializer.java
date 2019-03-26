@@ -13,10 +13,10 @@ public class ServerInitializer {
 
     ServerInitializer(int port) {
         this.port = port;
-        ServerThreading();
+        serverThreading();
     }
 
-    private void ServerThreading() {
+    private void serverThreading() {
         try {
             ServerSocket serverSocket = new ServerSocket(port); // creating instance of serversocket
             while (true) {
@@ -36,6 +36,7 @@ public class ServerInitializer {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+            serverThreading();
         }
     }
 
