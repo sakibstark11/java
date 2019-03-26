@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package clientPackage;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,9 +14,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 public class ClientConnection {
-
     private final String hostName;
     private final int serverPort;
     private Socket socket;
@@ -26,11 +23,9 @@ public class ClientConnection {
     private PrintWriter printWriter;
     private InputStream serverIn;
     private BufferedReader bufferedIn;
-
     public ClientConnection(String hostName, int serverPort) {
         this.hostName = hostName;
         this.serverPort = serverPort;
-
     }
 /**
  * creates a connection to the server
@@ -50,7 +45,6 @@ public class ClientConnection {
  * @param tosend the information to send in a string format
  */
     public void sendObject(String tosend) {
-
         System.out.println("sending");
         try {
             System.err.println(tosend);

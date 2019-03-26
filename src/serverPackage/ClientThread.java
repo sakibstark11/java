@@ -1,17 +1,14 @@
 package serverPackage;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import org.json.JSONObject;
-
 public class ClientThread extends Thread {
     private Socket clientSocket = null;
     private OutputStream clientOut;
     private BufferedReader bufferedReader = null;
-
     public ClientThread(Socket clientSocket) {
         this.clientSocket = clientSocket;
         super.start();

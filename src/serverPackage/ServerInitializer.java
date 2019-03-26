@@ -1,21 +1,16 @@
 package serverPackage;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
 public class ServerInitializer {
-
     private final int port;
     private int clientNumber = 0;
     private ArrayList<ClientThread> clientList = new ArrayList<>(); // for broadcasting purpose
-
     ServerInitializer(int port) {
         this.port = port;
         serverThreading();
     }
-
     private void serverThreading() {
         try {
             ServerSocket serverSocket = new ServerSocket(port); // creating instance of serversocket
@@ -25,7 +20,6 @@ public class ServerInitializer {
                     Socket clientSocket = serverSocket.accept(); // the connection to a serversocket from a client
                     ClientThread thread = new ClientThread(clientSocket);
                     clientList.add(thread);
-                    
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -39,5 +33,4 @@ public class ServerInitializer {
             serverThreading();
         }
     }
-
 }

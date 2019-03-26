@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package serverPackage;
-
 import clientPackage.JsonHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,20 +12,17 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
-
 /**
  *
  * @author sakib
  */
 public abstract class SQLHandler {
-
     protected Connection connection;
     protected String table;
     protected String ID;
     protected String one, two, three, four, five;
     protected JSONObject jsonData;
     protected JsonHandler parseJson = new JsonHandler();
-
     /**
      * does a delete operation on the table
      */
@@ -41,9 +37,7 @@ public abstract class SQLHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-
     }
-
     /**
      * does a filter operation on the table
      *
@@ -94,14 +88,11 @@ public abstract class SQLHandler {
 
                 } catch (SQLException ex) {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
-
                 }
                 break;
-
         }
         return result;
     }
-
     /**
      * does an update operation on the table
      */
@@ -139,7 +130,6 @@ public abstract class SQLHandler {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                     return false;
                 }
-
             case "PURCHASEORDERS":
                 try {
                     PreparedStatement statement = this.connection.prepareStatement("UPDATE " + this.table + " SET " + this.one + " = ? ," + this.two + " = ?," + this.three + " = ?," + this.four + " = ? WHERE " + this.ID + " = ?");
@@ -162,7 +152,6 @@ public abstract class SQLHandler {
         }
         return false;
     }
-
     /**
      * does a refresh operation on the table
      *
@@ -176,10 +165,8 @@ public abstract class SQLHandler {
         } catch (SQLException ex) {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return result;
     }
-
     /**
      * does a create record operation on the table
      */
@@ -235,7 +222,6 @@ public abstract class SQLHandler {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-
         }
     }
 }
