@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=D:\edu\oop\coursework
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Mar 26 19:20:16 GMT 2019: Shutting down Derby engine
+----------------------------------------------------------------
+Tue Mar 26 19:20:16 GMT 2019:
+Shutting down instance a816c00e-0169-bb68-c724-fffffd5e6484 on database directory D:\edu\oop\coursework\CJB_database with class loader sun.misc.Launcher$AppClassLoader@6f94fa3e 
+----------------------------------------------------------------

@@ -1,3 +1,4 @@
+//7650714 Sakib
 package serverPackage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +13,6 @@ public class ClientThread extends Thread {
     public ClientThread(Socket clientSocket) {
         this.clientSocket = clientSocket;
         super.start();
-
     }
     @Override
     public void run() {
@@ -26,11 +26,11 @@ public class ClientThread extends Thread {
                 this.bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String incomingData = "";
                 incomingData = bufferedReader.readLine();
-                JSONObject createTempJSON = new JSONObject(incomingData);
-                DataHandler parseData = new DataHandler(createTempJSON, clientOut, clientSocket);
-                if (incomingData.equals("")){
+                if (incomingData.equals("") || incomingData.equals(null)){
                     System.err.println("client trying to send corrupt");
                 }
+                JSONObject createTempJSON = new JSONObject(incomingData);
+                DataHandler parseData = new DataHandler(createTempJSON, clientOut, clientSocket);
             }
         } catch (IOException ex) {
         }

@@ -1,8 +1,8 @@
+//7650714 Sakib using obsolete vector because table model works with vector hasn't been updated to work with array list yet
 package clientPackage;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,3 +1,4 @@
+//7650714 Sakib
 package serverPackage;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,7 +7,7 @@ import java.util.ArrayList;
 public class ServerInitializer {
     private final int port;
     private int clientNumber = 0;
-    private ArrayList<ClientThread> clientList = new ArrayList<>(); // for broadcasting purpose
+    private final ArrayList<ClientThread> clientList = new ArrayList<>(); // for broadcasting purpose
     ServerInitializer(int port) {
         this.port = port;
         serverThreading();
