@@ -43,6 +43,7 @@ public class DataHandler extends SQLHandler {
             }
         } catch (SQLException ex) {
             System.out.println("database not connected");
+            
         }
     }
     /**

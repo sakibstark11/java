@@ -25,27 +25,6 @@ public class ClientGUI extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         tabs = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        deptCodeTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        devAttentionTextField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        statComboBox = new javax.swing.JComboBox<>();
-        compStatusComboBox = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        createButtonPurchase = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        updateButtonPurchase = new javax.swing.JButton();
-        removeButtonPurchase = new javax.swing.JButton();
-        refreshButtonPurchase = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        purchaseOrderTable = new javax.swing.JTable();
-        filterButtonPurchase = new javax.swing.JButton();
-        printButtonPurchase = new javax.swing.JButton();
-        jLabel25 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -68,7 +47,6 @@ public class ClientGUI extends javax.swing.JFrame {
         storeOrderTable = new javax.swing.JTable();
         filterButtonStore = new javax.swing.JButton();
         printButtonStore = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -93,7 +71,26 @@ public class ClientGUI extends javax.swing.JFrame {
         lineOrderTable = new javax.swing.JTable();
         filterButtonLine = new javax.swing.JButton();
         printButtonLine = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        deptCodeTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        devAttentionTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        statComboBox = new javax.swing.JComboBox<>();
+        compStatusComboBox = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        createButtonPurchase = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        updateButtonPurchase = new javax.swing.JButton();
+        removeButtonPurchase = new javax.swing.JButton();
+        refreshButtonPurchase = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        purchaseOrderTable = new javax.swing.JTable();
+        filterButtonPurchase = new javax.swing.JButton();
+        printButtonPurchase = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -114,219 +111,6 @@ public class ClientGUI extends javax.swing.JFrame {
         );
 
         tabs.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-
-        jPanel3.setBackground(new java.awt.Color(48, 63, 159));
-
-        jPanel1.setBackground(new java.awt.Color(21, 101, 192));
-
-        deptCodeTextField.setText("Enter");
-        deptCodeTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deptCodeTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Department code");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Status");
-
-        devAttentionTextField.setText("Enter");
-        devAttentionTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                devAttentionTextFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Delivery attention");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Completed status");
-
-        statComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ordered", "on-hold", "cancelled", "dispatched", "completed" }));
-        statComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statComboBoxActionPerformed(evt);
-            }
-        });
-
-        compStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "true", "false" }));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(devAttentionTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deptCodeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(statComboBox, 0, 120, Short.MAX_VALUE)
-                    .addComponent(compStatusComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deptCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(statComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(devAttentionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(compStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel5.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Purchase Order");
-
-        createButtonPurchase.setText("Create");
-        createButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonPurchaseActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Current Purchase Orders");
-
-        updateButtonPurchase.setText("Update");
-        updateButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonPurchaseActionPerformed(evt);
-            }
-        });
-
-        removeButtonPurchase.setText("Remove");
-        removeButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonPurchaseActionPerformed(evt);
-            }
-        });
-
-        refreshButtonPurchase.setText("Refresh");
-        refreshButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonPurchaseActionPerformed(evt);
-            }
-        });
-
-        purchaseOrderTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        purchaseOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                purchaseOrderTableMousePressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(purchaseOrderTable);
-
-        filterButtonPurchase.setText("Filter");
-        filterButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterButtonPurchaseActionPerformed(evt);
-            }
-        });
-
-        printButtonPurchase.setText("Print");
-        printButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                printButtonPurchaseActionPerformed(evt);
-            }
-        });
-
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clientPackage/download.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(filterButtonPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(createButtonPurchase))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel25)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(updateButtonPurchase)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeButtonPurchase)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(printButtonPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(refreshButtonPurchase)))))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(createButtonPurchase)
-                    .addComponent(refreshButtonPurchase)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(updateButtonPurchase)
-                            .addComponent(removeButtonPurchase)
-                            .addComponent(printButtonPurchase)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filterButtonPurchase)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel25)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        tabs.addTab("Purchase", jPanel3);
 
         jPanel6.setBackground(new java.awt.Color(48, 63, 159));
 
@@ -386,35 +170,39 @@ public class ClientGUI extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(safetyStockIntField)
-                    .addComponent(kanbanSizeIntField)
-                    .addComponent(manufacturerTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(partNumberTextField))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(safetyStockIntField)
+                            .addComponent(kanbanSizeIntField)
+                            .addComponent(partNumberTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                        .addComponent(manufacturerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(manufacturerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(partNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(partNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(kanbanSizeIntField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(safetyStockIntField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -487,40 +275,33 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clientPackage/download.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(createButtonStore))
-                            .addComponent(filterButtonStore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)))
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createButtonStore))
+                    .addComponent(filterButtonStore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(319, 319, 319)
-                        .addComponent(refreshButtonStore))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(updateButtonStore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(removeButtonStore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(printButtonStore, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(319, 319, 319)
+                        .addComponent(refreshButtonStore))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -535,30 +316,28 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filterButtonStore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel24))
+                        .addComponent(filterButtonStore))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButtonStore)
                     .addComponent(removeButtonStore)
                     .addComponent(printButtonStore))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 844, Short.MAX_VALUE)
+            .addGap(0, 909, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 638, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -730,8 +509,6 @@ public class ClientGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clientPackage/download.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -741,15 +518,12 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                         .addComponent(createButtonLine))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addGap(0, 140, Short.MAX_VALUE))
                     .addComponent(filterButtonLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(updateButtonLine)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -760,8 +534,8 @@ public class ClientGUI extends javax.swing.JFrame {
                         .addComponent(jLabel20)
                         .addGap(325, 325, 325)
                         .addComponent(refreshButtonLine))
-                    .addComponent(jScrollPane4))
-                .addContainerGap())
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -777,9 +551,7 @@ public class ClientGUI extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filterButtonLine)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel23))
+                        .addComponent(filterButtonLine))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -793,7 +565,7 @@ public class ClientGUI extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 844, Short.MAX_VALUE)
+            .addGap(0, 909, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -806,6 +578,214 @@ public class ClientGUI extends javax.swing.JFrame {
 
         tabs.addTab("Purchase Order Line", jPanel5);
 
+        jPanel3.setBackground(new java.awt.Color(48, 63, 159));
+
+        jPanel1.setBackground(new java.awt.Color(21, 101, 192));
+
+        deptCodeTextField.setText("Enter");
+        deptCodeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deptCodeTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Department code");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Status");
+
+        devAttentionTextField.setText("Enter");
+        devAttentionTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                devAttentionTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Delivery attention");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Completed status");
+
+        statComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ordered", "on-hold", "cancelled", "dispatched", "completed" }));
+        statComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statComboBoxActionPerformed(evt);
+            }
+        });
+
+        compStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "true", "false" }));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(deptCodeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(statComboBox, 0, 120, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(compStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                        .addComponent(devAttentionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deptCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(devAttentionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(compStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jLabel5.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Purchase Order");
+
+        createButtonPurchase.setText("Create");
+        createButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonPurchaseActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Current Purchase Orders");
+
+        updateButtonPurchase.setText("Update");
+        updateButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonPurchaseActionPerformed(evt);
+            }
+        });
+
+        removeButtonPurchase.setText("Remove");
+        removeButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonPurchaseActionPerformed(evt);
+            }
+        });
+
+        refreshButtonPurchase.setText("Refresh");
+        refreshButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonPurchaseActionPerformed(evt);
+            }
+        });
+
+        purchaseOrderTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        purchaseOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                purchaseOrderTableMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(purchaseOrderTable);
+
+        filterButtonPurchase.setText("Filter");
+        filterButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterButtonPurchaseActionPerformed(evt);
+            }
+        });
+
+        printButtonPurchase.setText("Print");
+        printButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonPurchaseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createButtonPurchase))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(filterButtonPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(updateButtonPurchase)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(removeButtonPurchase)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(printButtonPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(refreshButtonPurchase, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(createButtonPurchase)
+                    .addComponent(refreshButtonPurchase)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filterButtonPurchase)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButtonPurchase)
+                    .addComponent(removeButtonPurchase)
+                    .addComponent(printButtonPurchase))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("Purchase", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -814,15 +794,11 @@ public class ClientGUI extends javax.swing.JFrame {
                 .addGap(296, 296, 296)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabs)
-                .addContainerGap())
+            .addComponent(tabs)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
@@ -832,6 +808,270 @@ public class ClientGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void printButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonStoreActionPerformed
+        // TODO add your handling code here:
+        performPrint(storeOrderTable);
+    }//GEN-LAST:event_printButtonStoreActionPerformed
+
+    private void filterButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonStoreActionPerformed
+        String manufacturer = manufacturerTextField.getText();
+        String partNumber = partNumberTextField.getText();
+        try {
+            int kan = Integer.parseInt(kanbanSizeIntField.getText());
+            int safety = Integer.parseInt(safetyStockIntField.getText());
+            Vector<String> keys = new Vector<>();
+            keys.add("manufacturer");
+            keys.add("manufacturerpartnumber");
+            keys.add("kanbansize");
+            keys.add("safetylevel");
+            Vector<String> values = new Vector<>();
+            values.add(manufacturer);
+            values.add(partNumber);
+            values.add(String.valueOf(kan));
+            values.add(String.valueOf(safety));
+            this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "filter"));
+            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+            Vector<String> columnNames = new Vector<>(); // create columns
+            columnNames.add("partid");
+            columnNames.add("manufacturer");
+            columnNames.add("manufacturerpartnumber");
+            columnNames.add("kanbansize");
+            columnNames.add("safetylevel");
+            displayTable(refresh, columnNames, storeOrderTable); // display table
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "invalid type");
+        }
+    }//GEN-LAST:event_filterButtonStoreActionPerformed
+
+    private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_storeOrderTableMousePressed
+
+    private void refreshButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonStoreActionPerformed
+        Vector<String> keys = new Vector<>();
+        keys.add("manufacturer");
+        keys.add("manufacturerpartnumber");
+        keys.add("kanbansize");
+        keys.add("safetylevel");
+        Vector<String> values = new Vector<>();
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("partid");
+        columnNames.add("manufacturer");
+        columnNames.add("manufacturerpartnumber");
+        columnNames.add("kanbansize");
+        columnNames.add("safetylevel");
+        JSONArray refresh = performRefresh("store", keys, values, columnNames, storeOrderTable);
+        partIDComboList.removeAllItems();
+        for (int x = 0; x < refresh.length(); x++) {
+            JSONObject temp = refresh.getJSONObject(x);
+            partIDComboList.addItem(temp.getString("partid"));
+        }
+    }//GEN-LAST:event_refreshButtonStoreActionPerformed
+
+    private void removeButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonStoreActionPerformed
+        performRemove(storeOrderTable, "store");
+        refreshButtonStoreActionPerformed(evt);
+    }//GEN-LAST:event_removeButtonStoreActionPerformed
+
+    private void updateButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonStoreActionPerformed
+        performUpdate(storeOrderTable, "store");
+        refreshButtonStoreActionPerformed(evt);
+    }//GEN-LAST:event_updateButtonStoreActionPerformed
+
+    private void createButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonStoreActionPerformed
+        String manufacturer = manufacturerTextField.getText();
+        String partNumber = partNumberTextField.getText();
+        try {
+            int kan = Integer.parseInt(kanbanSizeIntField.getText());
+            int safety = Integer.parseInt(safetyStockIntField.getText());
+            Vector<String> keys = new Vector<>();
+            keys.add("manufacturer");
+            keys.add("manufacturerpartnumber");
+            keys.add("kanbansize");
+            keys.add("safetylevel");
+            Vector<String> values = new Vector<>();
+            values.add(manufacturer);
+            values.add(partNumber);
+            values.add(String.valueOf(kan));
+            values.add(String.valueOf(safety));
+            this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "create"));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "invalid type");
+        }
+        refreshButtonStoreActionPerformed(evt);
+    }//GEN-LAST:event_createButtonStoreActionPerformed
+
+    private void safetyStockIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_safetyStockIntFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_safetyStockIntFieldActionPerformed
+
+    private void kanbanSizeIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kanbanSizeIntFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kanbanSizeIntFieldActionPerformed
+
+    private void partNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partNumberTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_partNumberTextFieldActionPerformed
+
+    private void manufacturerTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufacturerTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manufacturerTextFieldActionPerformed
+
+    private void printButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonLineActionPerformed
+        performPrint(lineOrderTable);
+
+    }//GEN-LAST:event_printButtonLineActionPerformed
+
+    private void filterButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonLineActionPerformed
+        try {
+            Vector<String> keys = new Vector<>();
+            keys.add("purchaseid");
+            keys.add("partid");
+            keys.add("quantity");
+            keys.add("priceperunit");
+            keys.add("supplier");
+            String supplier = supplierTextField.getText();
+            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+            String partid = partIDComboList.getSelectedItem().toString();
+            String purchaseid = purchaseIDComboList.getSelectedItem().toString();
+            int quantity = Integer.parseInt(quantityIntField.getText());
+            Vector<String> values = new Vector<>();
+            values.add(purchaseid);
+            values.add(partid);
+            values.add(String.valueOf(quantity));
+            values.add(String.valueOf(ppu));
+            values.add(supplier);
+            this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "filter"));
+            Vector<String> columnNames = new Vector<>(); // create columns
+            columnNames.add("lineid");
+            columnNames.add("purchaseid");
+            columnNames.add("partid");
+            columnNames.add("quantity");
+            columnNames.add("priceperunit");
+            columnNames.add("supplier");
+            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+            displayTable(refresh, columnNames, lineOrderTable); // display table
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "invalid type");
+        }
+    }//GEN-LAST:event_filterButtonLineActionPerformed
+
+    private void lineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineOrderTableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lineOrderTableMousePressed
+
+    private void refreshButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonLineActionPerformed
+        // TODO add your handling code here:
+        Vector<String> keys = new Vector<>();
+        keys.add("purchaseid");
+        keys.add("partid");
+        keys.add("quantity");
+        keys.add("priceperunit");
+        keys.add("supplier");
+        Vector<String> values = new Vector<>();
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        values.add("x");
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("lineid");
+        columnNames.add("purchaseid");
+        columnNames.add("partid");
+        columnNames.add("quantity");
+        columnNames.add("priceperunit");
+        columnNames.add("supplier");
+        performRefresh("line", keys, values, columnNames, lineOrderTable);
+        
+    }//GEN-LAST:event_refreshButtonLineActionPerformed
+
+    private void removeButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonLineActionPerformed
+        performRemove(lineOrderTable, "line");
+        refreshButtonLineActionPerformed(evt);
+    }//GEN-LAST:event_removeButtonLineActionPerformed
+
+    private void updateButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonLineActionPerformed
+        performUpdate(lineOrderTable, "line");
+        refreshButtonLineActionPerformed(evt);
+    }//GEN-LAST:event_updateButtonLineActionPerformed
+
+    private void createButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonLineActionPerformed
+        // TODO add your handling code here:
+        try {
+            Vector<String> keys = new Vector<>();
+            keys.add("purchaseid");
+            keys.add("partid");
+            keys.add("quantity");
+            keys.add("priceperunit");
+            keys.add("supplier");
+            String supplier = supplierTextField.getText();
+            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+            String partid = partIDComboList.getSelectedItem().toString();
+            String purchaseid = purchaseIDComboList.getSelectedItem().toString();
+            int quantity = Integer.parseInt(quantityIntField.getText());
+            Vector<String> values = new Vector<>();
+            values.add(purchaseid);
+            values.add(partid);
+            values.add(String.valueOf(quantity));
+            values.add(String.valueOf(ppu));
+            values.add(supplier);
+            this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "create"));
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "invalid type");
+        }
+        refreshButtonLineActionPerformed(evt);
+    }//GEN-LAST:event_createButtonLineActionPerformed
+
+    private void quantityIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityIntFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quantityIntFieldActionPerformed
+
+    private void pricePerUnitIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerUnitIntFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pricePerUnitIntFieldActionPerformed
+
+    private void supplierTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierTextFieldActionPerformed
+
+    private void printButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonPurchaseActionPerformed
+        performPrint(purchaseOrderTable);
+    }//GEN-LAST:event_printButtonPurchaseActionPerformed
+
+    private void filterButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonPurchaseActionPerformed
+        String stat = statComboBox.getSelectedItem().toString();
+        String comp = compStatusComboBox.getSelectedItem().toString();
+        String dept = deptCodeTextField.getText();
+        String dev = devAttentionTextField.getText();
+        Vector<String> keys = new Vector<>();
+        keys.add("status");
+        keys.add("completedstatus");
+        keys.add("departmentcode");
+        keys.add("deliveryattention");
+        Vector<String> values = new Vector<>();
+        values.add(stat);
+        values.add(comp);
+        values.add(dept);
+        values.add(dev);
+        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));
+        Vector<String> columnNames = new Vector<>(); // create columns
+        columnNames.add("purchaseid");
+        columnNames.add("departmentcode");
+        columnNames.add("deliveryattention");
+        columnNames.add("completedstatus");
+        columnNames.add("status");
+        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
+        displayTable(refresh, columnNames, purchaseOrderTable); // display table
+    }//GEN-LAST:event_filterButtonPurchaseActionPerformed
+
+    private void purchaseOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseOrderTableMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_purchaseOrderTableMousePressed
 
     private void refreshButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonPurchaseActionPerformed
         Vector<String> keys = new Vector<>();
@@ -899,271 +1139,6 @@ public class ClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deptCodeTextFieldActionPerformed
 
-    private void purchaseOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseOrderTableMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_purchaseOrderTableMousePressed
-
-    private void manufacturerTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manufacturerTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_manufacturerTextFieldActionPerformed
-
-    private void createButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonStoreActionPerformed
-        String manufacturer = manufacturerTextField.getText();
-        String partNumber = partNumberTextField.getText();
-        try {
-            int kan = Integer.parseInt(kanbanSizeIntField.getText());
-            int safety = Integer.parseInt(safetyStockIntField.getText());
-            Vector<String> keys = new Vector<>();
-            keys.add("manufacturer");
-            keys.add("manufacturerpartnumber");
-            keys.add("kanbansize");
-            keys.add("safetylevel");
-            Vector<String> values = new Vector<>();
-            values.add(manufacturer);
-            values.add(partNumber);
-            values.add(String.valueOf(kan));
-            values.add(String.valueOf(safety));
-            this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "create"));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "invalid type");
-        }
-        refreshButtonStoreActionPerformed(evt);
-    }//GEN-LAST:event_createButtonStoreActionPerformed
-
-    private void updateButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonStoreActionPerformed
-        performUpdate(storeOrderTable, "store");
-        refreshButtonStoreActionPerformed(evt);
-    }//GEN-LAST:event_updateButtonStoreActionPerformed
-
-    private void removeButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonStoreActionPerformed
-        performRemove(storeOrderTable, "store");
-        refreshButtonStoreActionPerformed(evt);
-    }//GEN-LAST:event_removeButtonStoreActionPerformed
-
-    private void refreshButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonStoreActionPerformed
-        Vector<String> keys = new Vector<>();
-        keys.add("manufacturer");
-        keys.add("manufacturerpartnumber");
-        keys.add("kanbansize");
-        keys.add("safetylevel");
-        Vector<String> values = new Vector<>();
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        Vector<String> columnNames = new Vector<>(); // create columns
-        columnNames.add("partid");
-        columnNames.add("manufacturer");
-        columnNames.add("manufacturerpartnumber");
-        columnNames.add("kanbansize");
-        columnNames.add("safetylevel");
-        JSONArray refresh = performRefresh("store", keys, values, columnNames, storeOrderTable);
-        partIDComboList.removeAllItems();
-        for (int x = 0; x < refresh.length(); x++) {
-            JSONObject temp = refresh.getJSONObject(x);
-            partIDComboList.addItem(temp.getString("partid"));
-        }        
-    }//GEN-LAST:event_refreshButtonStoreActionPerformed
-
-    private void storeOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_storeOrderTableMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_storeOrderTableMousePressed
-
-    private void partNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partNumberTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_partNumberTextFieldActionPerformed
-
-    private void kanbanSizeIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kanbanSizeIntFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kanbanSizeIntFieldActionPerformed
-
-    private void safetyStockIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_safetyStockIntFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_safetyStockIntFieldActionPerformed
-
-    private void filterButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonPurchaseActionPerformed
-        String stat = statComboBox.getSelectedItem().toString();
-        String comp = compStatusComboBox.getSelectedItem().toString();
-        String dept = deptCodeTextField.getText();
-        String dev = devAttentionTextField.getText();
-        Vector<String> keys = new Vector<>();
-        keys.add("status");
-        keys.add("completedstatus");
-        keys.add("departmentcode");
-        keys.add("deliveryattention");
-        Vector<String> values = new Vector<>();
-        values.add(stat);
-        values.add(comp);
-        values.add(dept);
-        values.add(dev);
-        this.data.sendObject(this.json.parseJsonIntoString("purchase", keys, values, "filter"));        
-        Vector<String> columnNames = new Vector<>(); // create columns
-        columnNames.add("purchaseid");
-        columnNames.add("departmentcode");
-        columnNames.add("deliveryattention");
-        columnNames.add("completedstatus");
-        columnNames.add("status");
-        JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-        displayTable(refresh, columnNames, purchaseOrderTable); // display table
-    }//GEN-LAST:event_filterButtonPurchaseActionPerformed
-
-    private void filterButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonStoreActionPerformed
-        String manufacturer = manufacturerTextField.getText();
-        String partNumber = partNumberTextField.getText();
-        try {
-            int kan = Integer.parseInt(kanbanSizeIntField.getText());
-            int safety = Integer.parseInt(safetyStockIntField.getText());
-            Vector<String> keys = new Vector<>();
-            keys.add("manufacturer");
-            keys.add("manufacturerpartnumber");
-            keys.add("kanbansize");
-            keys.add("safetylevel");
-            Vector<String> values = new Vector<>();
-            values.add(manufacturer);
-            values.add(partNumber);
-            values.add(String.valueOf(kan));
-            values.add(String.valueOf(safety));
-            this.data.sendObject(this.json.parseJsonIntoString("store", keys, values, "filter"));
-            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-            Vector<String> columnNames = new Vector<>(); // create columns
-            columnNames.add("partid");
-            columnNames.add("manufacturer");
-            columnNames.add("manufacturerpartnumber");
-            columnNames.add("kanbansize");
-            columnNames.add("safetylevel");
-            displayTable(refresh, columnNames, storeOrderTable); // display table            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "invalid type");
-        }
-
-    }//GEN-LAST:event_filterButtonStoreActionPerformed
-
-    private void supplierTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supplierTextFieldActionPerformed
-
-    private void pricePerUnitIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerUnitIntFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pricePerUnitIntFieldActionPerformed
-
-    private void createButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonLineActionPerformed
-        // TODO add your handling code here:
-        try {
-            Vector<String> keys = new Vector<>();
-            keys.add("purchaseid");
-            keys.add("partid");
-            keys.add("quantity");
-            keys.add("priceperunit");
-            keys.add("supplier");
-            String supplier = supplierTextField.getText();
-            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
-            String partid = partIDComboList.getSelectedItem().toString();
-            String purchaseid = purchaseIDComboList.getSelectedItem().toString();
-            int quantity = Integer.parseInt(quantityIntField.getText());
-            Vector<String> values = new Vector<>();
-            values.add(purchaseid);
-            values.add(partid);
-            values.add(String.valueOf(quantity));
-            values.add(String.valueOf(ppu));
-            values.add(supplier);
-            this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "create"));
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "invalid type");
-        }
-        refreshButtonLineActionPerformed(evt);
-
-    }//GEN-LAST:event_createButtonLineActionPerformed
-
-    private void updateButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonLineActionPerformed
-        performUpdate(lineOrderTable, "line");
-        refreshButtonLineActionPerformed(evt);
-    }//GEN-LAST:event_updateButtonLineActionPerformed
-
-    private void removeButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonLineActionPerformed
-        performRemove(lineOrderTable, "line");
-        refreshButtonLineActionPerformed(evt);
-    }//GEN-LAST:event_removeButtonLineActionPerformed
-
-    private void refreshButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonLineActionPerformed
-        // TODO add your handling code here:
-        Vector<String> keys = new Vector<>();
-        keys.add("purchaseid");
-        keys.add("partid");
-        keys.add("quantity");
-        keys.add("priceperunit");
-        keys.add("supplier");
-        Vector<String> values = new Vector<>();
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        values.add("x");
-        Vector<String> columnNames = new Vector<>(); // create columns
-        columnNames.add("lineid");
-        columnNames.add("purchaseid");
-        columnNames.add("partid");
-        columnNames.add("quantity");
-        columnNames.add("priceperunit");
-        columnNames.add("supplier");
-        performRefresh("line", keys, values, columnNames, lineOrderTable);
-    }//GEN-LAST:event_refreshButtonLineActionPerformed
-
-    private void lineOrderTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lineOrderTableMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lineOrderTableMousePressed
-
-    private void filterButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonLineActionPerformed
-        try {
-            Vector<String> keys = new Vector<>();
-            keys.add("purchaseid");
-            keys.add("partid");
-            keys.add("quantity");
-            keys.add("priceperunit");
-            keys.add("supplier");
-            String supplier = supplierTextField.getText();
-            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
-            String partid = partIDComboList.getSelectedItem().toString();
-            String purchaseid = purchaseIDComboList.getSelectedItem().toString();
-            int quantity = Integer.parseInt(quantityIntField.getText());
-            Vector<String> values = new Vector<>();
-            values.add(purchaseid);
-            values.add(partid);
-            values.add(String.valueOf(quantity));
-            values.add(String.valueOf(ppu));
-            values.add(supplier);
-            this.data.sendObject(this.json.parseJsonIntoString("line", keys, values, "filter"));
-            Vector<String> columnNames = new Vector<>(); // create columns
-            columnNames.add("lineid");
-            columnNames.add("purchaseid");
-            columnNames.add("partid");
-            columnNames.add("quantity");
-            columnNames.add("priceperunit");
-            columnNames.add("supplier");
-            JSONArray refresh = json.parseStringIntoArray(this.data.recieveObject());
-            displayTable(refresh, columnNames, lineOrderTable); // display table
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "invalid type");
-        }
-    }//GEN-LAST:event_filterButtonLineActionPerformed
-
-    private void quantityIntFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityIntFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quantityIntFieldActionPerformed
-
-    private void printButtonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonLineActionPerformed
-        performPrint(lineOrderTable);
-        
-    }//GEN-LAST:event_printButtonLineActionPerformed
-
-    private void printButtonStoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonStoreActionPerformed
-        // TODO add your handling code here:
-        performPrint(storeOrderTable);
-    }//GEN-LAST:event_printButtonStoreActionPerformed
-
-    private void printButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonPurchaseActionPerformed
-           performPrint(purchaseOrderTable);
-    }//GEN-LAST:event_printButtonPurchaseActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> compStatusComboBox;
     private javax.swing.JButton createButtonLine;
@@ -1188,9 +1163,6 @@ public class ClientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
