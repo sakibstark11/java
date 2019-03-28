@@ -26,4 +26,8 @@ COMPLETEDSTATUS BOOLEAN NOT NULL
 );
 
 user : sakib
+<<<<<<< HEAD
 password: sakib
+=======
+password: sakib
+>>>>>>> db8eaf4694c02182f139d89c5cb5e538b168b0c5
