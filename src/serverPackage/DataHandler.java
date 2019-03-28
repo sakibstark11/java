@@ -11,6 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+/**
+ * takes care of incoming data, extends the sql handler class and sets up initial data values
+ * @author sakib
+ */
 public class DataHandler extends SQLHandler {
     private Socket clientSocket = null;
     private OutputStream clientOut = null;

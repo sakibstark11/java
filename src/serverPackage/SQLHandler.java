@@ -1,6 +1,5 @@
 //7650714 Sakib
 package serverPackage;
-import clientPackage.JsonHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
 /**
- *
+ * takes care of sql queries and returns succession/failure results
  * @author sakib
  */
 public abstract class SQLHandler {
@@ -18,9 +17,10 @@ public abstract class SQLHandler {
     protected String ID;
     protected String one, two, three, four, five;
     protected JSONObject jsonData;
-    protected JsonHandler parseJson = new JsonHandler();
+    
     /**
      * does a delete operation on the table
+     * @return boolean from server
      */
     protected boolean delete() {
         try {
@@ -91,6 +91,7 @@ public abstract class SQLHandler {
     }
     /**
      * does an update operation on the table
+     * @return a boolean to clarify the update
      */
     protected boolean update() {
         switch (this.table) {

@@ -8,6 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.*;
 import serverPackage.DataHandler;
+/**
+ * takes care of all sorts of incoming json commands and outgoing json results 
+ * @author sakib
+ */
 public class JsonHandler implements Serializable {
     private String stringJSON = "";
     private JSONArray array;

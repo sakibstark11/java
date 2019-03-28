@@ -8,6 +8,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import org.json.JSONObject;
 
+/**
+ * takes care of care incoming data and routes them to the parsing data handler classes
+ *
+ * @author sakib
+ */
 public class ClientThread extends Thread {
 
     private Socket clientSocket = null;
@@ -21,7 +26,6 @@ public class ClientThread extends Thread {
 
     @Override
     public void run() {
-
         clientThreading();
     }
 
@@ -30,17 +34,16 @@ public class ClientThread extends Thread {
             while (clientSocket != null) {
                 System.out.println("setting up input stream");
                 this.bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                String incomingData = "";
-//                while (bufferedReader.readLine() != null) {
-                    incomingData = bufferedReader.readLine();
-//                    if (incomingData.equals("") || incomingData.equals(null)) {
-//                        System.err.println("client trying to send corrupt");
-//                    }
+                String incomingData = bufferedReader.readLine();
+                while (incomingData != null) {
                     JSONObject createTempJSON = new JSONObject(incomingData);
                     DataHandler parseData = new DataHandler(createTempJSON, clientOut, clientSocket);
-//                }
+                    incomingData = bufferedReader.readLine();
+                }
+                System.err.println("client tried to send corrupted data");
             }
         } catch (IOException ex) {
+            System.out.println("something went wrong/ a client got disconnected");
         }
     }
 }

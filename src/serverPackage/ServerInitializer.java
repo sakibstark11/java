@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+/**
+ * takes care of setting up server and all its jobs such as client communication, keeping track of client numbers
+ * @author sakib
+ */
 public class ServerInitializer {
     private final int port;
     private int clientNumber = 0;
@@ -31,7 +35,6 @@ public class ServerInitializer {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-            serverThreading();
         }
     }
 }

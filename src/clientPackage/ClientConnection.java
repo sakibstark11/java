@@ -10,6 +10,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+/**
+ * connects the gui to the client, sends or receives data on behalf of the gui 
+ * @author sakib
+ */
 public class ClientConnection {
     private final String hostName;
     private final int serverPort;
@@ -59,8 +63,7 @@ public class ClientConnection {
         System.out.println("recieving");
         try {
             this.bufferedIn = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            String incomingData = "";
-            incomingData = this.bufferedIn.readLine();
+            String incomingData = this.bufferedIn.readLine();
             System.out.println("recieved");
             System.err.println(incomingData);
             return incomingData;
