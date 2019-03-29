@@ -948,7 +948,7 @@ public class ClientGUI extends javax.swing.JFrame {
             keys.add("priceperunit");
             keys.add("supplier");
             String supplier = supplierTextField.getText();
-            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+            Double ppu = Double.parseDouble(pricePerUnitIntField.getText());
             String partid = partIDComboList.getSelectedItem().toString();
             String purchaseid = purchaseIDComboList.getSelectedItem().toString();
             int quantity = Integer.parseInt(quantityIntField.getText());
@@ -1022,7 +1022,7 @@ public class ClientGUI extends javax.swing.JFrame {
             keys.add("priceperunit");
             keys.add("supplier");
             String supplier = supplierTextField.getText();
-            int ppu = Integer.parseInt(pricePerUnitIntField.getText());
+            double ppu = Double.parseDouble(pricePerUnitIntField.getText());
             String partid = partIDComboList.getSelectedItem().toString();
             String purchaseid = purchaseIDComboList.getSelectedItem().toString();
             int quantity = Integer.parseInt(quantityIntField.getText());
@@ -1241,7 +1241,6 @@ public class ClientGUI extends javax.swing.JFrame {
         System.out.println(dataList);
         DefaultTableModel model = new DefaultTableModel(dataList, columnNames);
         orderTable.setModel(model);
-        orderTable.isCellEditable(1, 1);
     }
     /**
      *
