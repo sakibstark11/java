@@ -998,7 +998,7 @@ public class ClientGUI extends javax.swing.JFrame {
         columnNames.add("quantity");
         columnNames.add("priceperunit");
         columnNames.add("supplier");
-        performRefresh("line", keys, values, columnNames, lineOrderTable);
+    performRefresh("line", keys, values, columnNames, lineOrderTable);
         
     }//GEN-LAST:event_refreshButtonLineActionPerformed
 

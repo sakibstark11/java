@@ -1,5 +1,6 @@
 //7650714 Sakib
 package serverPackage;
+
 import clientPackage.JsonHandler;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -11,17 +12,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 /**
- * takes care of incoming data, extends the sql handler class and sets up initial data values
+ * takes care of incoming data, extends the sql handler class and sets up
+ * initial data values
+ *
  * @author sakib
  */
 public class DataHandler extends SQLHandler {
+
     private Socket clientSocket = null;
     private OutputStream clientOut = null;
     private JSONArray array = null;
     private Connection con = null;
     private JSONObject jsonDataGlobal = null;
     private JsonHandler jsonWoker = null;
+
     /**
      * routes the request to their respective function
      *
@@ -47,9 +53,10 @@ public class DataHandler extends SQLHandler {
             }
         } catch (SQLException ex) {
             System.out.println("database not connected");
-            
+
         }
     }
+
     /**
      * upon getting a request related to purchase table, this function is called
      * and it routes to the type of requests
@@ -87,6 +94,7 @@ public class DataHandler extends SQLHandler {
                 break;
         }
     }
+
     /**
      * sends back replies from server
      *
@@ -102,6 +110,7 @@ public class DataHandler extends SQLHandler {
             Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * handles requests related to purchaseorderline
      */
@@ -139,6 +148,7 @@ public class DataHandler extends SQLHandler {
                 break;
         }
     }
+
     /**
      * routes requests related to table store
      */

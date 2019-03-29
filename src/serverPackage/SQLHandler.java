@@ -1,5 +1,6 @@
 //7650714 Sakib
 package serverPackage;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,19 +8,23 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONObject;
+
 /**
  * takes care of sql queries and returns succession/failure results
+ *
  * @author sakib
  */
 public abstract class SQLHandler {
+
     protected Connection connection;
     protected String table;
     protected String ID;
     protected String one, two, three, four, five;
     protected JSONObject jsonData;
-    
+
     /**
      * does a delete operation on the table
+     *
      * @return boolean from server
      */
     protected boolean delete() {
@@ -34,6 +39,7 @@ public abstract class SQLHandler {
             return false;
         }
     }
+
     /**
      * does a filter operation on the table
      *
@@ -78,7 +84,7 @@ public abstract class SQLHandler {
                     statement.setInt(1, Integer.parseInt(this.jsonData.getString(one.toLowerCase())));
                     statement.setInt(2, Integer.parseInt(this.jsonData.getString(two.toLowerCase())));
                     statement.setInt(3, Integer.parseInt(this.jsonData.getString(three.toLowerCase())));
-                    statement.setInt(4, Integer.parseInt(this.jsonData.getString(four.toLowerCase())));
+                    statement.setDouble(4, Double.parseDouble(this.jsonData.getString(four.toLowerCase())));
                     statement.setString(5, this.jsonData.getString(five.toLowerCase()));
                     result = statement.executeQuery();
 
@@ -89,8 +95,10 @@ public abstract class SQLHandler {
         }
         return result;
     }
+
     /**
      * does an update operation on the table
+     *
      * @return a boolean to clarify the update
      */
     protected boolean update() {
@@ -112,16 +120,15 @@ public abstract class SQLHandler {
                 }
             case "PURCHASEORDERLINE":
                 try {
-                    PreparedStatement statement = this.connection.prepareStatement("UPDATE " + this.table + "( " + this.one + "," + this.two + "," + this.three + "," + this.four + "," + this.five + " ) " + "VALUES (?,?,?,?,?)");
+                    PreparedStatement statement = this.connection.prepareStatement("UPDATE " + this.table + " SET " + this.one + "=?," + this.two + "=?," + this.three + "=?," + this.four + "=?," + this.five + "=? WHERE " + this.ID + "=?");
                     statement.setInt(1, Integer.parseInt(this.jsonData.getString(one.toLowerCase())));
                     statement.setInt(2, Integer.parseInt(this.jsonData.getString(two.toLowerCase())));
                     statement.setInt(3, Integer.parseInt(this.jsonData.getString(three.toLowerCase())));
-                    statement.setInt(4, Integer.parseInt(this.jsonData.getString(four.toLowerCase())));
+                    statement.setDouble(4, Double.parseDouble(this.jsonData.getString(four.toLowerCase())));
                     statement.setString(5, this.jsonData.getString(five.toLowerCase()));
-                    int rowsInserted = statement.executeUpdate();
-                    if (rowsInserted > 0) {
-                        System.out.println("added");
-                    }
+                    statement.setInt(6, Integer.parseInt(this.jsonData.getString(ID.toLowerCase())));
+                    statement.execute();
+                    System.out.println("updated");
                     return true;
                 } catch (SQLException ex) {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -149,6 +156,7 @@ public abstract class SQLHandler {
         }
         return false;
     }
+
     /**
      * does a refresh operation on the table
      *
@@ -164,6 +172,7 @@ public abstract class SQLHandler {
         }
         return result;
     }
+
     /**
      * does a create record operation on the table
      */
@@ -175,7 +184,7 @@ public abstract class SQLHandler {
                     statement.setInt(1, Integer.parseInt(this.jsonData.getString(one.toLowerCase())));
                     statement.setInt(2, Integer.parseInt(this.jsonData.getString(two.toLowerCase())));
                     statement.setInt(3, Integer.parseInt(this.jsonData.getString(three.toLowerCase())));
-                    statement.setInt(4, Integer.parseInt(this.jsonData.getString(four.toLowerCase())));
+                    statement.setDouble(4, Double.parseDouble(this.jsonData.getString(four.toLowerCase())));
                     statement.setString(5, this.jsonData.getString(five.toLowerCase()));
                     int rowsInserted = statement.executeUpdate();
                     if (rowsInserted > 0) {

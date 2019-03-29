@@ -1,5 +1,6 @@
 //7650714 Sakib using obsolete vector because table model works with vector hasn't been updated to work with array list yet
 package clientPackage;
+
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,23 +9,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.*;
 import serverPackage.DataHandler;
+
 /**
- * takes care of all sorts of incoming json commands and outgoing json results 
+ * takes care of all sorts of incoming json commands and outgoing json results
+ *
  * @author sakib
  */
 public class JsonHandler implements Serializable {
+
     private String stringJSON = "";
     private JSONArray array;
+
     public JsonHandler() {
     }
-/**
- * 
- * @param part, the type of a table store, purchaseorder, line
- * @param keys, the fields
- * @param values, values of the field
- * @param command, the task refresh,delete
- * @return returns a jsonobject in a string format
- */
+
+    /**
+     *
+     * @param part, the type of a table store, purchaseorder, line
+     * @param keys, the fields
+     * @param values, values of the field
+     * @param command, the task refresh,delete
+     * @return returns a jsonobject in a string format
+     */
     public String parseJsonIntoString(String part, Vector< String> keys, Vector< String> values, String command) {
         JSONObject jsonFor = new JSONObject();
         jsonFor.put("order", part);
@@ -36,21 +42,23 @@ public class JsonHandler implements Serializable {
         stringJSON = jsonFor.toString();
         return stringJSON;
     }
-/**
- * 
- * @param JSONInString, the string to be converted into an array
- * @return a jsonarray
- */
+
+    /**
+     *
+     * @param JSONInString, the string to be converted into an array
+     * @return a jsonarray
+     */
     public JSONArray parseStringIntoArray(String JSONInString) {
         JSONArray array = new JSONArray(JSONInString);
         System.out.println(array);
         return array;
     }
-/**
- * 
- * @param result, sql result object
- * @return a jsonarray
- */
+
+    /**
+     *
+     * @param result, sql result object
+     * @return a jsonarray
+     */
     public JSONArray createJsonFromResult(ResultSet result) {
         this.array = new JSONArray();
         try {
@@ -68,7 +76,7 @@ public class JsonHandler implements Serializable {
                         case java.sql.Types.BOOLEAN:
                             objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBoolean(x)));
                             break;
-                        case java.sql.Types.DECIMAL:
+                        case java.sql.Types.DOUBLE:
                             objectJson.put(result.getMetaData().getColumnName(x).toLowerCase(), String.valueOf(result.getBigDecimal(x)));
                         default:
                             break;
